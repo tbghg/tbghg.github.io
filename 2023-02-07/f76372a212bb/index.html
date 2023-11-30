@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="tbghg">
+    <meta name="description" content="这里是TBH的博客，用于技术分享，记录日常。">
+    <meta name="author" content="tbghg">
+    
+    <title>
+        
+            k8s集群搭建记录 |
+        
+        TBH的博客
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="https://s1.ax1x.com/2023/01/12/pSurRG8.png">
+    
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.8.6/source/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.8.6/source/font/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.8.6/source/font/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.8.6/source/font/css/brands.min.css">
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"tbghg.top","root":"/","language":"zh-CN","path":"search.json"}
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066cc","logo":"https://s1.ax1x.com/2023/01/12/pSurRG8.png","favicon":"https://s1.ax1x.com/2023/01/12/pSurRG8.png","avatar":"https://s1.ax1x.com/2023/01/12/pSurRG8.png","font_size":null,"font_family":"STHeiti","hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.svg","description":"如果结果不如你所愿||那就在尘埃落定前奋起一搏","font_color":null,"hitokoto":false},"scroll":{"progress_bar":false,"percent":false}},"local_search":{"enable":true,"preload":true},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"comment":{"enable":true,"use":"valine","valine":{"appid":"0HepQGr76M5xNgWk2Ecac7CC-gzGzoHsz","appkey":"9bWzVBcRI0aSocVHtX3OBSYo","server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.21"},"waline":{"server_url":null,"reaction":false,"version":2}},"post":{"author_label":{"enable":false,"auto":false,"custom_label_list":["苦逼后端人"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"center","copyright_info":false,"share":false,"reward":{"enable":false,"img_link":null,"text":null}},"website_count":{"busuanzi_count":{"enable":false,"site_uv":false,"site_pv":false,"page_pv":false}},"version":"3.8.6"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"复制代码","copied":"已复制","fold":"折叠代码块","folded":"已折叠"}
+    KEEP.language_copy_copyright = {"copy":"复制版权信息","copied":"已复制","title":"原文标题","author":"原文作者","link":"原文链接"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="TBH个人博客" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+<main class="page-container border-box">
+
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="https://s1.ax1x.com/2023/01/12/pSurRG8.png">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               TBH的博客
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/plan"
+                            >
+                                计划
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/share"
+                            >
+                                分享
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                关于
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/plan">计划</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/share">分享</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+
+                
+
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+
+        <div class="article-content-container border-box">
+
+            
+
+            <div class="article-content-bottom border-box">
+                
+                    <div class="article-title">
+                        k8s集群搭建记录
+                    </div>
+                
+
+                
+                    <div class="article-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="https://s1.ax1x.com/2023/01/12/pSurRG8.png">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author">
+                                <span class="name">tbghg</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="article-meta-info-container border-box post">
+    <div class="article-meta-info border-box">
+        
+
+
+        
+            <span class="meta-info-item article-create-date">
+                <i class="icon fa-solid fa-calendar-check"></i>&nbsp;
+                <span class="pc">2023-02-07 15:47:33</span>
+                <span class="mobile">2023-02-07 15:47</span>
+            </span>
+
+            <span class="meta-info-item article-update-date">
+                <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                <span class="pc" data-updated="Tue Feb 07 2023 07:47:33 GMT+0000">2023-02-07 15:47:33</span>
+            </span>
+        
+
+        
+
+        
+            <span class="article-tag meta-info-item border-box">
+                <i class="icon fas fa-tags"></i>&nbsp;
+                <ul class="article-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/k8s/">k8s</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+            <span class="meta-info-item article-wordcount">
+                <i class="icon fas fa-file-word"></i>&nbsp;<span>2.4k 字</span>
+            </span>
+        
+        
+            <span class="meta-info-item article-min2read">
+                <i class="icon fas fa-clock"></i>&nbsp;<span>11 分钟</span>
+            </span>
+        
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="article-content keep-markdown-body">
+                    
+
+                    <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本次环境搭建需要安装三台Centos服务器（一主二从），然后在每台服务器中分别安装docker（18.06.3），kubeadm（1.17.4）、kubelet（1.17.4）、kubectl（1.17.4）程序</p>
+<p>之前配置hadoop集群的时候配置过hosts，设置过免密登录，这里直接拿来用了，参考黑马程序员的配置过程进行配置的</p>
+<p>有个坑需要注意一下，我一开始是登录三个tbh-0001主机，然后免密登录直接切换，同时执行reboot命令可能会造成混乱，所以推荐直接登录三台主机</p>
+<h2 id="环境初始化"><a href="#环境初始化" class="headerlink" title="环境初始化"></a>环境初始化</h2><ol>
+<li>检查操作系统的版本</li>
+</ol>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 此方式下安装kubernetes集群要求Centos版本要在7.5或之上</span>
+<span class="token punctuation">[</span>root@tbh-0001 ~<span class="token punctuation">]</span><span class="token comment"># cat /etc/redhat-release </span>
+CentOS Linux release <span class="token number">7.6</span>.1810 <span class="token punctuation">(</span>Core<span class="token punctuation">)</span> <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<ol start="2">
+<li>主机名解析</li>
+</ol>
+<p>以前搭建hadoop集群实验时做过了，正好接着用，同时都配置了免密登录</p>
+<p>企业中建议配置DNS服务器</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>root@tbh-0001 ~<span class="token punctuation">]</span><span class="token comment"># cat /etc/hosts</span>
+::1	localhost	localhost.localdomain	localhost6	localhost6.localdomain6
+<span class="token number">192.168</span>.0.181	tbh-0001	tbh-0001
+<span class="token number">192.168</span>.0.75	tbh-0003	tbh-0003
+<span class="token number">192.168</span>.0.105	tbh-0002	tbh-0002
+
+<span class="token number">127.0</span>.0.1	localhost	localhost.localdomain	localhost4	localhost4.localdomain4
+<span class="token number">127.0</span>.0.1	tbh	tbh<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ol start="3">
+<li>时间同步</li>
+</ol>
+<p>kubernetes要求集群中的节点时间必须精确一致，这里直接使用chronyd服务从网络同步时间</p>
+<p>企业中建议配置内部的时间同步服务器</p>
+<p>这里三个都要配，我这里用的是xshell的“发送键至所有的会话框”，下面就展示一个了</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 启动chronyd服务</span>
+<span class="token punctuation">[</span>root@tbh-0001 ~<span class="token punctuation">]</span><span class="token comment"># systemctl start chronyd</span>
+<span class="token comment"># 设置chronyd服务开机自启</span>
+<span class="token punctuation">[</span>root@tbh-0001 ~<span class="token punctuation">]</span><span class="token comment"># systemctl enable chronyd</span>
+<span class="token comment"># chronyd服务启动稍等几秒钟，就可以使用date命令验证时间了</span>
+<span class="token punctuation">[</span>root@tbh-0001 ~<span class="token punctuation">]</span><span class="token comment"># date</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>看到三个的输出时间一致证明配置成功</p>
+<ol start="4">
+<li>禁用iptables和firewalld服务</li>
+</ol>
+<p>kubernetes和docker在运行中会产生大量的iptables规则，为了不让系统规则跟它们混淆，直接关闭系统的规则</p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token comment"># 1 关闭firewalld服务</span>
+<span class="token namespace">[root@tbh-0001 ~]</span><span class="token comment"># systemctl stop firewalld</span>
+<span class="token namespace">[root@tbh-0001 ~]</span><span class="token comment"># systemctl disable firewalld</span>
+<span class="token comment"># 2 关闭iptables服务</span>
+<span class="token namespace">[root@tbh-0001 ~]</span><span class="token comment"># systemctl stop iptables</span>
+<span class="token namespace">[root@tbh-0001 ~]</span><span class="token comment"># systemctl disable iptables</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ol start="5">
+<li>禁用selinux</li>
+</ol>
+<p> selinux是linux系统下的一个安全服务，如果不关闭它，在安装集群中会产生各种各样的奇葩问题</p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token comment"># 编辑 /etc/selinux/config 文件，修改SELINUX的值为disabled</span>
+<span class="token comment"># 注意修改完毕之后需要重启linux服务</span>
+SELINUX=disabled<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<ol start="6">
+<li>禁用swap分区</li>
+</ol>
+<p>swap分区指的是虚拟内存分区，它的作用是在物理内存使用完之后，将磁盘空间虚拟成内存来使用</p>
+<p>启用swap设备会对系统的性能产生非常负面的影响，因此kubernetes要求每个节点都要禁用swap设备</p>
+<p>但是如果因为某些原因确实不能关闭swap分区，就需要在集群安装过程中通过明确的参数进行配置说明</p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token comment"># 编辑分区配置文件/etc/fstab，注释掉swap分区一行</span>
+<span class="token comment"># 注意修改完毕之后需要重启linux服务</span>
+ UUID=455cc753-7a60-4c17-a424-7741728c44a1 <span class="token operator">/</span>boot    xfs     defaults        0 0
+ <span class="token operator">/</span>dev/mapper/centos-home <span class="token operator">/</span>home                      xfs     defaults        0 0
+<span class="token comment"># /dev/mapper/centos-swap swap                      swap    defaults        0 0</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>7）修改linux的内核参数</p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token comment"># 修改linux的内核参数，添加网桥过滤和地址转发功能</span>
+<span class="token comment"># 编辑/etc/sysctl.d/kubernetes.conf文件，添加如下配置:</span>
+net<span class="token punctuation">.</span>bridge<span class="token punctuation">.</span>bridge-nf-call-ip6tables = 1
+net<span class="token punctuation">.</span>bridge<span class="token punctuation">.</span>bridge-nf-call-iptables = 1
+net<span class="token punctuation">.</span>ipv4<span class="token punctuation">.</span>ip_forward = 1
+
+<span class="token comment"># 重新加载配置</span>
+<span class="token namespace">[root@tbh-0001 ~]</span><span class="token comment"># sysctl -p</span>
+vm<span class="token punctuation">.</span>swappiness = 0
+net<span class="token punctuation">.</span>core<span class="token punctuation">.</span>somaxconn = 1024
+net<span class="token punctuation">.</span>ipv4<span class="token punctuation">.</span>tcp_max_tw_buckets = 5000
+net<span class="token punctuation">.</span>ipv4<span class="token punctuation">.</span>tcp_max_syn_backlog = 1024
+
+<span class="token comment"># 加载网桥过滤模块</span>
+<span class="token namespace">[root@tbh-0001 ~]</span><span class="token comment"># modprobe br_netfilter</span>
+
+<span class="token comment"># 查看网桥过滤模块是否加载成功</span>
+<span class="token namespace">[root@tbh-0001 ~]</span><span class="token comment"># lsmod | grep br_netfilter</span>
+br_netfilter           22256  0 
+bridge                151336  1 br_netfilter<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ol start="8">
+<li>配置ipvs功能</li>
+</ol>
+<p>在kubernetes中service有两种代理模型，一种是基于iptables的，一种是基于ipvs的</p>
+<p>两者比较的话，ipvs的性能明显要高一些，但是如果要使用它，需要手动载入ipvs模块</p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token comment"># 1 安装ipset和ipvsadm</span>
+<span class="token namespace">[root@tbh-0001 ~]</span><span class="token comment"># yum install ipset ipvsadmin -y</span>
+
+<span class="token comment"># 2 添加需要加载的模块写入脚本文件</span>
+<span class="token namespace">[root@tbh-0001 ~]</span><span class="token comment"># cat &lt;&lt;EOF >  /etc/sysconfig/modules/ipvs.modules</span>
+<span class="token comment">#!/bin/bash</span>
+modprobe <span class="token operator">--</span> ip_vs
+modprobe <span class="token operator">--</span> ip_vs_rr
+modprobe <span class="token operator">--</span> ip_vs_wrr
+modprobe <span class="token operator">--</span> ip_vs_sh
+modprobe <span class="token operator">--</span> nf_conntrack_ipv4
+EOF
+
+<span class="token comment"># 3 为脚本文件添加执行权限</span>
+<span class="token namespace">[root@tbh-0001 ~]</span><span class="token comment"># chmod +x /etc/sysconfig/modules/ipvs.modules</span>
+
+<span class="token comment"># 4 执行脚本文件</span>
+<span class="token namespace">[root@tbh-0001 ~]</span><span class="token comment"># /bin/bash /etc/sysconfig/modules/ipvs.modules</span>
+
+<span class="token comment"># 5 查看对应的模块是否加载成功</span>
+<span class="token namespace">[root@tbh-0001 ~]</span><span class="token comment"># lsmod | grep -e ip_vs -e nf_conntrack_ipv4</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ol start="9">
+<li>重启服务器</li>
+</ol>
+<p>上面步骤完成之后，需要重新启动linux系统</p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[root@tbh-0001 ~]</span><span class="token comment"># reboot</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="安装docker"><a href="#安装docker" class="headerlink" title="安装docker"></a>安装docker</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 1 切换镜像源</span>
+<span class="token punctuation">[</span>root@tbh-0001 ~<span class="token punctuation">]</span><span class="token comment"># wget https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo -O /etc/yum.repos.d/docker-ce.repo</span>
+
+<span class="token comment"># 2 查看当前镜像源中支持的docker版本</span>
+<span class="token punctuation">[</span>root@tbh-0001 ~<span class="token punctuation">]</span><span class="token comment"># yum list docker-ce --showduplicates</span>
+
+<span class="token comment"># 3 安装特定版本的docker-ce</span>
+<span class="token comment"># 必须指定--setopt=obsoletes=0，否则yum会自动安装更高版本</span>
+<span class="token punctuation">[</span>root@tbh-0001 ~<span class="token punctuation">]</span><span class="token comment"># yum install --setopt=obsoletes=0 docker-ce-18.06.3.ce-3.el7 -y</span>
+
+<span class="token comment"># 4 添加一个配置文件</span>
+<span class="token comment"># Docker在默认情况下使用的Cgroup Driver为cgroupfs，而kubernetes推荐使用systemd来代替cgroupfs</span>
+<span class="token punctuation">[</span>root@tbh-0001 ~<span class="token punctuation">]</span><span class="token comment"># mkdir /etc/docker</span>
+<span class="token punctuation">[</span>root@tbh-0001 ~<span class="token punctuation">]</span><span class="token comment"># cat &lt;&lt;EOF >  /etc/docker/daemon.json</span>
+<span class="token punctuation">&#123;</span>
+  <span class="token string">"exec-opts"</span><span class="token builtin class-name">:</span> <span class="token punctuation">[</span><span class="token string">"native.cgroupdriver=systemd"</span><span class="token punctuation">]</span>,
+  <span class="token string">"registry-mirrors"</span><span class="token builtin class-name">:</span> <span class="token punctuation">[</span><span class="token string">"https://kn0t2bca.mirror.aliyuncs.com"</span><span class="token punctuation">]</span>
+<span class="token punctuation">&#125;</span>
+EOF
+
+<span class="token comment"># 5 启动docker</span>
+<span class="token punctuation">[</span>root@tbh-0001 ~<span class="token punctuation">]</span><span class="token comment"># systemctl restart docker</span>
+<span class="token punctuation">[</span>root@tbh-0001 ~<span class="token punctuation">]</span><span class="token comment"># systemctl enable docker</span>
+
+<span class="token comment"># 6 检查docker状态和版本</span>
+<span class="token punctuation">[</span>root@tbh-0001 ~<span class="token punctuation">]</span><span class="token comment"># docker version</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="安装kubernetes组件"><a href="#安装kubernetes组件" class="headerlink" title="安装kubernetes组件"></a>安装kubernetes组件</h2><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token comment"># 由于kubernetes的镜像源在国外，速度比较慢，这里切换成国内的镜像源</span>
+<span class="token comment"># 编辑/etc/yum.repos.d/kubernetes.repo，添加下面的配置 </span>
+<span class="token namespace">[kubernetes]</span>
+name=Kubernetes
+baseurl=http:<span class="token operator">/</span><span class="token operator">/</span>mirrors<span class="token punctuation">.</span>aliyun<span class="token punctuation">.</span>com/kubernetes/yum/repos/kubernetes-el7-x86_64
+enabled=1
+gpgcheck=0
+repo_gpgcheck=0
+gpgkey=http:<span class="token operator">/</span><span class="token operator">/</span>mirrors<span class="token punctuation">.</span>aliyun<span class="token punctuation">.</span>com/kubernetes/yum/doc/yum-key<span class="token punctuation">.</span>gpg
+       http:<span class="token operator">/</span><span class="token operator">/</span>mirrors<span class="token punctuation">.</span>aliyun<span class="token punctuation">.</span>com/kubernetes/yum/doc/rpm-package-key<span class="token punctuation">.</span>gpg
+
+<span class="token comment"># 安装kubeadm、kubelet和kubectl</span>
+<span class="token namespace">[root@tbh-0001 ~]</span><span class="token comment"># yum install --setopt=obsoletes=0 kubeadm-1.17.4-0 kubelet-1.17.4-0 kubectl-1.17.4-0 -y</span>
+
+<span class="token comment"># 配置kubelet的cgroup</span>
+<span class="token comment"># 编辑/etc/sysconfig/kubelet，添加下面的配置</span>
+KUBELET_CGROUP_ARGS=<span class="token string">"--cgroup-driver=systemd"</span>
+KUBE_PROXY_MODE=<span class="token string">"ipvs"</span>
+
+<span class="token comment"># 4 设置kubelet开机自启</span>
+<span class="token namespace">[root@tbh-0001 ~]</span><span class="token comment"># systemctl enable kubelet</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="准备集群镜像"><a href="#准备集群镜像" class="headerlink" title="准备集群镜像"></a>准备集群镜像</h2><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token comment"># 在安装kubernetes集群之前，必须要提前准备好集群需要的镜像，所需镜像可以通过下面命令查看</span>
+<span class="token namespace">[root@tbh-0001 ~]</span><span class="token comment"># kubeadm config images list</span>
+
+<span class="token comment"># 下载镜像</span>
+<span class="token comment"># 此镜像在kubernetes的仓库中,由于网络原因,无法连接，下面提供了一种替代方案</span>
+images=<span class="token punctuation">(</span>
+    kube-apiserver:v1<span class="token punctuation">.</span>17<span class="token punctuation">.</span>4
+    kube-controller-manager:v1<span class="token punctuation">.</span>17<span class="token punctuation">.</span>4
+    kube-scheduler:v1<span class="token punctuation">.</span>17<span class="token punctuation">.</span>4
+    kube-proxy:v1<span class="token punctuation">.</span>17<span class="token punctuation">.</span>4
+    pause:3<span class="token punctuation">.</span>1
+    etcd:3<span class="token punctuation">.</span>4<span class="token punctuation">.</span>3-0
+    coredns:1<span class="token punctuation">.</span>6<span class="token punctuation">.</span>5
+<span class="token punctuation">)</span>
+
+<span class="token keyword">for</span> imageName in $<span class="token punctuation">&#123;</span>images<span class="token punctuation">[</span>@<span class="token punctuation">]</span><span class="token punctuation">&#125;</span> <span class="token punctuation">;</span> <span class="token keyword">do</span>
+    docker pull registry<span class="token punctuation">.</span>cn-hangzhou<span class="token punctuation">.</span>aliyuncs<span class="token punctuation">.</span>com/google_containers/<span class="token variable">$imageName</span>
+    docker tag registry<span class="token punctuation">.</span>cn-hangzhou<span class="token punctuation">.</span>aliyuncs<span class="token punctuation">.</span>com/google_containers/<span class="token variable">$imageName</span> 		k8s<span class="token punctuation">.</span>gcr<span class="token punctuation">.</span>io/<span class="token variable">$imageName</span>
+    docker rmi registry<span class="token punctuation">.</span>cn-hangzhou<span class="token punctuation">.</span>aliyuncs<span class="token punctuation">.</span>com/google_containers/<span class="token variable">$imageName</span>
+done<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="集群初始化"><a href="#集群初始化" class="headerlink" title="集群初始化"></a>集群初始化</h3><p>下面开始对集群进行初始化，并将node节点加入到集群中</p>
+<blockquote>
+<p>下面的操作只需要在<code>tbh-0001</code>节点上执行即可</p>
+</blockquote>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token comment"># 创建集群</span>
+<span class="token namespace">[root@tbh-0001 ~]</span><span class="token comment"># kubeadm init \</span>
+    <span class="token operator">--</span>kubernetes-version=v1<span class="token punctuation">.</span>17<span class="token punctuation">.</span>4 \
+    <span class="token operator">--</span>pod-network-cidr=10<span class="token punctuation">.</span>244<span class="token punctuation">.</span>0<span class="token punctuation">.</span>0/16 \
+    <span class="token operator">--</span>service-cidr=10<span class="token punctuation">.</span>96<span class="token punctuation">.</span>0<span class="token punctuation">.</span>0/12 \
+    <span class="token operator">--</span>apiserver-advertise-address=192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>0<span class="token punctuation">.</span>181<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>直接<code>kubectl get nodes</code>会报错：<code>The connection to the server localhost:8080 was refused - did you specify the right host or port?</code>，出现这个问题的原因是kubectl命令需要使用kubernetes-admin来运行，上文输出中提示了解决办法：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 创建必要文件</span>
+<span class="token punctuation">[</span>root@tbh-0001 ~<span class="token punctuation">]</span><span class="token comment"># mkdir -p $HOME/.kube</span>
+<span class="token punctuation">[</span>root@tbh-0001 ~<span class="token punctuation">]</span><span class="token comment"># sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config</span>
+<span class="token punctuation">[</span>root@tbh-0001 ~<span class="token punctuation">]</span><span class="token comment"># sudo chown $(id -u):$(id -g) $HOME/.kube/config</span>
+<span class="token comment"># 成功运行</span>
+<span class="token punctuation">[</span>root@tbh-0001 ~<span class="token punctuation">]</span><span class="token comment"># kubectl get nodes</span>
+NAME       STATUS     ROLES    AGE    VERSION
+tbh-0001   NotReady   tbh-0001   5m7s   v1.17.4<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<blockquote>
+<p>下面的操作只需要在<code>node</code>节点上执行即可</p>
+</blockquote>
+<p>在tbh-0001上执行后会输出node节点加入集群所需要输入的命令，直接复制即可</p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token comment"># 将node节点加入集群</span>
+<span class="token namespace">[root@tbh-0002 ~]</span><span class="token comment"># kubeadm join 192.168.0.181:6443 --token 1p2izv.b6arlpik2red8wyq \</span>
+    <span class="token operator">--</span>discovery-token-ca-cert-hash \ 
+    sha256:514ef66c3a916ef5a9174e3414140d668e24db612ebd24ca068eedcc288d07e1
+    
+<span class="token comment"># 查看集群状态 此时的集群状态为NotReady，这是因为还没有配置网络插件</span>
+<span class="token namespace">[root@tbh-0001 ~]</span><span class="token comment"># kubectl get nodes</span>
+NAME       STATUS     ROLES    AGE     VERSION
+tbh-0001   NotReady   tbh-0001   8m10s   v1<span class="token punctuation">.</span>17<span class="token punctuation">.</span>4
+tbh-0002   NotReady   &lt;none>   11s     v1<span class="token punctuation">.</span>17<span class="token punctuation">.</span>4
+tbh-0003   NotReady   &lt;none>   4s      v1<span class="token punctuation">.</span>17<span class="token punctuation">.</span>4<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="安装网络插件"><a href="#安装网络插件" class="headerlink" title="安装网络插件"></a>安装网络插件</h3><p>kubernetes支持多种网络插件，比如flannel、calico、canal等等，任选一种使用即可，本次选择flannel</p>
+<blockquote>
+<p>下面操作依旧只在<code>tbh-0001</code>节点执行即可，插件使用的是DaemonSet的控制器，它会在每个节点上都运行</p>
+</blockquote>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token comment"># 获取fannel的配置文件</span>
+<span class="token namespace">[root@tbh-0001 ~]</span><span class="token comment"># wget https://raw.githubusercontent.com/coreos/flannel/tbh-0001/Documentation/kube-flannel.yml</span>
+
+vim kube-flannel<span class="token punctuation">.</span>yml
+<span class="token comment"># 查询image，注释掉第一个留下带mirror的那个即可(换源)</span>
+
+<span class="token comment"># 使用配置文件启动fannel</span>
+<span class="token namespace">[root@tbh-0001 ~]</span><span class="token comment"># kubectl apply -f kube-flannel.yml</span>
+
+<span class="token comment"># 稍等片刻，再次查看集群节点的状态(得等一会儿)</span>
+<span class="token namespace">[root@tbh-0001 ~]</span><span class="token comment"># kubectl get nodes</span>
+NAME       STATUS   ROLES    AGE   VERSION
+tbh-0001   Ready    tbh-0001   21m   v1<span class="token punctuation">.</span>17<span class="token punctuation">.</span>4
+tbh-0002   Ready    &lt;none>   13m   v1<span class="token punctuation">.</span>17<span class="token punctuation">.</span>4
+tbh-0003   Ready    &lt;none>   13m   v1<span class="token punctuation">.</span>17<span class="token punctuation">.</span>4<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>至此，kubernetes的集群环境搭建完成</p>
+<h2 id="服务部署"><a href="#服务部署" class="headerlink" title="服务部署"></a>服务部署</h2><p>接下来在kubernetes集群中部署一个nginx程序，测试下集群是否在正常工作。</p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token comment"># 部署nginx</span>
+<span class="token namespace">[root@tbh-0001 ~]</span><span class="token comment"># kubectl create deployment nginx --image=nginx:1.14-alpine</span>
+
+<span class="token comment"># 暴露端口</span>
+<span class="token namespace">[root@tbh-0001 ~]</span><span class="token comment"># kubectl expose deployment nginx --port=80 --type=NodePort</span>
+
+<span class="token comment"># 查看服务状态</span>
+<span class="token namespace">[root@tbh-0001 ~]</span><span class="token comment"># kubectl get pods,service</span>
+NAME                         READY   STATUS              RESTARTS   AGE
+pod/nginx-6867cdf567-flcfc   0/1     ContainerCreating   0          13s
+
+NAME                 <span class="token function">TYPE</span>        CLUSTER-IP      EXTERNAL-IP   PORT<span class="token punctuation">(</span>S<span class="token punctuation">)</span>        AGE
+service/kubernetes   ClusterIP   10<span class="token punctuation">.</span>96<span class="token punctuation">.</span>0<span class="token punctuation">.</span>1       &lt;none>        443/TCP        23m
+service/nginx        NodePort    10<span class="token punctuation">.</span>99<span class="token punctuation">.</span>122<span class="token punctuation">.</span>158   &lt;none>        80:31450/TCP   7s
+
+
+<span class="token comment"># 4 最后访问下部署的nginx服务</span>
+<span class="token namespace">[root@tbh-0001 ~]</span><span class="token comment"># curl 192.168.0.181:31450</span>
+&lt;<span class="token operator">!</span>DOCTYPE html>
+&lt;html>
+&lt;head>
+&lt;title>Welcome to nginx!&lt;<span class="token operator">/</span>title>
+&lt;style>
+    body <span class="token punctuation">&#123;</span>
+        width: 35em<span class="token punctuation">;</span>
+        margin: 0 auto<span class="token punctuation">;</span>
+        font-family: Tahoma<span class="token punctuation">,</span> Verdana<span class="token punctuation">,</span> Arial<span class="token punctuation">,</span> sans-serif<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+&lt;<span class="token operator">/</span>style>
+&lt;<span class="token operator">/</span>head>
+&lt;body>
+&lt;h1>Welcome to nginx!&lt;<span class="token operator">/</span>h1>
+&lt;p><span class="token keyword">If</span> you see this page<span class="token punctuation">,</span> the nginx web server is successfully installed and
+working<span class="token punctuation">.</span> Further configuration is required<span class="token punctuation">.</span>&lt;<span class="token operator">/</span>p>
+
+&lt;p><span class="token keyword">For</span> online documentation and support please refer to
+&lt;a href=<span class="token string">"http://nginx.org/"</span>>nginx<span class="token punctuation">.</span>org&lt;<span class="token operator">/</span>a><span class="token punctuation">.</span>&lt;br/>
+Commercial support is available at
+&lt;a href=<span class="token string">"http://nginx.com/"</span>>nginx<span class="token punctuation">.</span>com&lt;<span class="token operator">/</span>a><span class="token punctuation">.</span>&lt;<span class="token operator">/</span>p>
+
+&lt;p>&lt;em>Thank you <span class="token keyword">for</span> <span class="token keyword">using</span> nginx<span class="token punctuation">.</span>&lt;<span class="token operator">/</span>em>&lt;<span class="token operator">/</span>p>
+&lt;<span class="token operator">/</span>body>
+&lt;<span class="token operator">/</span>html><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>k8s部署测试成功！</p>
+
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/k8s/">k8s</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="article-nav">
+                        
+                            <div class="article-prev">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/2023-03-01/daf6fe842456/"
+                                   title="回溯算法总结[更新ing]"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                      <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                            <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">回溯算法总结[更新ing]</span>
+                                        <span class="post-nav-item">上一篇</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="article-next">
+                                <a class="next"
+                                   rel="next"
+                                   href="/2023-01-31/63ddef404aa2/"
+                                   title="go-设计模式-精简版-创建型模式"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">go-设计模式-精简版-创建型模式</span>
+                                        <span class="post-nav-item">下一篇</span>
+                                    </span>
+                                            <span class="right arrow-icon flex-center">
+                                      <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+    <div class="comments-container border-box">
+        <div id="comments-anchor" class="comment-area-title border-box">
+            <i class="fas fa-comments"></i>&nbsp;评论
+        </div>
+        
+            
+
+    <div class="valine-container">
+        <script data-pjax src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script data-pjax>
+          function loadValine() {
+
+            const config = {
+              el: '#vcomments',
+              appId: '0HepQGr76M5xNgWk2Ecac7CC-gzGzoHsz',
+              appKey: '9bWzVBcRI0aSocVHtX3OBSYo',
+              meta: ['nick', 'mail', 'link'],
+              avatar: 'wavatar',
+              enableQQ: true,
+              placeholder: '',
+              lang: 'zh-CN'.toLowerCase()
+            }
+
+            if ('') {
+              config.serverURLs = ''
+            }
+
+            new Valine(config)
+
+            function getAuthor(language) {
+              switch (language) {
+                case 'en':
+                  return 'Author'
+                case 'zh-CN':
+                  return '博主'
+                case 'zh-TW':
+                  return '站長'
+                default:
+                  return 'Master'
+              }
+            }
+
+            // Add "Author" identify
+            const getValineDomTimer = setInterval(() => {
+              const vcards = document.querySelectorAll('#vcomments .vcards .vcard')
+              if (vcards.length > 0) {
+                let author = 'tbghg'
+
+                if (author) {
+                  for (let vcard of vcards) {
+                    const vnick_dom = vcard.querySelector('.vhead .vnick')
+                    const vnick = vnick_dom.innerHTML
+                    if (vnick === author) {
+                      vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                    }
+                  }
+                }
+                clearInterval(getValineDomTimer)
+              } else {
+                clearInterval(getValineDomTimer)
+              }
+            }, 2000)
+          }
+
+          if ('true' === 'true') {
+            const loadValineTimeout = setTimeout(() => {
+              loadValine()
+              clearTimeout(loadValineTimeout)
+            }, 1000)
+          } else {
+            window.addEventListener('DOMContentLoaded', loadValine)
+          }
+        </script>
+    </div>
+
+
+        
+    </div>
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc right-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-number">2.</span> <span class="nav-text">环境初始化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85docker"><span class="nav-number">3.</span> <span class="nav-text">安装docker</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85kubernetes%E7%BB%84%E4%BB%B6"><span class="nav-number">4.</span> <span class="nav-text">安装kubernetes组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%86%E5%A4%87%E9%9B%86%E7%BE%A4%E9%95%9C%E5%83%8F"><span class="nav-number">5.</span> <span class="nav-text">准备集群镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9B%86%E7%BE%A4%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-number">5.1.</span> <span class="nav-text">集群初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E7%BD%91%E7%BB%9C%E6%8F%92%E4%BB%B6"><span class="nav-number">5.2.</span> <span class="nav-text">安装网络插件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E9%83%A8%E7%BD%B2"><span class="nav-number">6.</span> <span class="nav-text">服务部署</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="border-box website-info-box default">
+        
+            <div class="copyright-info info-item default">
+                &copy;&nbsp;<span>2021</span>&nbsp;-&nbsp;2023
+                
+                    &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">tbghg</a>
+                
+            </div>
+
+            <div class="theme-info info-item default">
+                由&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;驱动&nbsp;&&nbsp;主题&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+            </div>
+
+            
+                <div class="icp-info info-item default">
+                    <a class=""
+                       target="_blank"
+                       href="https://beian.miit.gov.cn"
+                    >
+                        辽ICP备2021007417号
+                    </a>
+                </div>
+            
+
+            
+        
+
+        <div class="count-item info-item default">
+            
+
+            
+
+            
+        </div>
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools right-toc">
+            <div class="post-tools-container border-box">
+    <ul class="tools-list border-box">
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+            <li class="tools-item go-to-comments-tablet flex-center">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-number">2.</span> <span class="nav-text">环境初始化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85docker"><span class="nav-number">3.</span> <span class="nav-text">安装docker</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85kubernetes%E7%BB%84%E4%BB%B6"><span class="nav-number">4.</span> <span class="nav-text">安装kubernetes组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%86%E5%A4%87%E9%9B%86%E7%BE%A4%E9%95%9C%E5%83%8F"><span class="nav-number">5.</span> <span class="nav-text">准备集群镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9B%86%E7%BE%A4%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-number">5.1.</span> <span class="nav-text">集群初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E7%BD%91%E7%BB%9C%E6%8F%92%E4%BB%B6"><span class="nav-number">5.2.</span> <span class="nav-text">安装网络插件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E9%83%A8%E7%BD%B2"><span class="nav-number">6.</span> <span class="nav-text">服务部署</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+<!-- common -->
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.8.6/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.8.6/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.8.6/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.8.6/source/js/dark-light-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.8.6/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.8.6/source/js/libs/anime.min.js"></script>
+
+<!-- local-search -->
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.8.6/source/js/local-search.js"></script>
+
+
+<!-- code-block -->
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.8.6/source/js/code-block.js"></script>
+
+
+<!-- lazyload -->
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.8.6/source/js/lazyload.js"></script>
+
+
+<div class="pjax">
+    
+        <!-- post-helper -->
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.8.6/source/js/post/post-helper.js"></script>
+
+        <!-- toc -->
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.8.6/source/js/post/toc.js"></script>
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- category-page -->
+    
+
+    <!-- links-page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.8.6/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart()
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd()
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'))
+            KEEP.initExecute()
+        });
+    });
+</script>
+
+
+
+
+</body>
+</html>

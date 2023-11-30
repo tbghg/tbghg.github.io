@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="tbghg">
+    <meta name="description" content="这里是TBH的博客，用于技术分享，记录日常。">
+    <meta name="author" content="tbghg">
+    
+    <title>
+        
+            如何使用pyinstaller进行打包 |
+        
+        TBH的博客
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="https://s1.ax1x.com/2023/01/12/pSurRG8.png">
+    
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.8.6/source/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.8.6/source/font/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.8.6/source/font/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.8.6/source/font/css/brands.min.css">
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"tbghg.top","root":"/","language":"zh-CN","path":"search.json"}
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066cc","logo":"https://s1.ax1x.com/2023/01/12/pSurRG8.png","favicon":"https://s1.ax1x.com/2023/01/12/pSurRG8.png","avatar":"https://s1.ax1x.com/2023/01/12/pSurRG8.png","font_size":null,"font_family":"STHeiti","hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.svg","description":"如果结果不如你所愿||那就在尘埃落定前奋起一搏","font_color":null,"hitokoto":false},"scroll":{"progress_bar":false,"percent":false}},"local_search":{"enable":true,"preload":true},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"comment":{"enable":true,"use":"valine","valine":{"appid":"0HepQGr76M5xNgWk2Ecac7CC-gzGzoHsz","appkey":"9bWzVBcRI0aSocVHtX3OBSYo","server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.21"},"waline":{"server_url":null,"reaction":false,"version":2}},"post":{"author_label":{"enable":false,"auto":false,"custom_label_list":["苦逼后端人"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"center","copyright_info":false,"share":false,"reward":{"enable":false,"img_link":null,"text":null}},"website_count":{"busuanzi_count":{"enable":false,"site_uv":false,"site_pv":false,"page_pv":false}},"version":"3.8.6"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"复制代码","copied":"已复制","fold":"折叠代码块","folded":"已折叠"}
+    KEEP.language_copy_copyright = {"copy":"复制版权信息","copied":"已复制","title":"原文标题","author":"原文作者","link":"原文链接"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="TBH个人博客" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+<main class="page-container border-box">
+
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="https://s1.ax1x.com/2023/01/12/pSurRG8.png">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               TBH的博客
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/plan"
+                            >
+                                计划
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/share"
+                            >
+                                分享
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                关于
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/plan">计划</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/share">分享</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+
+                
+
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+
+        <div class="article-content-container border-box">
+
+            
+
+            <div class="article-content-bottom border-box">
+                
+                    <div class="article-title">
+                        如何使用pyinstaller进行打包
+                    </div>
+                
+
+                
+                    <div class="article-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="https://s1.ax1x.com/2023/01/12/pSurRG8.png">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author">
+                                <span class="name">tbghg</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="article-meta-info-container border-box post">
+    <div class="article-meta-info border-box">
+        
+
+
+        
+            <span class="meta-info-item article-create-date">
+                <i class="icon fa-solid fa-calendar-check"></i>&nbsp;
+                <span class="pc">2021-06-29 20:39:38</span>
+                <span class="mobile">2021-06-29 20:39</span>
+            </span>
+
+            <span class="meta-info-item article-update-date">
+                <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                <span class="pc" data-updated="Tue Jun 29 2021 12:39:38 GMT+0000">2021-06-29 20:39:38</span>
+            </span>
+        
+
+        
+            <span class="meta-info-item article-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="article-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/%E5%88%86%E4%BA%AB/">分享</a></li>
+                        
+                    
+                            <li class="category-item">&nbsp;<i class="icon fas fa-angle-right"></i>&nbsp;<a href="/categories/%E5%88%86%E4%BA%AB/%E6%8A%80%E6%9C%AF/">技术</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+            <span class="article-tag meta-info-item border-box">
+                <i class="icon fas fa-tags"></i>&nbsp;
+                <ul class="article-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/python/">python</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+            <span class="meta-info-item article-wordcount">
+                <i class="icon fas fa-file-word"></i>&nbsp;<span>1.7k 字</span>
+            </span>
+        
+        
+            <span class="meta-info-item article-min2read">
+                <i class="icon fas fa-clock"></i>&nbsp;<span>6 分钟</span>
+            </span>
+        
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="article-content keep-markdown-body">
+                    
+
+                    <blockquote>
+<p>今天当我再次进行python打包时又一次地愣住了，又一次地打开了百度……，这时我大概明白该写篇博客记录一下了。</p>
+</blockquote>
+<p><a class="link"   target="_blank" rel="noopener" href="https://my.oschina.net/u/4350311/blog/3311195" >转载自此文章，只做了一些部分修改<i class="fas fa-external-link-alt"></i></a></p>
+<h2 id="Pyinstaller"><a href="#Pyinstaller" class="headerlink" title="Pyinstaller"></a>Pyinstaller</h2><p>pyinstaller是python的一个第三方模块，使用它可以将python程序打包为可执行文件，实现打包后的程序在没有python环境的机器上也可以运行。</p>
+<p>pyinstaller安装：</p>
+<p><code>pip installer pyinstaller</code></p>
+<p>通常我们打包程序时，会遇到两种情况：</p>
+<ul>
+<li>打包一个python脚本文件</li>
+<li>打包一个python项目程序</li>
+</ul>
+<h2 id="打包一个python脚本程序"><a href="#打包一个python脚本程序" class="headerlink" title="打包一个python脚本程序"></a>打包一个python脚本程序</h2><p>对于只有一个python脚本的简单程序，打包操作很方便，直接使用命令行的方式，输入相关指令即可。</p>
+<p>对于一个摄氏温度转华氏温度的小程序（temp.py），我们可以这样做：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 摄氏温度转华氏温度</span>
+
+temp <span class="token operator">=</span> <span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">"请输入摄氏温度："</span><span class="token punctuation">)</span>
+new_temp <span class="token operator">=</span> <span class="token number">9</span><span class="token operator">/</span><span class="token number">5</span> <span class="token operator">*</span> <span class="token builtin">int</span><span class="token punctuation">(</span>temp<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">32</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"华氏温度为：</span><span class="token interpolation"><span class="token punctuation">&#123;</span>new_temp<span class="token punctuation">&#125;</span></span><span class="token string">F"</span></span><span class="token punctuation">)</span>
+q <span class="token operator">=</span> <span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">"按任意键退出："</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>首先，打开终端cmd, 进入temp.py文件所在的路径，输入指令：<code>pyinstaller -F temp.py</code></p>
+<p>打包结束后，将在当前目录下生成两个文件夹（bulid、dist）和一个文件<code>temp.spec</code>，现在不需要理会文件夹<code>bulid</code>和文件<code>temp.spec</code></p>
+<p>我们需要的打包后的可执行文件在文件夹<code>dist</code>中，双击即可运行，实现打包。</p>
+<p>补充：如果想修改<strong>可执行文件的图标</strong>，使用指令：<code>pyinstaller -i icon.ico -F temp.py</code></p>
+<p>打包结束后，在dist文件夹下降出现temp.exe。你可能会发现它的图标并不是你想要的，这没有关系，你将它重命名或者拷贝到其他地方，你会发现它的图标立刻变成你期待的样子，祝你好运。</p>
+<h2 id="打包一个python项目程序"><a href="#打包一个python项目程序" class="headerlink" title="打包一个python项目程序"></a>打包一个python项目程序</h2><p>对于常用到的py项目程序，包含许多文件夹和py文件，以及配套的资源文件。这种情况下在终端中使用指令的方式打包程序本身也是可以实现的，但是此时打包操作就变得非常复杂，它需要你理解不同指令参数的确切意思，时不时你将入坑爬不起来，苦不堪言。 这段时间使用pygame写了一个像素鸟的游戏，想分享给别人体验，就使用了pyinstaller将程序打包成exe文件。这里分享给大家，希望对你能有所帮助。</p>
+<p>这种情况下，一个简单的打包方式，就是通过pyinstaller提供的<code>spec文件</code>实现程序打包。</p>
+<p>下面通过一个基于<code>pygame</code>实现的<code>FlappyBird</code>介绍该项目的打包流程。</p>
+<p>该项目包含六个文件夹，其中：<code>bin、conf、core</code>包含所有的python脚本文件，项目入口程序在<code>bin\setup.py</code>，所有音频文件在audios文件夹下，所有的字体文件在fonts文件夹下，所有的图片文件在images文件夹下。</p>
+<p><strong>第一步</strong>：打开终端进入FlappyBird路径下，输入指令：<code>pyinstaller -F bin\setup.py</code>，回车，程序结束后，发现当前目录下生成两个文件夹（bulid、dist）和一个文件<code>setup.spec</code>，现在删除两个文件夹，只保留<code>setup.spec</code>文件。</p>
+<p>setup.spec</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># -*- mode: python ; coding: utf-8 -*-</span>
+
+block_cipher <span class="token operator">=</span> <span class="token boolean">None</span>
+
+
+a <span class="token operator">=</span> Analysis<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'bin\\setup.py'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>	<span class="token comment"># 此列表存放项目设计的所有python脚本文件</span>
+             pathex<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'C:\\Users\\15057\\Desktop\\FlappyBird'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token comment"># 此列表为项目绝对路径</span>
+             binaries<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+             datas<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>		<span class="token comment"># 此列表存放所有资源文件，每个文件是一个2元组元素</span>
+             hiddenimports<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+             hookspath<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+             runtime_hooks<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+             excludes<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+             win_no_prefer_redirects<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span>
+             win_private_assemblies<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span>
+             cipher<span class="token operator">=</span>block_cipher<span class="token punctuation">,</span>
+             noarchive<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
+pyz <span class="token operator">=</span> PYZ<span class="token punctuation">(</span>a<span class="token punctuation">.</span>pure<span class="token punctuation">,</span> a<span class="token punctuation">.</span>zipped_data<span class="token punctuation">,</span>
+             cipher<span class="token operator">=</span>block_cipher<span class="token punctuation">)</span>
+exe <span class="token operator">=</span> EXE<span class="token punctuation">(</span>pyz<span class="token punctuation">,</span>
+          a<span class="token punctuation">.</span>scripts<span class="token punctuation">,</span>
+          a<span class="token punctuation">.</span>binaries<span class="token punctuation">,</span>
+          a<span class="token punctuation">.</span>zipfiles<span class="token punctuation">,</span>
+          a<span class="token punctuation">.</span>datas<span class="token punctuation">,</span>
+          <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+          name<span class="token operator">=</span><span class="token string">'setup'</span><span class="token punctuation">,</span>		<span class="token comment"># 打包程序的名字</span>
+          debug<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span>
+          bootloader_ignore_signals<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span>
+          strip<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span>
+          upx<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span>
+          upx_exclude<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+          runtime_tmpdir<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">,</span>
+          console<span class="token operator">=</span><span class="token boolean">True</span> <span class="token punctuation">)</span>	
+<span class="token comment"># 此处console=True表示，打包后的可执行文件双击运行时屏幕会出现一个cmd窗口，不影响原程序运行</span>
+<span class="token comment"># 如果想要修改程序图标，使用在EXE()中加入 icon='xxxxx', 切记：绝对路径</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>第二步</strong>：修改<code>setup.spec</code>文件，修改后的文件如下:</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># -*- mode: python ; coding: utf-8 -*-</span>
+
+block_cipher <span class="token operator">=</span> <span class="token boolean">None</span>
+
+py_files <span class="token operator">=</span> <span class="token punctuation">[</span>
+    <span class="token string">'bin\\setup.py'</span><span class="token punctuation">,</span>
+    <span class="token string">'conf\\settings.py'</span><span class="token punctuation">,</span>
+    <span class="token string">'core\\main.py'</span><span class="token punctuation">,</span>
+    <span class="token string">'core\\base.py'</span><span class="token punctuation">,</span>
+    <span class="token string">'core\\bird.py'</span><span class="token punctuation">,</span>
+    <span class="token string">'core\\pipe.py'</span><span class="token punctuation">,</span>
+    <span class="token string">'core\\score.py'</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span>
+
+add_files <span class="token operator">=</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">(</span><span class="token string">'fonts\\font.ttf'</span><span class="token punctuation">,</span> <span class="token string">'fonts'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">(</span><span class="token string">'images\\*.png'</span><span class="token punctuation">,</span> <span class="token string">'images'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">(</span><span class="token string">'images\\flappy.ico'</span><span class="token punctuation">,</span> <span class="token string">'images'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">(</span><span class="token string">'audios\\*.wav'</span><span class="token punctuation">,</span> <span class="token string">'audios'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span>
+
+a <span class="token operator">=</span> Analysis<span class="token punctuation">(</span>py_files<span class="token punctuation">,</span>
+             pathex<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'C:\\Users\\15057\\Desktop\\FlappyBird'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+             binaries<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+             datas<span class="token operator">=</span>add_files<span class="token punctuation">,</span>
+             hiddenimports<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+             hookspath<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+             runtime_hooks<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+             excludes<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+             win_no_prefer_redirects<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span>
+             win_private_assemblies<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span>
+             cipher<span class="token operator">=</span>block_cipher<span class="token punctuation">,</span>
+             noarchive<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
+pyz <span class="token operator">=</span> PYZ<span class="token punctuation">(</span>a<span class="token punctuation">.</span>pure<span class="token punctuation">,</span> a<span class="token punctuation">.</span>zipped_data<span class="token punctuation">,</span>
+             cipher<span class="token operator">=</span>block_cipher<span class="token punctuation">)</span>
+exe <span class="token operator">=</span> EXE<span class="token punctuation">(</span>pyz<span class="token punctuation">,</span>
+          a<span class="token punctuation">.</span>scripts<span class="token punctuation">,</span>
+          a<span class="token punctuation">.</span>binaries<span class="token punctuation">,</span>
+          a<span class="token punctuation">.</span>zipfiles<span class="token punctuation">,</span>
+          a<span class="token punctuation">.</span>datas<span class="token punctuation">,</span>
+          <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+          name<span class="token operator">=</span><span class="token string">'FlappBird'</span><span class="token punctuation">,</span>
+          debug<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span>
+          bootloader_ignore_signals<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span>
+          strip<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span>
+          upx<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span>
+          upx_exclude<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+          runtime_tmpdir<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">,</span>
+          console<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span>
+          icon<span class="token operator">=</span><span class="token string">'C:\\Users\\15057\\Desktop\\FlappyBird\\images\\flappy.ico'</span> <span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>修改位置：</p>
+<ul>
+<li>添加py_files列表，包含项目需要的所有python脚本</li>
+<li>添加add_files列表，包含涉及到的所有资源文件，每个文件是2元组的形式存放</li>
+<li>name&#x3D;’FlappBird’, 制定可执行程序名字</li>
+<li>console&#x3D;False， 制定可执行程序执行时不显示控制台窗口</li>
+<li>icon&#x3D;’C:\Users\15057\Desktop\FlappyBird\images\flappy.ico’， 设置程序图标，ico格式文件（16*16）</li>
+</ul>
+<p><strong>第三步</strong>：执行<code>setup.spec</code>文件。项目路径下输入指令：<code>pyinstaller -F setup.spec</code>，</p>
+<p>回车，程序结束后，新增<code>dist</code>文件夹，且该文件夹下新增<code>FlappyBird.exe</code>，最终，打包结束。</p>
+<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><p>打包，可以使用许多指令，指令都差不多，不同的是使用不用的参数，如 <code>-F</code>、<code>-i</code>等，不同的参数有不同的意义。这些可以在网上找到相关解释说明，这里就赘述了。</p>
+<p>值得说明的一点是，使用<code>spec</code>文件打包程序时，使用<code>-F</code>或者使用<code>-w</code>，生成的spec文件内容有一点点不同。</p>
+<p>这里大家注意即可，因为使用<code>-F</code>打包时默认只生成一个单独的可执行文件，如这里的<code>FlappyBird.exe</code>； 而使用<code>-w</code>打包时会生成一个文件夹，该文件夹里面包含一些库文件和<code>FlappyBird.exe</code>，这里的exe需要依赖这些库文件，即资源文件。在生成的spec文件中，会多一点内容。但是基本不影响打包流程和打包思路。</p>
+<h2 id="笔者补充"><a href="#笔者补充" class="headerlink" title="笔者补充"></a>笔者补充</h2><h3 id="去除不必要的模块import"><a href="#去除不必要的模块import" class="headerlink" title="去除不必要的模块import"></a>去除不必要的模块import</h3><p>有时需要让pyinstaller不打包某些用不到的模块，可通过在excludes&#x3D;[]中添加此模块实现，如</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">excludes<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'zmq'</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h3 id="常用参数及含义"><a href="#常用参数及含义" class="headerlink" title="常用参数及含义"></a>常用参数及含义</h3><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>命令</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-D</td>
+<td>pyinstaller -D demo.py</td>
+<td>默认选项。除了主程序demo.exe外，还会在在dist文件夹中生成很多依赖文件，推荐使用。</td>
+</tr>
+<tr>
+<td>-c</td>
+<td>pyinstaller -c demo.py</td>
+<td>默认选项。使用控制台，只对windows有效。</td>
+</tr>
+<tr>
+<td>-F</td>
+<td>pyinstaller -F demo.py</td>
+<td>只在dist文件夹中生成一个程序demo.exe文件，适用于没有多依赖.py文件的单个文件。</td>
+</tr>
+<tr>
+<td>-w</td>
+<td>pyinstaller -w demo.py</td>
+<td>不使用控制台，只对windows有效。</td>
+</tr>
+<tr>
+<td>-p</td>
+<td>pyinstaller -p D:\project\demo.py</td>
+<td>设置导入路径。</td>
+</tr>
+<tr>
+<td>-i</td>
+<td>pyinstaller -i D:\icons\demo.ico demo.py</td>
+<td>给生成的demo.exe文件设置一个自定义的图标。</td>
+</tr>
+</tbody></table>
+
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/python/">python</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="article-nav">
+                        
+                            <div class="article-prev">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/2021-07-11/09927ec1a9b6/"
+                                   title="wordpress博客搭建记录"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                      <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                            <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">wordpress博客搭建记录</span>
+                                        <span class="post-nav-item">上一篇</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="article-next">
+                                <a class="next"
+                                   rel="next"
+                                   href="/2021-06-28/8d9a90902e10/"
+                                   title="Ciscn 2021 wp"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">Ciscn 2021 wp</span>
+                                        <span class="post-nav-item">下一篇</span>
+                                    </span>
+                                            <span class="right arrow-icon flex-center">
+                                      <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+    <div class="comments-container border-box">
+        <div id="comments-anchor" class="comment-area-title border-box">
+            <i class="fas fa-comments"></i>&nbsp;评论
+        </div>
+        
+            
+
+    <div class="valine-container">
+        <script data-pjax src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script data-pjax>
+          function loadValine() {
+
+            const config = {
+              el: '#vcomments',
+              appId: '0HepQGr76M5xNgWk2Ecac7CC-gzGzoHsz',
+              appKey: '9bWzVBcRI0aSocVHtX3OBSYo',
+              meta: ['nick', 'mail', 'link'],
+              avatar: 'wavatar',
+              enableQQ: true,
+              placeholder: '',
+              lang: 'zh-CN'.toLowerCase()
+            }
+
+            if ('') {
+              config.serverURLs = ''
+            }
+
+            new Valine(config)
+
+            function getAuthor(language) {
+              switch (language) {
+                case 'en':
+                  return 'Author'
+                case 'zh-CN':
+                  return '博主'
+                case 'zh-TW':
+                  return '站長'
+                default:
+                  return 'Master'
+              }
+            }
+
+            // Add "Author" identify
+            const getValineDomTimer = setInterval(() => {
+              const vcards = document.querySelectorAll('#vcomments .vcards .vcard')
+              if (vcards.length > 0) {
+                let author = 'tbghg'
+
+                if (author) {
+                  for (let vcard of vcards) {
+                    const vnick_dom = vcard.querySelector('.vhead .vnick')
+                    const vnick = vnick_dom.innerHTML
+                    if (vnick === author) {
+                      vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                    }
+                  }
+                }
+                clearInterval(getValineDomTimer)
+              } else {
+                clearInterval(getValineDomTimer)
+              }
+            }, 2000)
+          }
+
+          if ('true' === 'true') {
+            const loadValineTimeout = setTimeout(() => {
+              loadValine()
+              clearTimeout(loadValineTimeout)
+            }, 1000)
+          } else {
+            window.addEventListener('DOMContentLoaded', loadValine)
+          }
+        </script>
+    </div>
+
+
+        
+    </div>
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc right-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Pyinstaller"><span class="nav-number">1.</span> <span class="nav-text">Pyinstaller</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%93%E5%8C%85%E4%B8%80%E4%B8%AApython%E8%84%9A%E6%9C%AC%E7%A8%8B%E5%BA%8F"><span class="nav-number">2.</span> <span class="nav-text">打包一个python脚本程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%93%E5%8C%85%E4%B8%80%E4%B8%AApython%E9%A1%B9%E7%9B%AE%E7%A8%8B%E5%BA%8F"><span class="nav-number">3.</span> <span class="nav-text">打包一个python项目程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%A5%E5%85%85"><span class="nav-number">4.</span> <span class="nav-text">补充</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%94%E8%80%85%E8%A1%A5%E5%85%85"><span class="nav-number">5.</span> <span class="nav-text">笔者补充</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%BB%E9%99%A4%E4%B8%8D%E5%BF%85%E8%A6%81%E7%9A%84%E6%A8%A1%E5%9D%97import"><span class="nav-number">5.1.</span> <span class="nav-text">去除不必要的模块import</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%8F%82%E6%95%B0%E5%8F%8A%E5%90%AB%E4%B9%89"><span class="nav-number">5.2.</span> <span class="nav-text">常用参数及含义</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="border-box website-info-box default">
+        
+            <div class="copyright-info info-item default">
+                &copy;&nbsp;<span>2021</span>&nbsp;-&nbsp;2023
+                
+                    &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">tbghg</a>
+                
+            </div>
+
+            <div class="theme-info info-item default">
+                由&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;驱动&nbsp;&&nbsp;主题&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+            </div>
+
+            
+                <div class="icp-info info-item default">
+                    <a class=""
+                       target="_blank"
+                       href="https://beian.miit.gov.cn"
+                    >
+                        辽ICP备2021007417号
+                    </a>
+                </div>
+            
+
+            
+        
+
+        <div class="count-item info-item default">
+            
+
+            
+
+            
+        </div>
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools right-toc">
+            <div class="post-tools-container border-box">
+    <ul class="tools-list border-box">
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+            <li class="tools-item go-to-comments-tablet flex-center">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Pyinstaller"><span class="nav-number">1.</span> <span class="nav-text">Pyinstaller</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%93%E5%8C%85%E4%B8%80%E4%B8%AApython%E8%84%9A%E6%9C%AC%E7%A8%8B%E5%BA%8F"><span class="nav-number">2.</span> <span class="nav-text">打包一个python脚本程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%93%E5%8C%85%E4%B8%80%E4%B8%AApython%E9%A1%B9%E7%9B%AE%E7%A8%8B%E5%BA%8F"><span class="nav-number">3.</span> <span class="nav-text">打包一个python项目程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%A5%E5%85%85"><span class="nav-number">4.</span> <span class="nav-text">补充</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%94%E8%80%85%E8%A1%A5%E5%85%85"><span class="nav-number">5.</span> <span class="nav-text">笔者补充</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%BB%E9%99%A4%E4%B8%8D%E5%BF%85%E8%A6%81%E7%9A%84%E6%A8%A1%E5%9D%97import"><span class="nav-number">5.1.</span> <span class="nav-text">去除不必要的模块import</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%8F%82%E6%95%B0%E5%8F%8A%E5%90%AB%E4%B9%89"><span class="nav-number">5.2.</span> <span class="nav-text">常用参数及含义</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+<!-- common -->
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.8.6/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.8.6/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.8.6/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.8.6/source/js/dark-light-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.8.6/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.8.6/source/js/libs/anime.min.js"></script>
+
+<!-- local-search -->
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.8.6/source/js/local-search.js"></script>
+
+
+<!-- code-block -->
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.8.6/source/js/code-block.js"></script>
+
+
+<!-- lazyload -->
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.8.6/source/js/lazyload.js"></script>
+
+
+<div class="pjax">
+    
+        <!-- post-helper -->
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.8.6/source/js/post/post-helper.js"></script>
+
+        <!-- toc -->
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.8.6/source/js/post/toc.js"></script>
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- category-page -->
+    
+
+    <!-- links-page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.8.6/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart()
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd()
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'))
+            KEEP.initExecute()
+        });
+    });
+</script>
+
+
+
+
+</body>
+</html>
