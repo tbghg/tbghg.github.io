@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="tbghg">
+    <meta name="description" content="这里是TBH的博客，用于技术分享，记录日常。">
+    <meta name="author" content="tbghg">
+    
+    <title>
+        
+            go-设计模式-精简版-创建型模式 |
+        
+        TBH个人博客
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="https://s1.ax1x.com/2023/01/12/pSurRG8.png">
+    
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/font/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/font/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/font/css/brands.min.css">
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"tbghg.top","root":"/","language":"zh-CN","path":"search.json"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"TBH个人博客","author":"tbghg","avatar":"/images/avatar.jpg","logo":"https://s1.ax1x.com/2023/01/12/pSurRG8.png","favicon":"https://s1.ax1x.com/2023/01/12/pSurRG8.png"},"menu":{"home":"/                        || fa-solid fa-home","archives":"/archives            || fa-solid fa-box-archive","about":"/about                || fa-solid fa-user-graduate","categories":"/categories      || fa-solid fa-layer-group","tools":"/tools                || fa-solid fa-tools","开往":"https://www.travellings.cn/go.html || fa-solid fa-train-subway"},"first_screen":{"enable":true,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"丰富多彩的生活需要强大的执行力||描绘属于自己的故事","hitokoto":false},"social_contact":{"enable":true,"links":{"github":"https://github.com/tbghg","weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":"1312186639@qq.com"}},"scroll":{"progress_bar":false,"percent":false,"hide_header":true},"home":{"announcement":null,"category":true,"tag":true,"post_datetime":"updated"},"post":{"author_badge":{"enable":false,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":true,"min2read":true},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":false,"reward":{"enable":false,"img_link":null,"text":null}},"code_block":{"tools":{"enable":true,"style":"mac"},"highlight_theme":"default"},"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true,"layout":"right"},"website_count":{"busuanzi_count":{"enable":false,"site_uv":false,"site_pv":false,"page_pv":false}},"local_search":{"enable":true,"preload":true},"comment":{"enable":true,"use":"valine","valine":{"appid":"0HepQGr76M5xNgWk2Ecac7CC-gzGzoHsz","appkey":"9bWzVBcRI0aSocVHtX3OBSYo","server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.36"},"waline":{"server_url":null,"reaction":false,"version":"3.2.1"},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":true},"lazyload":{"enable":true},"cdn":{"enable":true,"provider":"jsdelivr"},"pjax":{"enable":true},"footer":{"since":2021,"word_count":false,"site_deploy":{"enable":false,"provider":"github","url":null},"record":{"enable":true,"list":[{"code":"辽ICP备2021007417号","link":"https://beian.miit.gov.cn"}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"","source_data":{"links":[{"title":"朋友们 1"},{"name":"XPoet","link":"https://xpoet.cn/","description":"懒惰是程序员第一生产力","avatar":"https://cdn.statically.io/gh/XPoet/image-hosting@master/common-use/avatar.jpg"},{"name":"不知名艺术家","link":"https://jinzhanqi.com/","description":"love artist, love code.","avatar":"https://s3.ax1x.com/2020/11/17/DVvkB4.jpg"}],"photos":[{"url":"https://xpoet.cn/images/logo.png","name":"XPoet"},{"url":"/images/photos/img-1.png","name":"img1"},{"url":"/images/photos/img-2.png","name":"img2"}],"tools":[{"category":"聊天 AI"},{"name":"ChatGPT","link":"https://chat.openai.com/","description":"OpenAI 旗下 AI 聊天对话工具","image":"/images/tools/chatgpt.svg"},{"name":"Gemini","link":"https://gemini.google.com/app","description":"Google 旗下 AI 聊天对话工具","image":"/images/tools/gemini.svg"},{"category":"技术文档"},{"name":"字节跳动技术团队","link":"https://juejin.cn/user/1838039172387262/posts"},{"name":"腾讯技术工程官方号","link":"https://cloud.tencent.com/developer/user/170434/activities"},{"name":"淘宝技术","link":"https://tech.taobao.org/news"},{"name":"哔哩哔哩技术","link":"https://space.bilibili.com/393183630"},{"name":"美团技术团队","link":"https://tech.meituan.com/"},{"name":"技术文章摘抄","link":"http://learn.lianglianglee.com/","description":"内容较为丰富，收录了较多技术文章"},{"name":"硬核课堂","link":"https://space.bilibili.com/1324259795"},{"name":"戌米的论文笔记","link":"https://space.bilibili.com/61981458","description":"raft算法"}]},"version":"4.2.3"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"复制代码","copied":"已复制","fold":"折叠代码块","folded":"已折叠"}
+    KEEP.language_copy_copyright = {"copy":"复制版权信息","copied":"已复制","title":"原文标题","author":"原文作者","link":"原文链接"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="TBH个人博客" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+
+<main class="page-container border-box">
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="https://s1.ax1x.com/2023/01/12/pSurRG8.png">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               TBH个人博客
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-home"></i>
+                                
+                                首页
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-box-archive"></i>
+                                
+                                归档
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/about">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-user-graduate"></i>
+                                
+                                关于
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/categories">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-layer-group"></i>
+                                
+                                分类
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tools">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-tools"></i>
+                                
+                                工具
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" target="_blank" rel="noopener" href="https://www.travellings.cn/go.html">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-train-subway"></i>
+                                
+                                开往
+                                
+                            </a>
+                            
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="menu-text-color fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile border-box flex-start">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list border-box">
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-home"></i>
+                                </span>
+                            
+                            首页
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-box-archive"></i>
+                                </span>
+                            
+                            归档
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/about">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-user-graduate"></i>
+                                </span>
+                            
+                            关于
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/categories">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-layer-group"></i>
+                                </span>
+                            
+                            分类
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tools">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-tools"></i>
+                                </span>
+                            
+                            工具
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" target="_blank" rel="noopener" href="https://www.travellings.cn/go.html">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-train-subway"></i>
+                                </span>
+                            
+                            开往
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        go-设计模式-精简版-创建型模式
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/avatar.jpg">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">tbghg</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2023-01-31 18:23:39</span>
+            </span>
+
+            <span class="meta-info-item post-update-date">
+                <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                <span class="datetime" data-updated="Tue Jan 31 2023 10:23:39 GMT+0000">2023-01-31 18:23:39</span>
+            </span>
+        
+
+        
+            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="post-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></li>
+                        
+                    
+                            <li class="category-item">&nbsp;<i class="icon fas fa-angle-right"></i>&nbsp;<a href="/categories/%E6%8A%80%E6%9C%AF/%E8%AF%AD%E8%A8%80/">语言</a></li>
+                        
+                    
+                            <li class="category-item">&nbsp;<i class="icon fas fa-angle-right"></i>&nbsp;<a href="/categories/%E6%8A%80%E6%9C%AF/%E8%AF%AD%E8%A8%80/golang/">golang</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/go/">go</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+            <span class="meta-info-item post-wordcount">
+                <i class="icon fas fa-file-word"></i>&nbsp;<span>6.5k 字</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-min2read">
+                <i class="icon fas fa-clock"></i>&nbsp;<span>26 分钟</span>
+            </span>
+        
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body code-block-unshrink">
+                    
+
+                    
+                         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>整理自刘丹冰老师的<a class="link"   target="_blank" rel="noopener" href="https://www.yuque.com/aceld/lfhu8y" >《Easy 搞定 Golang设计模式》<i class="fas fa-external-link-alt"></i></a></p>
+<p>说是整理，到最后发现基本都是文章中的内容:p</p>
+<h2 id="Go中的组合与继承"><a href="#Go中的组合与继承" class="headerlink" title="Go中的组合与继承"></a>Go中的组合与继承</h2><p>参考文章：<a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/watermelonjuice/p/11745156.html" >go继承<i class="fas fa-external-link-alt"></i></a></p>
+<p>go中没有继承，只能通过组合来实现继承</p>
+<p>继承就是子类继承了父类的特征和行为，使得子类实例具有父类的行为和方法<br>组合就是通过对现有对象的拼装从而获得实现更为复杂的行为的方法</p>
+<ul>
+<li>一个struct嵌套了另外一个匿名的struct从而实现了继承，嵌套多个匿名struct实现多重继承。</li>
+<li>一个struct嵌套了另外一个struct的实例实现了组合。</li>
+</ul>
+<p>示例出处：<a class="link"   target="_blank" rel="noopener" href="https://www.topgoer.com/go%E5%9F%BA%E7%A1%80/%E7%BB%93%E6%9E%84%E4%BD%93.html#%E7%BB%93%E6%9E%84%E4%BD%93%E7%9A%84%E7%BB%A7%E6%89%BF" >go结构体的“继承”<i class="fas fa-external-link-alt"></i></a></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Animal 动物</span></span><br><span class="line"><span class="keyword">type</span> Animal <span class="keyword">struct</span> &#123;</span><br><span class="line">    name <span class="type">string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(a *Animal)</span></span> move() &#123;</span><br><span class="line">    fmt.Printf(<span class="string">&quot;%s会动！\n&quot;</span>, a.name)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Dog 狗</span></span><br><span class="line"><span class="keyword">type</span> Dog <span class="keyword">struct</span> &#123;</span><br><span class="line">    Feet    <span class="type">int8</span></span><br><span class="line">    *Animal <span class="comment">//通过嵌套匿名结构体实现继承</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(d *Dog)</span></span> wang() &#123;</span><br><span class="line">    fmt.Printf(<span class="string">&quot;%s会汪汪汪~\n&quot;</span>, d.name)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    d1 := &amp;Dog&#123;</span><br><span class="line">        Feet: <span class="number">4</span>,</span><br><span class="line">        Animal: &amp;Animal&#123; <span class="comment">//注意嵌套的是结构体指针</span></span><br><span class="line">            name: <span class="string">&quot;乐乐&quot;</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;</span><br><span class="line">    d1.wang() <span class="comment">//乐乐会汪汪汪~</span></span><br><span class="line">    d1.move() <span class="comment">//乐乐会动！</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>go继承是通过嵌套匿名struct实现继承。</li>
+<li>go继承在本质上还是组合。</li>
+<li>子类要调用父类的实现可以通过调用组合中的父类对象的方法。</li>
+<li>多重继承中不允许多个父类出现相同的方法。(编译不通过)</li>
+</ol>
+<h2 id="设计模式概述"><a href="#设计模式概述" class="headerlink" title="设计模式概述"></a>设计模式概述</h2><p>设计模式是在特定环境下人们解决某类重复出现问题的一套成功或有效的解决方案。</p>
+<p>GoF给软件设计模式提供了定义，如下：“软件设计模式(Design Pattern)是一套被反复使用、多数人知晓的、经过分类编目的、代码设计经验的总结，使用设计模式是为了可重用代码、让代码更容易被他人理解并且保证代码可靠性。”<br>一句大白话可以总结：“在一定环境下，用固定套路解决问题。”</p>
+<p>GoF提出的设计模式有23个，包括：</p>
+<ul>
+<li>创建型(Creational)模式：如何创建对象；</li>
+<li>结构型(Structural )模式：如何实现类或对象的组合；</li>
+<li>行为型(Behavioral)模式：类或对象怎样交互以及怎样分配职责。</li>
+</ul>
+<p>有一个“简单工厂模式”不属于GoF 23种设计模式，但大部分的设计模式书籍都会对它进行专门的介绍。<br>设计模式目前种类： GoF的23种   + “简单工厂模式” &#x3D; 24种。</p>
+<p>学习设计模式的作用：</p>
+<ol>
+<li>如何将代码分散在几个不同的类中？</li>
+<li>为什么要有“接口”？</li>
+<li>何谓针对抽象编程？</li>
+<li>何时不应该使用继承？</li>
+<li>如果不修改源代码增加新功能？</li>
+<li>更好地阅读和理解现有类库与其他系统中的源代码。</li>
+</ol>
+<p>设计模式的基础是：多态。</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.yuque.com/aceld/lfhu8y/pebesh?inner=qSWMX" >https://www.yuque.com/aceld/lfhu8y/pebesh?inner=qSWMX<i class="fas fa-external-link-alt"></i></a></p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://s2.loli.net/2023/01/31/aG2JCZeXmgwHBOr.png"
+                        alt="image-20230131164759525"
+                 ></p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://s2.loli.net/2023/01/31/XZptWMU8Vlhuwcq.png"
+                        alt="image-20230131164911533"
+                 ></p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://s2.loli.net/2023/01/31/zxtGFLCVS58AlPd.png"
+                        alt="image-20230131164934491"
+                 ></p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://s2.loli.net/2023/01/31/2t15ohVWPiFJw4r.png"
+                        alt="image-20230131165009691"
+                 ></p>
+<h2 id="面向对象设计原则"><a href="#面向对象设计原则" class="headerlink" title="面向对象设计原则"></a>面向对象设计原则</h2><p>对于面向对象软件系统的设计而言，在支持可维护性的同时，提高系统的可复用性是一个至关重要的问题，<strong>如何同时提高一个软件系统的可维护性和可复用性是面向对象设计需要解决的核心问题之一</strong>。在面向对象设计中，可维护性的复用是以设计原则为基础的。每一个原则都蕴含一些面向对象设计的思想，可以从不同的角度提升一个软件结构的设计水平。</p>
+<p><strong>面向对象设计原则为支持可维护性复用而诞生，这些原则蕴含在很多设计模式中，它们是从许多设计方案中总结出的指导性原则</strong>。面向对象设计原则也是我们用于评价一个设计模式的使用效果的重要指标之一。</p>
+<p>原则的目的： 高内聚，低耦合</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>定义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>单一职责原则 (Single Responsibility Principle, SRP) ★★★★☆</td>
+<td>类的职责单一，对外只提供一种功能，而引起类变化的原因都应该只有一个。</td>
+</tr>
+<tr>
+<td>开闭原则 (Open-Closed Principle, OCP) ★★★★★</td>
+<td>类的改动是通过增加代码进行的，而不是修改源代码。（对扩展开放，对修改封闭）</td>
+</tr>
+<tr>
+<td>里氏代换原则 (Liskov Substitution Principle, LSP ★★★★★</td>
+<td>任何抽象类（interface接口）出现的地方都可以用他的实现类进行替换，实际就是虚拟机制，语言级别实现面向对象功能。</td>
+</tr>
+<tr>
+<td>依赖倒转原则 (Dependence  Inversion Principle, DIP) ★★★★★</td>
+<td>依赖于抽象(接口)，不要依赖具体的实现(类)，也就是针对接口编程。</td>
+</tr>
+<tr>
+<td>接口隔离原则 (Interface Segregation Principle, ISP ★★☆☆☆</td>
+<td>不应该强迫用户的程序依赖他们不需要的接口方法。一个接口应该只提供一种对外功能，不应该把所有操作都封装到一个接口中去。</td>
+</tr>
+<tr>
+<td>合成复用原则 (Composite Reuse Principle, CRP) ★★★★☆</td>
+<td>如果使用继承，会导致父类的任何变换都可能影响到子类的行为。如果使用对象组合，就降低了这种依赖关系。对于继承和组合，优先使用组合。</td>
+</tr>
+<tr>
+<td>迪米特法则 (Law of Demeter, LoD ★★★☆☆</td>
+<td>一个对象应当对其他对象尽可能少的了解，从而降低各个对象之间的耦合，提高系统的可维护性。例如在一个程序中，各个模块之间相互调用时，通常会提供一个统一的接口来实现。这样其他模块不需要了解另外一个模块的内部实现细节，这样当一个模块内部的实现发生改变时，不会影响其他模块的使用。（黑盒原理）</td>
+</tr>
+</tbody></table>
+<h3 id="单一职责原则"><a href="#单一职责原则" class="headerlink" title="单一职责原则"></a>单一职责原则</h3><p>类的职责单一，对外只提供一种功能，而引起类变化的原因都应该只有一个。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> ClothesShop <span class="keyword">struct</span> &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(cs *ClothesShop)</span></span> OnShop() &#123;</span><br><span class="line">	fmt.Println(<span class="string">&quot;休闲的装扮&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> ClothesWork <span class="keyword">struct</span> &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(cw *ClothesWork)</span></span> OnWork() &#123;</span><br><span class="line">	fmt.Println(<span class="string">&quot;工作的装扮&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="comment">//工作的时候</span></span><br><span class="line">	cw := <span class="built_in">new</span>(ClothesWork)</span><br><span class="line">	cw.OnWork()</span><br><span class="line"></span><br><span class="line">	<span class="comment">//shopping的时候</span></span><br><span class="line">	cs := <span class="built_in">new</span>(ClothesShop)</span><br><span class="line">	cs.OnShop()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在面向对象编程的过程中，设计一个类，建议对外提供的功能单一，接口单一，影响一个类的范围就只限定在这一个接口上，一个类的一个接口具备这个类的功能含义，职责单一不复杂。</p>
+<h3 id="开闭原则"><a href="#开闭原则" class="headerlink" title="开闭原则"></a>开闭原则</h3><p>对扩展开放，对修改封闭</p>
+<ul>
+<li>对扩展开放，意味着有新的需求或变化时，可以对现有代码进行扩展，以适应新的情况。</li>
+<li>对修改封闭，意味着类一旦设计完成，就可以独立完成其工作，而不要对已有代码进行任何修改</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//抽象的银行业务员</span></span><br><span class="line"><span class="keyword">type</span> AbstractBanker <span class="keyword">interface</span>&#123;</span><br><span class="line">	DoBusi()	<span class="comment">//抽象的处理业务接口</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//存款的业务员</span></span><br><span class="line"><span class="keyword">type</span> SaveBanker <span class="keyword">struct</span> &#123;</span><br><span class="line">	<span class="comment">//AbstractBanker</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(sb *SaveBanker)</span></span> DoBusi() &#123;</span><br><span class="line">	fmt.Println(<span class="string">&quot;进行了存款&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//转账的业务员</span></span><br><span class="line"><span class="keyword">type</span> TransferBanker <span class="keyword">struct</span> &#123;</span><br><span class="line">	<span class="comment">//AbstractBanker</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(tb *TransferBanker)</span></span> DoBusi() &#123;</span><br><span class="line">	fmt.Println(<span class="string">&quot;进行了转账&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//支付的业务员</span></span><br><span class="line"><span class="keyword">type</span> PayBanker <span class="keyword">struct</span> &#123;</span><br><span class="line">	<span class="comment">//AbstractBanker</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(pb *PayBanker)</span></span> DoBusi() &#123;</span><br><span class="line">	fmt.Println(<span class="string">&quot;进行了支付&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//实现架构层(基于抽象层进行业务封装-针对interface接口进行封装)</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">BankerBusiness</span><span class="params">(banker AbstractBanker)</span></span> &#123;</span><br><span class="line">	<span class="comment">//通过接口来向下调用，(多态现象)</span></span><br><span class="line">	banker.DoBusi()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	BankerBusiness(&amp;SaveBanker&#123;&#125;)</span><br><span class="line">	BankerBusiness(&amp;TransferBanker&#123;&#125;)</span><br><span class="line">	BankerBusiness(&amp;PayBanker&#123;&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="依赖倒转原则"><a href="#依赖倒转原则" class="headerlink" title="依赖倒转原则"></a>依赖倒转原则</h3><p>依赖于抽象(接口)，不要依赖具体的实现(类)，也就是针对接口编程</p>
+<h4 id="耦合度极高的模块关系设计"><a href="#耦合度极高的模块关系设计" class="headerlink" title="耦合度极高的模块关系设计"></a>耦合度极高的模块关系设计</h4><p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://s2.loli.net/2023/01/31/L4RFymXboPaUjSi.png"
+                        alt="42-混乱的依赖关系.png"
+                 ></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// === &gt; 奔驰汽车 &lt;===</span></span><br><span class="line"><span class="keyword">type</span> Benz <span class="keyword">struct</span> &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *Benz)</span></span> Run() &#123;</span><br><span class="line">	fmt.Println(<span class="string">&quot;Benz is running...&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// === &gt; 宝马汽车  &lt;===</span></span><br><span class="line"><span class="keyword">type</span> BMW <span class="keyword">struct</span> &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *BMW)</span></span> Run() &#123;</span><br><span class="line">	fmt.Println(<span class="string">&quot;BMW is running ...&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//===&gt; 司机张三  &lt;===</span></span><br><span class="line"><span class="keyword">type</span> Zhang3 <span class="keyword">struct</span> &#123;</span><br><span class="line">	<span class="comment">//...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(zhang3 *Zhang3)</span></span> DriveBenZ(benz *Benz) &#123;</span><br><span class="line">	fmt.Println(<span class="string">&quot;zhang3 Drive Benz&quot;</span>)</span><br><span class="line">	benz.Run()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(zhang3 *Zhang3)</span></span> DriveBMW(bmw *BMW) &#123;</span><br><span class="line">	fmt.Println(<span class="string">&quot;zhang3 drive BMW&quot;</span>)</span><br><span class="line">	bmw.Run()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//===&gt; 司机李四 &lt;===</span></span><br><span class="line"><span class="keyword">type</span> Li4 <span class="keyword">struct</span> &#123;</span><br><span class="line">	<span class="comment">//...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(li4 *Li4)</span></span> DriveBenZ(benz *Benz) &#123;</span><br><span class="line">	fmt.Println(<span class="string">&quot;li4 Drive Benz&quot;</span>)</span><br><span class="line">	benz.Run()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(li4 *Li4)</span></span> DriveBMW(bmw *BMW) &#123;</span><br><span class="line">	fmt.Println(<span class="string">&quot;li4 drive BMW&quot;</span>)</span><br><span class="line">	bmw.Run()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="comment">//业务1 张3开奔驰</span></span><br><span class="line">	benz := &amp;Benz&#123;&#125;</span><br><span class="line">	zhang3 := &amp;Zhang3&#123;&#125;</span><br><span class="line">	zhang3.DriveBenZ(benz)</span><br><span class="line"></span><br><span class="line">	<span class="comment">//业务2 李四开宝马</span></span><br><span class="line">	bmw := &amp;BMW&#123;&#125;</span><br><span class="line">	li4 := &amp;Li4&#123;&#125;</span><br><span class="line">	li4.DriveBMW(bmw)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>假设现在要增加一个 <u>丰田汽车</u> 或者 <u>司机王五</u>， 那么模块和模块的依赖关系将成指数级递增，想蜘蛛网一样越来越难维护和捋顺</p>
+<h3 id="面向抽象层依赖倒转"><a href="#面向抽象层依赖倒转" class="headerlink" title="面向抽象层依赖倒转"></a>面向抽象层依赖倒转<img  
+                       lazyload
+                       alt="image"
+                       data-src="https://s2.loli.net/2023/01/31/MBTP3elEIfOp4Fs.png"
+                        alt="img"
+                 ></h3><p>在设计一个系统的时候，将模块分为3个层次，抽象层、实现层、业务逻辑层。那么，我们首先将抽象层的模块和接口定义出来，这里就需要了interface接口的设计，然后我们依照抽象层，依次实现每个实现层的模块，在我们写实现层代码的时候，实际上我们只需要参考对应的抽象层实现就好了，实现每个模块，也和其他的实现的模块没有关系，这样也符合了上面介绍的开闭原则。这样实现起来每个模块只依赖对象的接口，而和其他模块没关系，依赖关系单一。系统容易扩展和维护。</p>
+<p>在指定业务逻辑也是一样，只需要参考抽象层的接口来业务就好了，抽象层暴露出来的接口就是我们业务层可以使用的方法，然后可以通过多态的线下，接口指针指向哪个实现模块，调用了就是具体的实现方法，这样我们业务逻辑层也是依赖抽象成编程。</p>
+<p>我们就将这种的设计原则叫做 <u>依赖倒转原则</u></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ===== &gt;   抽象层  &lt; ========</span></span><br><span class="line"><span class="keyword">type</span> Car <span class="keyword">interface</span> &#123;</span><br><span class="line">	Run()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Driver <span class="keyword">interface</span> &#123;</span><br><span class="line">	Drive(car Car)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ===== &gt;   实现层  &lt; ========</span></span><br><span class="line"><span class="keyword">type</span> BenZ <span class="keyword">struct</span> &#123;</span><br><span class="line">	<span class="comment">//...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(benz * BenZ)</span></span> Run() &#123;</span><br><span class="line">	fmt.Println(<span class="string">&quot;Benz is running...&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Bmw <span class="keyword">struct</span> &#123;</span><br><span class="line">	<span class="comment">//...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(bmw * Bmw)</span></span> Run() &#123;</span><br><span class="line">	fmt.Println(<span class="string">&quot;Bmw is running...&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Zhang_3 <span class="keyword">struct</span> &#123;</span><br><span class="line">	<span class="comment">//...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(zhang3 *Zhang_3)</span></span> Drive(car Car) &#123;</span><br><span class="line">	fmt.Println(<span class="string">&quot;Zhang3 drive car&quot;</span>)</span><br><span class="line">	car.Run()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Li_4 <span class="keyword">struct</span> &#123;</span><br><span class="line">	<span class="comment">//...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(li4 *Li_4)</span></span> Drive(car Car) &#123;</span><br><span class="line">	fmt.Println(<span class="string">&quot;li4 drive car&quot;</span>)</span><br><span class="line">	car.Run()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// ===== &gt;   业务逻辑层  &lt; ========</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="comment">//张3 开 宝马</span></span><br><span class="line">	<span class="keyword">var</span> bmw Car</span><br><span class="line">	bmw = &amp;Bmw&#123;&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> zhang3 Driver</span><br><span class="line">	zhang3 = &amp;Zhang_3&#123;&#125;</span><br><span class="line"></span><br><span class="line">	zhang3.Drive(bmw)</span><br><span class="line"></span><br><span class="line">	<span class="comment">//李4 开 奔驰</span></span><br><span class="line">	<span class="keyword">var</span> benz Car</span><br><span class="line">	benz = &amp;BenZ&#123;&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> li4 Driver</span><br><span class="line">	li4 = &amp;Li_4&#123;&#125;</span><br><span class="line"></span><br><span class="line">	li4.Drive(benz)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="合成复用原则"><a href="#合成复用原则" class="headerlink" title="合成复用原则"></a>合成复用原则</h3><p>如果使用继承，会导致父类的任何变换都可能影响到子类的行为。如果使用对象组合，就降低了这种依赖关系。对于继承和组合，优先使用组合。</p>
+<h3 id="迪米特法则"><a href="#迪米特法则" class="headerlink" title="迪米特法则"></a>迪米特法则</h3><p>一个对象应当对其他对象尽可能少的了解，从而降低各个对象之间的耦合，提高系统的可维护性。</p>
+<p>例如在一个程序中，各个模块之间相互调用时，通常会提供一个统一的接口来实现。这样其他模块不需要了解另外一个模块的内部实现细节，这样当一个模块内部的实现发生改变时，不会影响其他模块的使用。（黑盒原理）</p>
+<h2 id="创建型模式"><a href="#创建型模式" class="headerlink" title="创建型模式"></a>创建型模式</h2><h3 id="简单工厂模式"><a href="#简单工厂模式" class="headerlink" title="简单工厂模式"></a>简单工厂模式</h3><h4 id="为什么需要工厂"><a href="#为什么需要工厂" class="headerlink" title="为什么需要工厂"></a>为什么需要工厂</h4><p>没有工厂模式，在开发者创建一个类的对象时，如果有很多不同种类的对象将会如何实现，代码如下：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//水果类</span></span><br><span class="line"><span class="keyword">type</span> Fruit <span class="keyword">struct</span> &#123;</span><br><span class="line">	<span class="comment">//...</span></span><br><span class="line">	<span class="comment">//...</span></span><br><span class="line">	<span class="comment">//...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(f *Fruit)</span></span> Show(name <span class="type">string</span>) &#123;</span><br><span class="line">	<span class="keyword">if</span> name == <span class="string">&quot;apple&quot;</span> &#123;</span><br><span class="line">		fmt.Println(<span class="string">&quot;我是苹果&quot;</span>)</span><br><span class="line">	&#125; <span class="keyword">else</span> <span class="keyword">if</span> name == <span class="string">&quot;banana&quot;</span> &#123;</span><br><span class="line">		fmt.Println(<span class="string">&quot;我是香蕉&quot;</span>)</span><br><span class="line">	&#125; <span class="keyword">else</span> <span class="keyword">if</span> name == <span class="string">&quot;pear&quot;</span> &#123;</span><br><span class="line">		fmt.Println(<span class="string">&quot;我是梨&quot;</span>)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//创建一个Fruit对象</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">NewFruit</span><span class="params">(name <span class="type">string</span>)</span></span> *Fruit &#123;</span><br><span class="line">	fruit := <span class="built_in">new</span>(Fruit)</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> name == <span class="string">&quot;apple&quot;</span> &#123;</span><br><span class="line">		<span class="comment">//创建apple逻辑</span></span><br><span class="line">	&#125; <span class="keyword">else</span> <span class="keyword">if</span> name == <span class="string">&quot;banana&quot;</span> &#123;</span><br><span class="line">		<span class="comment">//创建banana逻辑</span></span><br><span class="line">	&#125; <span class="keyword">else</span> <span class="keyword">if</span> name == <span class="string">&quot;pear&quot;</span> &#123;</span><br><span class="line">		<span class="comment">//创建pear逻辑</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> fruit</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	apple := NewFruit(<span class="string">&quot;apple&quot;</span>)</span><br><span class="line">	apple.Show(<span class="string">&quot;apple&quot;</span>)</span><br><span class="line"></span><br><span class="line">	banana := NewFruit(<span class="string">&quot;banana&quot;</span>)</span><br><span class="line">	banana.Show(<span class="string">&quot;banana&quot;</span>)</span><br><span class="line"></span><br><span class="line">	pear := NewFruit(<span class="string">&quot;pear&quot;</span>)</span><br><span class="line">	pear.Show(<span class="string">&quot;pear&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>业务逻辑层 —&gt; 基础类模块</p>
+<ul>
+<li>在Fruit类中包含很多“if…else…”代码块，整个类的代码相当冗长，代码越长，阅读难度、维护难度和测试难度也越大；而且大量条件语句的存在还将影响系统的性能，程序在执行过程中需要做大量的条件判断</li>
+<li>Fruit类的职责过重，它负责初始化和显示所有的水果对象，将各种水果对象的初始化代码和显示代码集中在一个类中实现，<u>违反了“单一职责原则”</u>，不利于类的重用和维护</li>
+<li>当需要增加新类型的水果时，必须修改Fruit类的构造函数NewFruit()和其他相关方法源代码，<u>违反了“开闭原则”</u></li>
+</ul>
+<p>在中间加一层工厂模块层，来降低业务逻辑层对基础模块层的直接依赖和耦合关联。</p>
+<p>业务逻辑层 —&gt; 工厂模块 —&gt; 基础类模块</p>
+<h4 id="简单工厂模式角色和职责"><a href="#简单工厂模式角色和职责" class="headerlink" title="简单工厂模式角色和职责"></a>简单工厂模式角色和职责</h4><p>简单工厂模式并不属于GoF的23种设计模式。他是开发者自发认为的一种非常简易的设计模式，其角色和职责如下：</p>
+<ul>
+<li><strong>工厂</strong>：简单工厂模式的核心，它负责实现创建所有实例的内部逻辑。工厂类可以被外界直接调用，创建所需的产品对象。</li>
+<li><strong>抽象产品</strong>：简单工厂模式所创建的所有对象的父类，它负责描述所有实例所共有的公共接口。</li>
+<li><strong>具体产品</strong>：简单工厂模式所创建的具体实例对象。</li>
+</ul>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://s2.loli.net/2023/01/31/gkuiEJanmBCRy78.png"
+                        alt="image-20230131172743146"
+                 ></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ======= 抽象层 =========</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//水果类(抽象接口)</span></span><br><span class="line"><span class="keyword">type</span> Fruit <span class="keyword">interface</span> &#123;</span><br><span class="line">	Show()	 <span class="comment">//接口的某方法</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// ======= 基础类模块 =========</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Apple <span class="keyword">struct</span> &#123;</span><br><span class="line">	Fruit  <span class="comment">//为了易于理解显示继承(此行可以省略)</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(apple *Apple)</span></span> Show() &#123;</span><br><span class="line">	fmt.Println(<span class="string">&quot;我是苹果&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Banana <span class="keyword">struct</span> &#123;</span><br><span class="line">	Fruit</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(banana *Banana)</span></span> Show() &#123;</span><br><span class="line">	fmt.Println(<span class="string">&quot;我是香蕉&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Pear <span class="keyword">struct</span> &#123;</span><br><span class="line">	Fruit</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(pear *Pear)</span></span> Show() &#123;</span><br><span class="line">	fmt.Println(<span class="string">&quot;我是梨&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ========= 工厂模块  =========</span></span><br><span class="line"><span class="comment">//一个工厂， 有一个生产水果的机器，返回一个抽象水果的指针</span></span><br><span class="line"><span class="keyword">type</span> Factory <span class="keyword">struct</span> &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(fac *Factory)</span></span> CreateFruit(kind <span class="type">string</span>) Fruit &#123;</span><br><span class="line">	<span class="keyword">var</span> fruit Fruit</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> kind == <span class="string">&quot;apple&quot;</span> &#123;</span><br><span class="line">		fruit = <span class="built_in">new</span>(Apple)</span><br><span class="line">	&#125; <span class="keyword">else</span> <span class="keyword">if</span> kind == <span class="string">&quot;banana&quot;</span> &#123;</span><br><span class="line">		fruit = <span class="built_in">new</span>(Banana)</span><br><span class="line">	&#125; <span class="keyword">else</span> <span class="keyword">if</span> kind == <span class="string">&quot;pear&quot;</span> &#123;</span><br><span class="line">		fruit = <span class="built_in">new</span>(Pear)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> fruit</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// ==========业务逻辑层==============</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	factory := <span class="built_in">new</span>(Factory)</span><br><span class="line"></span><br><span class="line">	apple := factory.CreateFruit(<span class="string">&quot;apple&quot;</span>)</span><br><span class="line">	apple.Show()</span><br><span class="line"></span><br><span class="line">	banana := factory.CreateFruit(<span class="string">&quot;banana&quot;</span>)</span><br><span class="line">	banana.Show()</span><br><span class="line"></span><br><span class="line">	pear := factory.CreateFruit(<span class="string">&quot;pear&quot;</span>)</span><br><span class="line">	pear.Show()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h4><p>优点： </p>
+<ul>
+<li>实现了对象创建和使用的分离</li>
+<li>不需要记住具体类名，记住参数即可，减少使用者记忆量。</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>对工厂类职责过重，一旦不能工作，系统受到影响</li>
+<li>增加系统中类的个数，复杂度和理解度增加</li>
+<li>违反“开闭原则”，添加新产品需要修改工厂逻辑，工厂越来越复杂</li>
+</ul>
+<h4 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h4><ul>
+<li>工厂类负责创建的对象比较少，由于创建的对象较少，不会造成工厂方法中的业务逻辑太过复杂</li>
+<li>客户端只知道传入工厂类的参数，对于如何创建对象并不关心</li>
+</ul>
+<h3 id="工厂方法模式"><a href="#工厂方法模式" class="headerlink" title="工厂方法模式"></a>工厂方法模式</h3><h4 id="角色和职责"><a href="#角色和职责" class="headerlink" title="角色和职责"></a>角色和职责</h4><ul>
+<li><strong>抽象工厂</strong>：工厂方法模式的核心，任何工厂类都必须实现这个接口。</li>
+<li><strong>工厂</strong>：具体工厂类是抽象工厂的一个实现，负责实例化产品对象。</li>
+<li><strong>抽象产品</strong>：工厂方法模式所创建的所有对象的父类，它负责描述所有实例所共有的公共接口。	</li>
+<li><strong>具体产品</strong>：工厂方法模式所创建的具体实例对象。</li>
+</ul>
+<p>简单工厂模式  + “开闭原则” &#x3D;    工厂方法模式</p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://s2.loli.net/2023/01/31/D7kSYmexgt5XLEw.png"
+                        alt="image-20230131174849288"
+                 ></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ======= 抽象层 =========</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//水果类(抽象接口)</span></span><br><span class="line"><span class="keyword">type</span> Fruit <span class="keyword">interface</span> &#123;</span><br><span class="line">	Show()	 <span class="comment">//接口的某方法</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//工厂类(抽象接口)</span></span><br><span class="line"><span class="keyword">type</span> AbstractFactory <span class="keyword">interface</span> &#123;</span><br><span class="line">	CreateFruit() Fruit <span class="comment">//生产水果类(抽象)的生产器方法</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ======= 基础类模块 =========</span></span><br><span class="line"><span class="keyword">type</span> Apple <span class="keyword">struct</span> &#123;</span><br><span class="line">	Fruit  <span class="comment">//为了易于理解显示继承(此行可以省略)</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(apple *Apple)</span></span> Show() &#123;</span><br><span class="line">	fmt.Println(<span class="string">&quot;我是苹果&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Banana <span class="keyword">struct</span> &#123;</span><br><span class="line">	Fruit</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(banana *Banana)</span></span> Show() &#123;</span><br><span class="line">	fmt.Println(<span class="string">&quot;我是香蕉&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Pear <span class="keyword">struct</span> &#123;</span><br><span class="line">	Fruit</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(pear *Pear)</span></span> Show() &#123;</span><br><span class="line">	fmt.Println(<span class="string">&quot;我是梨&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//(+) 新增一个&quot;日本苹果&quot;</span></span><br><span class="line"><span class="keyword">type</span> JapanApple <span class="keyword">struct</span> &#123;</span><br><span class="line">	Fruit</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(jp *JapanApple)</span></span> Show() &#123;</span><br><span class="line">	fmt.Println(<span class="string">&quot;我是日本苹果&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ========= 工厂模块  =========</span></span><br><span class="line"><span class="comment">//具体的苹果工厂</span></span><br><span class="line"><span class="keyword">type</span> AppleFactory <span class="keyword">struct</span> &#123;</span><br><span class="line">	AbstractFactory</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(fac *AppleFactory)</span></span> CreateFruit() Fruit &#123;</span><br><span class="line">	<span class="keyword">var</span> fruit Fruit</span><br><span class="line"></span><br><span class="line">	<span class="comment">//生产一个具体的苹果</span></span><br><span class="line">	fruit = <span class="built_in">new</span>(Apple)</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> fruit</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//具体的香蕉工厂</span></span><br><span class="line"><span class="keyword">type</span> BananaFactory <span class="keyword">struct</span> &#123;</span><br><span class="line">	AbstractFactory</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(fac *BananaFactory)</span></span> CreateFruit() Fruit &#123;</span><br><span class="line">	<span class="keyword">var</span> fruit Fruit</span><br><span class="line"></span><br><span class="line">	<span class="comment">//生产一个具体的香蕉</span></span><br><span class="line">	fruit = <span class="built_in">new</span>(Banana)</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> fruit</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//具体的梨工厂</span></span><br><span class="line"><span class="keyword">type</span> PearFactory <span class="keyword">struct</span> &#123;</span><br><span class="line">	AbstractFactory</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(fac *PearFactory)</span></span> CreateFruit() Fruit &#123;</span><br><span class="line">	<span class="keyword">var</span> fruit Fruit</span><br><span class="line"></span><br><span class="line">	<span class="comment">//生产一个具体的梨</span></span><br><span class="line">	fruit = <span class="built_in">new</span>(Pear)</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> fruit</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//具体的日本工厂</span></span><br><span class="line"><span class="keyword">type</span> JapanAppleFactory <span class="keyword">struct</span> &#123;</span><br><span class="line">	AbstractFactory</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(fac *JapanAppleFactory)</span></span> CreateFruit() Fruit &#123;</span><br><span class="line">	<span class="keyword">var</span> fruit Fruit</span><br><span class="line"></span><br><span class="line">	<span class="comment">//生产一个具体的日本苹果</span></span><br><span class="line">	fruit = <span class="built_in">new</span>(JapanApple)</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> fruit</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ========= 业务逻辑层  =========</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">		本案例为了突出根据依赖倒转原则与面向接口编程特性。</span></span><br><span class="line"><span class="comment">	    一些变量的定义将使用显示类型声明方式</span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">//需求1：需要一个具体的苹果对象</span></span><br><span class="line">	<span class="comment">//1-先要一个具体的苹果工厂</span></span><br><span class="line">	<span class="keyword">var</span> appleFac AbstractFactory</span><br><span class="line">	appleFac = <span class="built_in">new</span>(AppleFactory)</span><br><span class="line">	<span class="comment">//2-生产相对应的具体水果</span></span><br><span class="line">	<span class="keyword">var</span> apple Fruit</span><br><span class="line">	apple = appleFac.CreateFruit()</span><br><span class="line"></span><br><span class="line">	apple.Show()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="comment">//需求2：需要一个具体的香蕉对象</span></span><br><span class="line">	<span class="comment">//1-先要一个具体的香蕉工厂</span></span><br><span class="line">	<span class="keyword">var</span> bananaFac AbstractFactory</span><br><span class="line">	bananaFac = <span class="built_in">new</span>(BananaFactory)</span><br><span class="line">	<span class="comment">//2-生产相对应的具体水果</span></span><br><span class="line">	<span class="keyword">var</span> banana Fruit</span><br><span class="line">	banana = bananaFac.CreateFruit()</span><br><span class="line"></span><br><span class="line">	banana.Show()</span><br><span class="line"></span><br><span class="line">	<span class="comment">//需求3：需要一个具体的梨对象</span></span><br><span class="line">	<span class="comment">//1-先要一个具体的梨工厂</span></span><br><span class="line">	<span class="keyword">var</span> pearFac AbstractFactory</span><br><span class="line">	pearFac = <span class="built_in">new</span>(PearFactory)</span><br><span class="line">	<span class="comment">//2-生产相对应的具体水果</span></span><br><span class="line">	<span class="keyword">var</span> pear Fruit</span><br><span class="line">	pear = pearFac.CreateFruit()</span><br><span class="line"></span><br><span class="line">	pear.Show()</span><br><span class="line"></span><br><span class="line">	<span class="comment">//需求4：需要一个日本的苹果？</span></span><br><span class="line">	<span class="comment">//1-先要一个具体的日本评估工厂</span></span><br><span class="line">	<span class="keyword">var</span> japanAppleFac AbstractFactory</span><br><span class="line">	japanAppleFac = <span class="built_in">new</span>(JapanAppleFactory)</span><br><span class="line">	<span class="comment">//2-生产相对应的具体水果</span></span><br><span class="line">	<span class="keyword">var</span> japanApple Fruit</span><br><span class="line">	japanApple = japanAppleFac.CreateFruit()</span><br><span class="line"></span><br><span class="line">	japanApple.Show()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="优缺点-1"><a href="#优缺点-1" class="headerlink" title="优缺点"></a>优缺点</h4><p>优点： </p>
+<ol>
+<li>不需要记住具体类名，甚至连具体参数都不用记忆</li>
+<li>实现了对象创建和使用的分离</li>
+<li>系统的可扩展性也就变得非常好，无需修改接口和原类</li>
+<li>对于新产品的创建，符合开闭原则</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>增加系统中类的个数，复杂度和理解度增加</li>
+<li>增加了系统的抽象性和理解难度</li>
+</ol>
+<h4 id="适用场景-1"><a href="#适用场景-1" class="headerlink" title="适用场景"></a>适用场景</h4><ol>
+<li>客户端不知道它所需要的对象的类</li>
+<li>抽象工厂类通过其子类来指定创建哪个对象</li>
+</ol>
+<h3 id="抽象工厂方法模式"><a href="#抽象工厂方法模式" class="headerlink" title="抽象工厂方法模式"></a>抽象工厂方法模式</h3><p>工厂方法模式通过引入工厂等级结构，解决了简单工厂模式中工厂类职责太重的问题，但由于工厂方法模式中的每个工厂只生产一类产品，可能会导致系统中存在大量的工厂类，势必会增加系统的开销。</p>
+<p>因此，可以考虑将一些相关的产品组成一个“产品族”，由同一个工厂来统一生产，这就是本文将要学习的抽象工厂模式的基本思想。</p>
+<p>“抽象工厂方法模式”引出了“产品族”和“产品等级结构”概念，其目的是为了更加高效的生产同一个产品组产品</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ======= 抽象层 =========</span></span><br><span class="line"><span class="keyword">type</span> AbstractApple <span class="keyword">interface</span> &#123;</span><br><span class="line">	ShowApple()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> AbstractBanana <span class="keyword">interface</span> &#123;</span><br><span class="line">	ShowBanana()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> AbstractPear <span class="keyword">interface</span> &#123;</span><br><span class="line">	ShowPear()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//抽象工厂</span></span><br><span class="line"><span class="keyword">type</span> AbstractFactory <span class="keyword">interface</span> &#123;</span><br><span class="line">	CreateApple() AbstractApple</span><br><span class="line">	CreateBanana() AbstractBanana</span><br><span class="line">	CreatePear() AbstractPear</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ======== 实现层 =========</span></span><br><span class="line"><span class="comment">/*  中国产品族 */</span></span><br><span class="line"><span class="keyword">type</span> ChinaApple <span class="keyword">struct</span> &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(ca *ChinaApple)</span></span> ShowApple() &#123;</span><br><span class="line">	fmt.Println(<span class="string">&quot;中国苹果&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> ChinaBanana <span class="keyword">struct</span> &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(cb *ChinaBanana)</span></span> ShowBanana() &#123;</span><br><span class="line">	fmt.Println(<span class="string">&quot;中国香蕉&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> ChinaPear <span class="keyword">struct</span> &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(cp *ChinaPear)</span></span> ShowPear() &#123;</span><br><span class="line">	fmt.Println(<span class="string">&quot;中国梨&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> ChinaFactory <span class="keyword">struct</span> &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(cf *ChinaFactory)</span></span> CreateApple() AbstractApple &#123;</span><br><span class="line">	<span class="keyword">var</span> apple AbstractApple</span><br><span class="line"></span><br><span class="line">	apple = <span class="built_in">new</span>(ChinaApple)</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> apple</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(cf *ChinaFactory)</span></span> CreateBanana() AbstractBanana &#123;</span><br><span class="line">	<span class="keyword">var</span> banana AbstractBanana</span><br><span class="line"></span><br><span class="line">	banana = <span class="built_in">new</span>(ChinaBanana)</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> banana</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(cf *ChinaFactory)</span></span> CreatePear() AbstractPear &#123;</span><br><span class="line">	<span class="keyword">var</span> pear AbstractPear</span><br><span class="line"></span><br><span class="line">	pear = <span class="built_in">new</span>(ChinaPear)</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> pear</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*  日本产品族 */</span></span><br><span class="line"><span class="keyword">type</span> JapanApple <span class="keyword">struct</span> &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(ja *JapanApple)</span></span> ShowApple() &#123;</span><br><span class="line">	fmt.Println(<span class="string">&quot;日本苹果&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> JapanBanana <span class="keyword">struct</span> &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(jb *JapanBanana)</span></span> ShowBanana() &#123;</span><br><span class="line">	fmt.Println(<span class="string">&quot;日本香蕉&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> JapanPear <span class="keyword">struct</span> &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(cp *JapanPear)</span></span> ShowPear() &#123;</span><br><span class="line">	fmt.Println(<span class="string">&quot;日本梨&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> JapanFactory <span class="keyword">struct</span> &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(jf *JapanFactory)</span></span> CreateApple() AbstractApple &#123;</span><br><span class="line">	<span class="keyword">var</span> apple AbstractApple</span><br><span class="line"></span><br><span class="line">	apple = <span class="built_in">new</span>(JapanApple)</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> apple</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(jf *JapanFactory)</span></span> CreateBanana() AbstractBanana &#123;</span><br><span class="line">	<span class="keyword">var</span> banana AbstractBanana</span><br><span class="line"></span><br><span class="line">	banana = <span class="built_in">new</span>(JapanBanana)</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> banana</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(cf *JapanFactory)</span></span> CreatePear() AbstractPear &#123;</span><br><span class="line">	<span class="keyword">var</span> pear AbstractPear</span><br><span class="line"></span><br><span class="line">	pear = <span class="built_in">new</span>(JapanPear)</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> pear</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*  美国产品族 */</span></span><br><span class="line"><span class="keyword">type</span> AmericanApple <span class="keyword">struct</span> &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(aa *AmericanApple)</span></span> ShowApple() &#123;</span><br><span class="line">	fmt.Println(<span class="string">&quot;美国苹果&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> AmericanBanana <span class="keyword">struct</span> &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(ab *AmericanBanana)</span></span> ShowBanana() &#123;</span><br><span class="line">	fmt.Println(<span class="string">&quot;美国香蕉&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> AmericanPear <span class="keyword">struct</span> &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(ap *AmericanPear)</span></span> ShowPear() &#123;</span><br><span class="line">	fmt.Println(<span class="string">&quot;美国梨&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> AmericanFactory <span class="keyword">struct</span> &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(af *AmericanFactory)</span></span> CreateApple() AbstractApple &#123;</span><br><span class="line">	<span class="keyword">var</span> apple AbstractApple</span><br><span class="line"></span><br><span class="line">	apple = <span class="built_in">new</span>(AmericanApple)</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> apple</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(af *AmericanFactory)</span></span> CreateBanana() AbstractBanana &#123;</span><br><span class="line">	<span class="keyword">var</span> banana AbstractBanana</span><br><span class="line"></span><br><span class="line">	banana = <span class="built_in">new</span>(AmericanBanana)</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> banana</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(af *AmericanFactory)</span></span> CreatePear() AbstractPear &#123;</span><br><span class="line">	<span class="keyword">var</span> pear AbstractPear</span><br><span class="line"></span><br><span class="line">	pear = <span class="built_in">new</span>(AmericanPear)</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> pear</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ======== 业务逻辑层 =======</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="comment">//需求1: 需要美国的苹果、香蕉、梨 等对象</span></span><br><span class="line">	<span class="comment">//1-创建一个美国工厂</span></span><br><span class="line">	<span class="keyword">var</span> aFac AbstractFactory</span><br><span class="line">	aFac = <span class="built_in">new</span>(AmericanFactory)</span><br><span class="line"></span><br><span class="line">	<span class="comment">//2-生产美国苹果</span></span><br><span class="line">	<span class="keyword">var</span> aApple AbstractApple</span><br><span class="line">	aApple = aFac.CreateApple()</span><br><span class="line">	aApple.ShowApple()</span><br><span class="line"></span><br><span class="line">	<span class="comment">//3-生产美国香蕉</span></span><br><span class="line">	<span class="keyword">var</span> aBanana AbstractBanana</span><br><span class="line">	aBanana = aFac.CreateBanana()</span><br><span class="line">	aBanana.ShowBanana()</span><br><span class="line"></span><br><span class="line">	<span class="comment">//4-生产美国梨</span></span><br><span class="line">	<span class="keyword">var</span> aPear AbstractPear</span><br><span class="line">	aPear = aFac.CreatePear()</span><br><span class="line">	aPear.ShowPear()</span><br><span class="line"></span><br><span class="line">	<span class="comment">//需求2: 需要中国的苹果、香蕉</span></span><br><span class="line">	<span class="comment">//1-创建一个中国工厂</span></span><br><span class="line">	cFac := <span class="built_in">new</span>(ChinaFactory)</span><br><span class="line"></span><br><span class="line">	<span class="comment">//2-生产中国苹果</span></span><br><span class="line">	cApple := cFac.CreateApple()</span><br><span class="line">	cApple.ShowApple()</span><br><span class="line"></span><br><span class="line">	<span class="comment">//3-生产中国香蕉</span></span><br><span class="line">	cBanana := cFac.CreateBanana()</span><br><span class="line">	cBanana.ShowBanana()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="优缺点-2"><a href="#优缺点-2" class="headerlink" title="优缺点"></a>优缺点</h4><p>优点：</p>
+<ul>
+<li>拥有工厂方法模式的优点</li>
+<li>当一个产品族中的多个对象被设计成一起工作时，它能够保证客户端始终只使用同一个产品族中的对象</li>
+<li>增加新的产品族很方便，无须修改已有系统，符合“开闭原则”</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>增加新的产品等级结构麻烦，需要对原有系统进行较大的修改，甚至需要修改抽象层代码，这显然会带来较大的不便，违背了“开闭原则”</li>
+</ul>
+<h4 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h4><ul>
+<li>系统中有多于一个的产品族。而每次只使用其中某一产品族。可以通过配置文件等方式来使得用户可以动态改变产品族，也可以很方便地增加新的产品族</li>
+<li>产品等级结构稳定。设计完成之后，不会向系统中增加新的产品等级结构或者删除已有的产品等级结构</li>
+</ul>
+<p>类似的实现有：</p>
+<blockquote>
+<p>设计一个电脑主板架构，电脑包括（显卡，内存，CPU）3个固定的插口，显卡具有显示功能（display，功能实现只要打印出意义即可），内存具有存储功能（storage），cpu具有计算功能（calculate）。<br>    现有Intel厂商，nvidia厂商，Kingston厂商，均会生产以上三种硬件。<br>    要求组装两台电脑，<br>                1台（Intel的CPU，Intel的显卡，Intel的内存）<br>                1台（Intel的CPU， nvidia的显卡，Kingston的内存）<br>    用抽象工厂模式实现。</p>
+</blockquote>
+<h3 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h3><p>保证一个类永远只能有一个对象，且该对象的功能依然能被其他模块使用。</p>
+<p>分为恶汉式、懒汉式</p>
+<p>恶汉式</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">三个要点：</span></span><br><span class="line"><span class="comment">		一是某个类只能有一个实例；</span></span><br><span class="line"><span class="comment">		二是它必须自行创建这个实例；</span></span><br><span class="line"><span class="comment">		三是它必须自行向整个系统提供这个实例。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	保证一个类永远只能有一个对象</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//1、保证这个类非公有化，外界不能通过这个类直接创建一个对象</span></span><br><span class="line"><span class="comment">//   那么这个类就应该变得非公有访问 类名称首字母要小写</span></span><br><span class="line"><span class="keyword">type</span> singelton <span class="keyword">struct</span> &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//2、但是还要有一个指针可以指向这个唯一对象，但是这个指针永远不能改变方向</span></span><br><span class="line"><span class="comment">//   Golang中没有常指针概念，所以只能通过将这个指针私有化不让外部模块访问</span></span><br><span class="line"><span class="keyword">var</span> instance *singelton = <span class="built_in">new</span>(singelton)</span><br><span class="line"></span><br><span class="line"><span class="comment">//3、如果全部为私有化，那么外部模块将永远无法访问到这个类和对象，</span></span><br><span class="line"><span class="comment">//   所以需要对外提供一个方法来获取这个唯一实例对象</span></span><br><span class="line"><span class="comment">//   注意：这个方法是否可以定义为singelton的一个成员方法呢？</span></span><br><span class="line"><span class="comment">//       答案是不能，因为如果为成员方法就必须要先访问对象、再访问函数</span></span><br><span class="line"><span class="comment">//        但是类和对象目前都已经私有化，外界无法访问，所以这个方法一定是一个全局普通函数</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">GetInstance</span><span class="params">()</span></span> *singelton &#123;</span><br><span class="line">	<span class="keyword">return</span> instance</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s *singelton)</span></span> SomeThing() &#123;</span><br><span class="line">	fmt.Println(<span class="string">&quot;单例对象的某方法&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="comment">// 以本包下的main访问举例，实际上别的包也可以调用</span></span><br><span class="line">	s := GetInstance()</span><br><span class="line">	s.SomeThing()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>sync.once</code>实现懒汉式的代码</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="string">&quot;sync&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> once sync.Once</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> singelton <span class="keyword">struct</span> &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> instance *singelton</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">GetInstance</span><span class="params">()</span></span> *singelton &#123;</span><br><span class="line"></span><br><span class="line">	once.Do(<span class="function"><span class="keyword">func</span><span class="params">()</span></span>&#123;</span><br><span class="line">		instance = <span class="built_in">new</span>(singelton)</span><br><span class="line">	&#125;)</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> instance</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s *singelton)</span></span> SomeThing() &#123;</span><br><span class="line">	fmt.Println(<span class="string">&quot;单例对象的某方法&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	s := GetInstance()</span><br><span class="line">	s.SomeThing()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="优缺点-3"><a href="#优缺点-3" class="headerlink" title="优缺点"></a>优缺点</h4><p>优点：</p>
+<ul>
+<li>单例模式提供了对唯一实例的受控访问</li>
+<li>节约系统资源（在系统内存中只存在一个对象）</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>扩展略难（单例模式中没有抽象层）</li>
+<li>单例类的职责过重</li>
+</ul>
+<h4 id="适用场景-2"><a href="#适用场景-2" class="headerlink" title="适用场景"></a>适用场景</h4><ul>
+<li>系统只需要一个实例对象，如系统要求提供一个唯一的序列号生成器或资源管理器，或者需要考虑资源消耗太大而只允许创建一个对象</li>
+<li>客户调用类的单个实例只允许使用一个公共访问点，除了该公共访问点，不能通过其他途径访问该实例</li>
+</ul>
+
+                    
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/go/">go</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/2023-02-07/60294872c87a/"
+                                   title="k8s集群搭建记录"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">k8s集群搭建记录</span>
+                                        <span class="post-nav-item">上一篇</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/2023-01-13/8befae7c2511/"
+                                   title="背包做题笔记"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">背包做题笔记</span>
+                                        <span class="post-nav-item">下一篇</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+    <div class="comments-container border-box">
+        <div id="comments-anchor" class="comment-area-title border-box">
+            <i class="fas fa-comments"></i>&nbsp;评论
+        </div>
+        <div class="comment-plugin-fail border-box">
+    <span class="fail-tip">评论插件加载失败</span>
+    <button class="reload keep-button">点击重新加载</button>
+</div>
+<div class="comment-plugin-loading flex-center border-box">
+    <i class="loading-icon fa-solid fa-spinner fa-spin"></i>
+    <span class="load-tip">正在加载评论插件</span>
+</div>
+<script data-pjax>
+  window.KeepCommentPlugin = {}
+  window.KeepCommentPlugin.hideLoading = () => {
+    const cplDom = document.querySelector('.comments-container .comment-plugin-loading')
+    cplDom.style.display = 'none'
+  }
+  window.KeepCommentPlugin.loadFailHandle = () => {
+    window.KeepCommentPlugin.hideLoading()
+    const cpfDom = document.querySelector('.comments-container .comment-plugin-fail')
+    cpfDom.style.display = 'flex'
+    cpfDom.querySelector('.reload').addEventListener('click', () => {
+      window.location.reload()
+    })
+  }
+</script>
+
+        
+            
+
+    <div class="valine-container">
+        <div id="vcomments"></div>
+        <script data-pjax
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"
+                async
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        ></script>
+        <script data-pjax
+                async
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        >
+          window.KeepCommentPlugin.initValine = () => {
+            const config = {
+              el: '#vcomments',
+              appId: '0HepQGr76M5xNgWk2Ecac7CC-gzGzoHsz',
+              appKey: '9bWzVBcRI0aSocVHtX3OBSYo',
+              meta: ['nick', 'mail', 'link'],
+              avatar: 'wavatar',
+              enableQQ: true,
+              placeholder: '',
+              lang: 'zh-CN'.toLowerCase()
+            }
+
+            if ('') {
+              config.serverURLs = ''
+            }
+
+            if (window?.Valine) {
+              new Valine(config)
+              window.KeepCommentPlugin.hideLoading()
+            } else {
+              setTimeout(() => {
+                window.KeepCommentPlugin.initValine()
+              }, 1000)
+            }
+          }
+
+          if ('true' === 'true') {
+            setTimeout(() => {
+              window.KeepCommentPlugin.initValine()
+            }, 1200)
+          } else {
+            window.addEventListener('DOMContentLoaded', window.KeepCommentPlugin.initValine)
+          }
+        </script>
+    </div>
+
+
+        
+    </div>
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc right-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Go%E4%B8%AD%E7%9A%84%E7%BB%84%E5%90%88%E4%B8%8E%E7%BB%A7%E6%89%BF"><span class="nav-number">2.</span> <span class="nav-text">Go中的组合与继承</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%A6%82%E8%BF%B0"><span class="nav-number">3.</span> <span class="nav-text">设计模式概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99"><span class="nav-number">4.</span> <span class="nav-text">面向对象设计原则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E4%B8%80%E8%81%8C%E8%B4%A3%E5%8E%9F%E5%88%99"><span class="nav-number">4.1.</span> <span class="nav-text">单一职责原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%80%E9%97%AD%E5%8E%9F%E5%88%99"><span class="nav-number">4.2.</span> <span class="nav-text">开闭原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%9D%E8%B5%96%E5%80%92%E8%BD%AC%E5%8E%9F%E5%88%99"><span class="nav-number">4.3.</span> <span class="nav-text">依赖倒转原则</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%80%A6%E5%90%88%E5%BA%A6%E6%9E%81%E9%AB%98%E7%9A%84%E6%A8%A1%E5%9D%97%E5%85%B3%E7%B3%BB%E8%AE%BE%E8%AE%A1"><span class="nav-number">4.3.1.</span> <span class="nav-text">耦合度极高的模块关系设计</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%A2%E5%90%91%E6%8A%BD%E8%B1%A1%E5%B1%82%E4%BE%9D%E8%B5%96%E5%80%92%E8%BD%AC"><span class="nav-number">4.4.</span> <span class="nav-text">面向抽象层依赖倒转</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%88%E6%88%90%E5%A4%8D%E7%94%A8%E5%8E%9F%E5%88%99"><span class="nav-number">4.5.</span> <span class="nav-text">合成复用原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%AA%E7%B1%B3%E7%89%B9%E6%B3%95%E5%88%99"><span class="nav-number">4.6.</span> <span class="nav-text">迪米特法则</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F"><span class="nav-number">5.</span> <span class="nav-text">创建型模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F"><span class="nav-number">5.1.</span> <span class="nav-text">简单工厂模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E5%B7%A5%E5%8E%82"><span class="nav-number">5.1.1.</span> <span class="nav-text">为什么需要工厂</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F%E8%A7%92%E8%89%B2%E5%92%8C%E8%81%8C%E8%B4%A3"><span class="nav-number">5.1.2.</span> <span class="nav-text">简单工厂模式角色和职责</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="nav-number">5.1.3.</span> <span class="nav-text">优缺点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%82%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-number">5.1.4.</span> <span class="nav-text">适用场景</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F"><span class="nav-number">5.2.</span> <span class="nav-text">工厂方法模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%92%E8%89%B2%E5%92%8C%E8%81%8C%E8%B4%A3"><span class="nav-number">5.2.1.</span> <span class="nav-text">角色和职责</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9-1"><span class="nav-number">5.2.2.</span> <span class="nav-text">优缺点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%82%E7%94%A8%E5%9C%BA%E6%99%AF-1"><span class="nav-number">5.2.3.</span> <span class="nav-text">适用场景</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F"><span class="nav-number">5.3.</span> <span class="nav-text">抽象工厂方法模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9-2"><span class="nav-number">5.3.1.</span> <span class="nav-text">优缺点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-number">5.3.2.</span> <span class="nav-text">使用场景</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F"><span class="nav-number">5.4.</span> <span class="nav-text">单例模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9-3"><span class="nav-number">5.4.1.</span> <span class="nav-text">优缺点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%82%E7%94%A8%E5%9C%BA%E6%99%AF-2"><span class="nav-number">5.4.2.</span> <span class="nav-text">适用场景</span></a></li></ol></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+        &copy;&nbsp;<span>2021</span>&nbsp;-&nbsp;2024
+        
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">tbghg</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        由&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;驱动&nbsp;&&nbsp;主题&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
+    
+
+    
+
+    
+        <div class="record-info info-item">
+            
+                
+                    <div class="record-item border-box">
+                        <a class=""
+                           target="_blank"
+                           href="https://beian.miit.gov.cn"
+                        >
+                            辽ICP备2021007417号
+                        </a>
+                    </div>
+                
+            
+        </div>
+    
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools right-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
+        
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        <!-- to bottom -->
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+            <li class="tools-item go-to-comments-tablet flex-center">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Go%E4%B8%AD%E7%9A%84%E7%BB%84%E5%90%88%E4%B8%8E%E7%BB%A7%E6%89%BF"><span class="nav-number">2.</span> <span class="nav-text">Go中的组合与继承</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%A6%82%E8%BF%B0"><span class="nav-number">3.</span> <span class="nav-text">设计模式概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99"><span class="nav-number">4.</span> <span class="nav-text">面向对象设计原则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E4%B8%80%E8%81%8C%E8%B4%A3%E5%8E%9F%E5%88%99"><span class="nav-number">4.1.</span> <span class="nav-text">单一职责原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%80%E9%97%AD%E5%8E%9F%E5%88%99"><span class="nav-number">4.2.</span> <span class="nav-text">开闭原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%9D%E8%B5%96%E5%80%92%E8%BD%AC%E5%8E%9F%E5%88%99"><span class="nav-number">4.3.</span> <span class="nav-text">依赖倒转原则</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%80%A6%E5%90%88%E5%BA%A6%E6%9E%81%E9%AB%98%E7%9A%84%E6%A8%A1%E5%9D%97%E5%85%B3%E7%B3%BB%E8%AE%BE%E8%AE%A1"><span class="nav-number">4.3.1.</span> <span class="nav-text">耦合度极高的模块关系设计</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%A2%E5%90%91%E6%8A%BD%E8%B1%A1%E5%B1%82%E4%BE%9D%E8%B5%96%E5%80%92%E8%BD%AC"><span class="nav-number">4.4.</span> <span class="nav-text">面向抽象层依赖倒转</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%88%E6%88%90%E5%A4%8D%E7%94%A8%E5%8E%9F%E5%88%99"><span class="nav-number">4.5.</span> <span class="nav-text">合成复用原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%AA%E7%B1%B3%E7%89%B9%E6%B3%95%E5%88%99"><span class="nav-number">4.6.</span> <span class="nav-text">迪米特法则</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F"><span class="nav-number">5.</span> <span class="nav-text">创建型模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F"><span class="nav-number">5.1.</span> <span class="nav-text">简单工厂模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E5%B7%A5%E5%8E%82"><span class="nav-number">5.1.1.</span> <span class="nav-text">为什么需要工厂</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F%E8%A7%92%E8%89%B2%E5%92%8C%E8%81%8C%E8%B4%A3"><span class="nav-number">5.1.2.</span> <span class="nav-text">简单工厂模式角色和职责</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="nav-number">5.1.3.</span> <span class="nav-text">优缺点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%82%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-number">5.1.4.</span> <span class="nav-text">适用场景</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F"><span class="nav-number">5.2.</span> <span class="nav-text">工厂方法模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%92%E8%89%B2%E5%92%8C%E8%81%8C%E8%B4%A3"><span class="nav-number">5.2.1.</span> <span class="nav-text">角色和职责</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9-1"><span class="nav-number">5.2.2.</span> <span class="nav-text">优缺点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%82%E7%94%A8%E5%9C%BA%E6%99%AF-1"><span class="nav-number">5.2.3.</span> <span class="nav-text">适用场景</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F"><span class="nav-number">5.3.</span> <span class="nav-text">抽象工厂方法模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9-2"><span class="nav-number">5.3.1.</span> <span class="nav-text">优缺点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-number">5.3.2.</span> <span class="nav-text">使用场景</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F"><span class="nav-number">5.4.</span> <span class="nav-text">单例模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9-3"><span class="nav-number">5.4.1.</span> <span class="nav-text">优缺点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%82%E7%94%A8%E5%9C%BA%E6%99%AF-2"><span class="nav-number">5.4.2.</span> <span class="nav-text">适用场景</span></a></li></ol></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+
+
+<!-- common js -->
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/js/toggle-theme.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/js/code-block.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/js/libs/anime.min.js"></script>
+
+<!-- local search -->
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/js/local-search.js"></script>
+
+
+<!-- lazyload -->
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/js/lazyload.js"></script>
+
+
+<div class="pjax">
+    <!-- home page -->
+    
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/js/post/post-helper.js"></script>
+
+        <!-- toc -->
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/js/post/toc.js"></script>
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart()
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd()
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'))
+            KEEP.initExecute()
+        });
+    });
+</script>
+
+
+
+
+</body>
+</html>

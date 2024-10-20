@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="tbghg">
+    <meta name="description" content="这里是TBH的博客，用于技术分享，记录日常。">
+    <meta name="author" content="tbghg">
+    
+    <title>
+        
+            七牛云1024比赛-web短视频 |
+        
+        TBH个人博客
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="https://s1.ax1x.com/2023/01/12/pSurRG8.png">
+    
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/font/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/font/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/font/css/brands.min.css">
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"tbghg.top","root":"/","language":"zh-CN","path":"search.json"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"TBH个人博客","author":"tbghg","avatar":"/images/avatar.jpg","logo":"https://s1.ax1x.com/2023/01/12/pSurRG8.png","favicon":"https://s1.ax1x.com/2023/01/12/pSurRG8.png"},"menu":{"home":"/                        || fa-solid fa-home","archives":"/archives            || fa-solid fa-box-archive","about":"/about                || fa-solid fa-user-graduate","categories":"/categories      || fa-solid fa-layer-group","tools":"/tools                || fa-solid fa-tools","开往":"https://www.travellings.cn/go.html || fa-solid fa-train-subway"},"first_screen":{"enable":true,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"丰富多彩的生活需要强大的执行力||描绘属于自己的故事","hitokoto":false},"social_contact":{"enable":true,"links":{"github":"https://github.com/tbghg","weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":"1312186639@qq.com"}},"scroll":{"progress_bar":false,"percent":false,"hide_header":true},"home":{"announcement":null,"category":true,"tag":true,"post_datetime":"updated"},"post":{"author_badge":{"enable":false,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":true,"min2read":true},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":false,"reward":{"enable":false,"img_link":null,"text":null}},"code_block":{"tools":{"enable":true,"style":"mac"},"highlight_theme":"default"},"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true,"layout":"right"},"website_count":{"busuanzi_count":{"enable":false,"site_uv":false,"site_pv":false,"page_pv":false}},"local_search":{"enable":true,"preload":true},"comment":{"enable":true,"use":"valine","valine":{"appid":"0HepQGr76M5xNgWk2Ecac7CC-gzGzoHsz","appkey":"9bWzVBcRI0aSocVHtX3OBSYo","server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.36"},"waline":{"server_url":null,"reaction":false,"version":"3.2.1"},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":true},"lazyload":{"enable":true},"cdn":{"enable":true,"provider":"jsdelivr"},"pjax":{"enable":true},"footer":{"since":2021,"word_count":false,"site_deploy":{"enable":false,"provider":"github","url":null},"record":{"enable":true,"list":[{"code":"辽ICP备2021007417号","link":"https://beian.miit.gov.cn"}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"","source_data":{"links":[{"title":"朋友们 1"},{"name":"XPoet","link":"https://xpoet.cn/","description":"懒惰是程序员第一生产力","avatar":"https://cdn.statically.io/gh/XPoet/image-hosting@master/common-use/avatar.jpg"},{"name":"不知名艺术家","link":"https://jinzhanqi.com/","description":"love artist, love code.","avatar":"https://s3.ax1x.com/2020/11/17/DVvkB4.jpg"}],"photos":[{"url":"https://xpoet.cn/images/logo.png","name":"XPoet"},{"url":"/images/photos/img-1.png","name":"img1"},{"url":"/images/photos/img-2.png","name":"img2"}],"tools":[{"category":"聊天 AI"},{"name":"ChatGPT","link":"https://chat.openai.com/","description":"OpenAI 旗下 AI 聊天对话工具","image":"/images/tools/chatgpt.svg"},{"name":"Gemini","link":"https://gemini.google.com/app","description":"Google 旗下 AI 聊天对话工具","image":"/images/tools/gemini.svg"},{"category":"技术文档"},{"name":"字节跳动技术团队","link":"https://juejin.cn/user/1838039172387262/posts"},{"name":"腾讯技术工程官方号","link":"https://cloud.tencent.com/developer/user/170434/activities"},{"name":"淘宝技术","link":"https://tech.taobao.org/news"},{"name":"哔哩哔哩技术","link":"https://space.bilibili.com/393183630"},{"name":"美团技术团队","link":"https://tech.meituan.com/"},{"name":"技术文章摘抄","link":"http://learn.lianglianglee.com/","description":"内容较为丰富，收录了较多技术文章"},{"name":"硬核课堂","link":"https://space.bilibili.com/1324259795"},{"name":"戌米的论文笔记","link":"https://space.bilibili.com/61981458","description":"raft算法"}]},"version":"4.2.3"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"复制代码","copied":"已复制","fold":"折叠代码块","folded":"已折叠"}
+    KEEP.language_copy_copyright = {"copy":"复制版权信息","copied":"已复制","title":"原文标题","author":"原文作者","link":"原文链接"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="TBH个人博客" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+
+<main class="page-container border-box">
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="https://s1.ax1x.com/2023/01/12/pSurRG8.png">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               TBH个人博客
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-home"></i>
+                                
+                                首页
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-box-archive"></i>
+                                
+                                归档
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/about">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-user-graduate"></i>
+                                
+                                关于
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/categories">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-layer-group"></i>
+                                
+                                分类
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tools">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-tools"></i>
+                                
+                                工具
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" target="_blank" rel="noopener" href="https://www.travellings.cn/go.html">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-train-subway"></i>
+                                
+                                开往
+                                
+                            </a>
+                            
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="menu-text-color fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile border-box flex-start">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list border-box">
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-home"></i>
+                                </span>
+                            
+                            首页
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-box-archive"></i>
+                                </span>
+                            
+                            归档
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/about">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-user-graduate"></i>
+                                </span>
+                            
+                            关于
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/categories">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-layer-group"></i>
+                                </span>
+                            
+                            分类
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tools">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-tools"></i>
+                                </span>
+                            
+                            工具
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" target="_blank" rel="noopener" href="https://www.travellings.cn/go.html">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-train-subway"></i>
+                                </span>
+                            
+                            开往
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        七牛云1024比赛-web短视频
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/avatar.jpg">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">tbghg</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2023-11-15 15:27:41</span>
+            </span>
+
+            <span class="meta-info-item post-update-date">
+                <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                <span class="datetime" data-updated="Wed Nov 15 2023 07:27:41 GMT+0000">2023-11-15 15:27:41</span>
+            </span>
+        
+
+        
+            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="post-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></li>
+                        
+                    
+                            <li class="category-item">&nbsp;<i class="icon fas fa-angle-right"></i>&nbsp;<a href="/categories/%E6%8A%80%E6%9C%AF/%E9%A1%B9%E7%9B%AE/">项目</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E5%90%8E%E7%AB%AF/">后端</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+            <span class="meta-info-item post-wordcount">
+                <i class="icon fas fa-file-word"></i>&nbsp;<span>4.6k 字</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-min2read">
+                <i class="icon fas fa-clock"></i>&nbsp;<span>18 分钟</span>
+            </span>
+        
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body code-block-unshrink">
+                    
+
+                    
+                         <h2 id="项目简介"><a href="#项目简介" class="headerlink" title="项目简介"></a>项目简介</h2><h3 id="比赛题目"><a href="#比赛题目" class="headerlink" title="比赛题目"></a>比赛题目</h3><p>网页短视频应用</p>
+<p>使用七牛云存储、七牛视频相关产品（如视频截帧等）开发一款Web端短视频应用</p>
+<p>基础功能（必须实现）</p>
+<ol>
+<li>视频播放：播放、暂停、进度条拖拽</li>
+<li>内容分类：视频内容分类页，如热门视频、体育频道</li>
+<li>视频切换：可通过上下键翻看视频</li>
+</ol>
+<p>高级功能（可选实现）</p>
+<ol>
+<li>账户系统：用户可登录，收藏视频</li>
+<li>可参考常见短视频应用自由增加功能，提升完善度，如点赞、分享、关注、搜索等</li>
+</ol>
+<h3 id="最终实现"><a href="#最终实现" class="headerlink" title="最终实现"></a>最终实现</h3><p>Github地址：</p>
+<ul>
+<li>项目：<a class="link"   target="_blank" rel="noopener" href="https://github.com/VideoUtopia" >VideoUtopia<i class="fas fa-external-link-alt"></i></a></li>
+<li>后端地址：<a class="link"   target="_blank" rel="noopener" href="https://github.com/VideoUtopia/utopia-back" >VideoUtopia&#x2F;utopia-back<i class="fas fa-external-link-alt"></i></a></li>
+<li>前端地址：<a class="link"   target="_blank" rel="noopener" href="https://github.com/VideoUtopia/utopia-front" >VideoUtopia&#x2F;utopia-front<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<p>项目功能：</p>
+<ul>
+<li>存储模块<ul>
+<li>使用七牛云kodo进行存储，存储 头像、封面、视频</li>
+<li>支持视频预处理，自动截取封面，异步回调替换</li>
+</ul>
+</li>
+<li>用户模块<ul>
+<li>登录、注册、查看个人主页</li>
+</ul>
+</li>
+<li>视频模块<ul>
+<li>热门视频：根据三小时内点赞量动态替换</li>
+<li>推荐视频：推送所关注用户发布的视频</li>
+<li>上传视频</li>
+<li>视频内容分类</li>
+</ul>
+</li>
+<li>交互模块<ul>
+<li>点赞、关注、收藏</li>
+<li>查看自己曾收藏过的视频</li>
+<li>查看自己关注的用户</li>
+</ul>
+</li>
+</ul>
+<h2 id="详细介绍"><a href="#详细介绍" class="headerlink" title="详细介绍"></a>详细介绍</h2><p>项目大体来说中规中矩，这里介绍几个稍微有意思的点</p>
+<h3 id="存储模块"><a href="#存储模块" class="headerlink" title="存储模块"></a>存储模块</h3><p>这里先吐槽一句，七牛云的文档写的有些粗糙</p>
+<p>通过kodo存储对象，服务端下发 带回调、带数据处理、带自定义参数 的凭证，客户端根据凭证上传视频，上传成功后七牛云回调服务端，服务端处理数据。时序图如下：</p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://oss.tbghg.top/blog/202311151457831.png"
+                        alt="七牛云SDK使用.png"
+                 ></p>
+<p>为保证访问密钥的安全性，采用服务端下发凭证的形式</p>
+<p>上传文件主要集中于以下几个场景</p>
+<ol>
+<li>上传&#x2F;更换头像</li>
+<li>上传视频</li>
+<li>上传封面&#x2F;七牛云自动截取封面</li>
+</ol>
+<p>设计callback接口时，考虑到以下两方面</p>
+<ol>
+<li>文件上传调用次数相对其它接口较少，且回调方处理数据任务量不大</li>
+<li>callback由七牛云调用，处理数据前会检测是否为七牛云发起</li>
+<li>处理回调时，不同类型控制层代码相近</li>
+</ol>
+<p>所以选择将三种类型全部集中于一个回调接口</p>
+<p>在处理数据时，如上传视频时，需要知道上传用户、标题、视频类型等信息，需要客户端上传时，携带自定义参数，callbackBody定义如下：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;key&quot;</span><span class="punctuation">:</span> <span class="string">&quot;$(key)&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;file_type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;$(x:file_type)&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;uid&quot;</span><span class="punctuation">:</span> <span class="string">&quot;$(x:uid)&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;cover_url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;$(x:cover_url)&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;describe&quot;</span><span class="punctuation">:</span> <span class="string">&quot;$(x:describe)&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;title&quot;</span><span class="punctuation">:</span> <span class="string">&quot;$(x:title)&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;video_type_id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;$(x:video_type_id)&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>服务端根据<code>file_type</code>判断上传类型(视频-携带封面&#x2F;视频-不携带封面&#x2F;封面&#x2F;头像)，不同文件类型对应不同的参数校验，并单独处理</p>
+<ul>
+<li>封面：不做处理</li>
+<li>视频-携带封面：插入视频</li>
+<li>头像：修改user表</li>
+</ul>
+<p>对于视频-不携带封面：</p>
+<ol>
+<li>以用户头像做临时封面，插入视频</li>
+<li>将视频key做键，值为视频id，存入redis，半小时过期时间</li>
+<li>七牛云截取封面成功后，异步回调接口，根据视频key找到视频id，替换视频封面</li>
+</ol>
+<p>服务端在注册上传凭证时，携带了预转持久化参数：<code>vframe/jpg/offset/1|saveas/bucket:$&#123;etag&#125;.jpg</code>，七牛云会截取视频第一帧并持久化存储，在存储完成后，调用callback接口</p>
+<p>callback在检测到请求中含有<code>inputKey</code>字段时，根据视频key从redis取出视频id，并替换视频封面</p>
+<h2 id="热门视频"><a href="#热门视频" class="headerlink" title="热门视频"></a>热门视频</h2><h3 id="需解决的问题"><a href="#需解决的问题" class="headerlink" title="需解决的问题"></a>需解决的问题</h3><p>热门视频的选择体现在用户的点赞上，若只按照点赞数量排序，会出现以下问题：</p>
+<ol>
+<li>点赞量高的视频堆积，更换频率较低，用户经常刷到重复视频</li>
+<li>新发出的有潜力的视频得不到推荐，无人问津</li>
+</ol>
+<p>因此，热门视频可采用 <strong>三小时内的点赞量</strong> 进行动态更换</p>
+<p>另外当 <strong>突然更换热门视频榜单</strong> 时，用户当前观看热门视频位置无法记录，会推送曾经的视频，<strong>影响用户体验</strong>，这里下文会详细举例</p>
+<h3 id="设计思路"><a href="#设计思路" class="headerlink" title="设计思路"></a>设计思路</h3><ol>
+<li>开启协程，每隔三个小时异步拉取DB，获得三个小时内点赞量最多的100个视频，将视频id存入redis的zset中</li>
+<li>用户获取视频时，把三小时内点赞数从高到低返回给用户，一次返回20个，同时给出当前最小score，做下一次的分页依据</li>
+</ol>
+<h4 id="score设计"><a href="#score设计" class="headerlink" title="score设计"></a>score设计</h4><p>直接将三小时内的点赞数作为score：无法根据score进行区分点赞数相同的视频，只能考虑 重复推送 或 忽略此类其他视频 两种方案，显然均不合理</p>
+<p>所以需要在score侧将视频区分开，因此最终选用 float(三小时内点赞数.视频id) 做score，确保热门视频不重复、不丢失</p>
+<h4 id="版本控制"><a href="#版本控制" class="headerlink" title="版本控制"></a>版本控制</h4><p>对于更换热门视频导致用户体验下降的问题，我们采用版本控制的形式来解决</p>
+<p>我们先看一个案例：</p>
+<ol>
+<li>redis异步拉取DB，获取前100个热门视频id，存入zset，我们记为版本A</li>
+<li>两小时五十五分钟后，用户A分页刷取热门视频，获得版本A的前20个视频，并观看</li>
+<li>五分钟后，redis异步拉取DB，更新zset</li>
+<li>用户A获取下一分页视频</li>
+</ol>
+<p>此时虽然用户能正常获取视频，但因zset的改变，用户A可能会刷取到一些重复的视频，导致体验下降</p>
+<p>为解决该问题，我们进行了热门视频缓存版本控制，总共有A、B两个版本，每隔三小时轮换更新一个版本，服务器中记录当前最新版本，当用户新发起查询热门视频请求时，返回当前最新版本，用户查询时携带了版本信息，就使用该版本</p>
+<p>下面我们来看些例子</p>
+<ol>
+<li>redis异步拉取DB，获取前100个热门视频id，存入zset，我们记为版本A，当前版本是A</li>
+<li>用户A刷取热门视频，获得20个视频、nextScore、版本号A</li>
+<li>三小时后，redis异步拉取DB，更换版本B中的热门视频，当前版本是B</li>
+<li>用户A刷取热门视频，请求参数中携带版本号A -&gt; 从版本A的zset中取出数据返回，用户体验无影响</li>
+<li>用户B刷取热门视频，未携带版本号 -&gt; 给出当前版本号B返回值，并从版本B中取数据</li>
+<li>三小时后，redis异步拉取DB，更换版本A中的热门视频，当前版本是A</li>
+</ol>
+<p>我们可以直观看出，从用户A获取版本A中的视频，到版本A中的热门视频变更，中间至少要间隔3个小时，这个时间差对业务而言完全可以接受</p>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><p>异步更新，从DB中读取写入redis</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 热门视频缓存 每隔三小时更新一次版本</span></span><br><span class="line"><span class="comment">// 存入zset，通过score判断此时取到的位置</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(v *videoJob)</span></span> updatePopularVideos() &#123;</span><br><span class="line">	<span class="keyword">var</span> nums <span class="type">int64</span></span><br><span class="line">	ticker := time.NewTicker(<span class="number">3</span> * time.Hour)</span><br><span class="line">	<span class="keyword">for</span> &#123;</span><br><span class="line">		nums = (nums + <span class="number">1</span>) % <span class="number">2</span> <span class="comment">// nums控制当前版本</span></span><br><span class="line">		common.PopularVideoVersion.Store(nums + <span class="number">1</span>)</span><br><span class="line">        <span class="comment">// 刷DB，获取当前热门视频id</span></span><br><span class="line">		videoIds, err := v.videoServer.VideoDal.GetPopularVideos(popularVideosNum)</span><br><span class="line">		<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">			logger.Logger.Error(fmt.Sprintf(<span class="string">&quot;updatePopularVideos v.videoServer.VideoDal.GetPopularVideos err:%+v&quot;</span>, videoIds))</span><br><span class="line">			<span class="comment">// 一分钟后重试</span></span><br><span class="line">			&lt;-time.After(<span class="number">5</span> * time.Minute)</span><br><span class="line">			<span class="keyword">continue</span></span><br><span class="line">		&#125;</span><br><span class="line">		popularItem := <span class="built_in">make</span>([]*cache.VideoPopularItem, <span class="built_in">len</span>(videoIds))</span><br><span class="line">		<span class="keyword">for</span> i := <span class="keyword">range</span> videoIds &#123;</span><br><span class="line">			sScore := fmt.Sprintf(<span class="string">&quot;%d.%d&quot;</span>, videoIds[i].Count, videoIds[i].VideoID)</span><br><span class="line"></span><br><span class="line">			popularItem[i] = &amp;cache.VideoPopularItem&#123;Vid: videoIds[i].VideoID&#125;</span><br><span class="line">			popularItem[i].Score, _ = strconv.ParseFloat(sScore, <span class="number">64</span>)</span><br><span class="line">		&#125;</span><br><span class="line">        <span class="comment">// 将热门视频id写入当前版本</span></span><br><span class="line">		key := cache.PopularVideoKey(common.GetPopularVideoVersion())</span><br><span class="line">		cache.BuildPopularVideo(key, popularItem)</span><br><span class="line"></span><br><span class="line">		&lt;-ticker.C</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>从redis中分页获取当前热门视频</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// GetPopularVideo 获取当前热门视频</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">GetPopularVideo</span><span class="params">(version <span class="type">int</span>, score <span class="type">float64</span>, count <span class="type">int64</span>)</span></span> (videoIds []<span class="type">uint</span>, nextScore <span class="type">float64</span>, nextVersion <span class="type">int</span>, ok <span class="type">bool</span>) &#123;</span><br><span class="line">	<span class="keyword">var</span> (</span><br><span class="line">		key      <span class="type">string</span></span><br><span class="line">		maxScore <span class="type">string</span></span><br><span class="line">	)</span><br><span class="line">    </span><br><span class="line">	<span class="keyword">if</span> version == <span class="number">0</span> &#123; <span class="comment">// 未携带版本，赋为当前版本</span></span><br><span class="line">		version = common.GetPopularVideoVersion()</span><br><span class="line">	&#125;</span><br><span class="line">	nextVersion = version</span><br><span class="line">	key = PopularVideoKey(version)</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> score == <span class="number">0</span> &#123; <span class="comment">// 首次请求，未携带score</span></span><br><span class="line">		maxScore = <span class="string">&quot;+inf&quot;</span></span><br><span class="line">	&#125; <span class="keyword">else</span> &#123; <span class="comment">// 小于传入score</span></span><br><span class="line">		maxScore = fmt.Sprintf(<span class="string">&quot;(%f&quot;</span>, score)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 从 ZSET 中按分数从大到小获取前 count 个成员</span></span><br><span class="line">	result, err := RDB.ZRevRangeByScoreWithScores(Ctx, key, &amp;redis.ZRangeBy&#123;</span><br><span class="line">		Max:    maxScore,</span><br><span class="line">		Offset: <span class="number">0</span>,</span><br><span class="line">		Count:  count - <span class="number">1</span>,</span><br><span class="line">	&#125;).Result()</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> || <span class="built_in">len</span>(result) == <span class="number">0</span> &#123;</span><br><span class="line">		<span class="comment">// 错误处理，缓存侧错误不传递到上级，告知结果是否回源即可</span></span><br><span class="line">		logger.Logger.Error(fmt.Sprintf(<span class="string">&quot;GetPopularVideo RDB.ZRevRangeByScoreWithScores err:%+v&quot;</span>, err))</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">nil</span>, <span class="number">-1</span>, nextVersion, err == <span class="literal">nil</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> _, z := <span class="keyword">range</span> result &#123;</span><br><span class="line">		vid, _ := strconv.Atoi(z.Member.(<span class="type">string</span>))</span><br><span class="line">		videoIds = <span class="built_in">append</span>(videoIds, <span class="type">uint</span>(vid))</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	nextScore = result[<span class="built_in">len</span>(result)<span class="number">-1</span>].Score</span><br><span class="line">	<span class="keyword">return</span> videoIds, nextScore, nextVersion, <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="判断用户是否点赞"><a href="#判断用户是否点赞" class="headerlink" title="判断用户是否点赞"></a>判断用户是否点赞</h2><p>判断用户是否为该视频点过赞，查询量较大，有以下三种应对方式</p>
+<ol>
+<li>不做缓存 -&gt; DB压力较大</li>
+<li>全量缓存 -&gt; 随时间推移，缓存侧存储压力较大</li>
+<li>部分缓存 -&gt; 如何判断是否回源？</li>
+</ol>
+<p>前两个基本是不能接受的，不予考虑。先说下结论，最终我们选择了下文的方案二</p>
+<h3 id="方案一：缓存过期不回源"><a href="#方案一：缓存过期不回源" class="headerlink" title="方案一：缓存过期不回源"></a>方案一：缓存过期不回源</h3><p>对于部分缓存，判断何时回源是很重要的，若缓存过期时间很短，未查到缓存则接回源，那DB侧压力仍然很大</p>
+<p>另一种方法是提高缓存时间，均不回源：</p>
+<p>简单计算一下，如果设置30天过期时间，每天300万用户，每人点赞20个视频，假设一个是0.5kb <code>30*300</code>按10000，<code>10k*20*0.5kb</code>，大约是100Mb</p>
+<ul>
+<li>查询缓存成功：表示点过赞，返回true</li>
+<li>查询缓存不成功：30天以前点过赞&#x2F;没点过赞，不回源，直接返回false</li>
+</ul>
+<p>DB存储点赞数据时，我们可以在uid与vid间添加唯一索引，插入数据使用<code>insert on duplicate key update</code>保证幂等</p>
+<p>这个存储量，如果我们把时间过期时间拉到一年，其实也是可以接受的。但问题在于业务是否可以接受一年前点过赞的视频，再次打开时不显示点过赞。</p>
+<p>并且因为要为不同的key设置不同过期时间，可以选用string和zset两种形式</p>
+<ul>
+<li>string形式：key分布较为分散，无法进行统一管理，较为不便</li>
+<li>zset形式：要过期的时间记为score，异步清除 - 实现较为麻烦</li>
+</ul>
+<h3 id="方案二：用户维度存储点赞视频，冷热数据分离冷数据回源"><a href="#方案二：用户维度存储点赞视频，冷热数据分离冷数据回源" class="headerlink" title="方案二：用户维度存储点赞视频，冷热数据分离冷数据回源"></a>方案二：用户维度存储点赞视频，冷热数据分离冷数据回源</h3><p>该方案参考了 得物 的点赞设计，设计较为巧妙，缓存结构如下：</p>
+<p><code>like:15</code>中15为用户uid，3454、723、645均为用户点过赞的视频vid，<code>minVid</code>是冷热数据的分界线，低于该值记为冷数据，<code>ttl</code>为过期时间</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;like:15&quot;</span><span class="punctuation">:</span><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;ttl&quot;</span><span class="punctuation">:</span><span class="number">1653532653</span><span class="punctuation">,</span>    <span class="comment">// 缓存新建或更新时时间戳</span></span><br><span class="line">    <span class="attr">&quot;3454&quot;</span><span class="punctuation">:</span><span class="number">1</span><span class="punctuation">,</span>            <span class="comment">// 用户近一段时间点赞过的视频id</span></span><br><span class="line">    <span class="attr">&quot;723&quot;</span><span class="punctuation">:</span><span class="number">1</span><span class="punctuation">,</span>            <span class="comment">// 用户近一段时间点赞过的视频id</span></span><br><span class="line">    <span class="attr">&quot;645&quot;</span><span class="punctuation">:</span><span class="number">1</span><span class="punctuation">,</span>            <span class="comment">// 用户近一段时间点赞过的视频id</span></span><br><span class="line">    <span class="attr">&quot;minVid&quot;</span><span class="punctuation">:</span><span class="number">645</span>        <span class="comment">// 缓存中最小的视频id，用以区分冷热</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>设计思路如下：</p>
+<ol>
+<li>用户维度：判断是否点赞业务场景一般是：一个用户对应一堆视频，以用户维度创建缓存，可以大幅减少命令执行次数</li>
+<li>冷热数据分离：视频id是自增的，id从大到小对应这上传时间从新到旧，用户刷到旧视频的频率相对较低，可根据视频id进行冷热数据分离</li>
+<li>冷数据回源：冷数据回源查DB，并写入缓存，这样就可以保证缓存高效利用而且压力不过太大</li>
+<li>冷热阈值：限制hash中的字段数，批量查询时，若发现字段数超过1500则查询结束后重构缓存，取前750个视频id，修改minVid</li>
+<li>ttl字段：以前每次查看是否要更新缓存时，都要调用TTL命令，执行命令次数翻倍，将TTL写入字段一同查询，可减少命令数</li>
+<li>续期：当TTL临近过期(达到2&#x2F;3时)进行续期</li>
+</ol>
+<h4 id="业务逻辑"><a href="#业务逻辑" class="headerlink" title="业务逻辑"></a>业务逻辑</h4><p>批量获取用户是否点赞：</p>
+<ol>
+<li>HMGET获取vid1、vid2、vid3、ttl、minVid<ol>
+<li>获取失败：不存在该key，重新构建</li>
+<li>获取成功但vid未找到<ol>
+<li>vid &gt;&#x3D; minVid &#x3D;&#x3D;》未点赞</li>
+<li>vid &lt;  minVid &#x3D;&#x3D;》冷数据，回源查DB，并写入缓存</li>
+</ol>
+</li>
+<li>检查TTL快过期则续期</li>
+<li>检测字段值是否超过阈值，超过则重建</li>
+</ol>
+</li>
+<li>返回结果</li>
+</ol>
+<p>用户点赞：更新DB，HSET添加该字段，不存在则构建</p>
+<p>用户删除：更新DB，HDEL删除该字段，不做其他处理</p>
+<p>优点：</p>
+<ul>
+<li>可高效利用缓存且缓存存储量不大</li>
+<li>DB回源的数据量可以接受</li>
+</ul>
+<p>缺点：实现起来较为复杂</p>
+<h3 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h3><p>这种缓存模式下需要关注：点赞、取消点赞、批量判断用户是否点赞</p>
+<p>我们先实现基本的方法：</p>
+<ol>
+<li>构建用户点赞视频缓存 - 相对简单，根据视频id和阈值HMSet即可，代码见<code>utopia-back\cache\like.go:190</code></li>
+<li>判断数量是否超过阈值 - 查询字段数，和阈值去做判断</li>
+<li>超出阈值重建缓存</li>
+</ol>
+<p>超出阈值重建缓存时，其中一半的字段是可以保留的，删除不需要的即可</p>
+<ol>
+<li>先取出所有字段，排序后将minVid设置为第750位的vid</li>
+<li>调用 构建用户点赞视频缓存 函数，不需要传视频id，通过该函数刷新ttl与minVid即可</li>
+<li>调用HMDel删除剩余字段</li>
+</ol>
+<p>实现代码见<code>utopia-back\cache\like.go:271</code></p>
+<p>在<code>utopia-back\cache\like.go:271</code>将 用户点赞视频批量写入缓存 进行封装，用户点赞时进行调用。</p>
+<p>判断用户是否批量为视频点赞时，检查ttl与字段数量，需要则调用方法进行重建：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// utopia-back\cache\like.go:138</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// IsUserLikedVideos 用户是否为某些视频点赞(批量)</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// result key为vid  &lt;-&gt;  0未点赞；1为点赞；2 冷数据,需回源</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// state 0 成功；1 不存在该key,需要新建；2 查询失败,需回源</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">IsUserLikedVideos</span><span class="params">(uid <span class="type">uint</span>, videoIds []<span class="type">uint</span>)</span></span> (result <span class="keyword">map</span>[<span class="type">uint</span>]<span class="type">int</span>, state <span class="type">int</span>) &#123;</span><br><span class="line">	key := UserLikedVideoKeyV3(uid)</span><br><span class="line"></span><br><span class="line">	fields := <span class="built_in">make</span>([]<span class="type">string</span>, <span class="built_in">len</span>(videoIds)+<span class="number">2</span>)</span><br><span class="line">	fields[<span class="number">0</span>], fields[<span class="number">1</span>] = sMinVid, sTTL</span><br><span class="line">	<span class="comment">// 将整数切片转换为字符串切片</span></span><br><span class="line">	<span class="keyword">for</span> i, num := <span class="keyword">range</span> videoIds &#123;</span><br><span class="line">		fields[i+<span class="number">2</span>] = strconv.FormatInt(<span class="type">int64</span>(num), <span class="number">10</span>)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 查询是否存在</span></span><br><span class="line">	resHMGet := RDB.HMGet(Ctx, key, fields...)</span><br><span class="line">	<span class="keyword">if</span> resHMGet.Err() != <span class="literal">nil</span> &#123;</span><br><span class="line">		logger.Logger.Error(fmt.Sprintf(<span class="string">&quot;IsUserLikedVideos cmd:%v&quot;</span>, resHMGet.String()))</span><br><span class="line">		state = <span class="number">2</span></span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		logger.Logger.Info(fmt.Sprintf(<span class="string">&quot;IsUserLikedVideos cmd:%v&quot;</span>, resHMGet.String()))</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	sMinVidVal, ok1 := resHMGet.Val()[<span class="number">0</span>].(<span class="type">string</span>)</span><br><span class="line">	sTtlVal, ok2 := resHMGet.Val()[<span class="number">1</span>].(<span class="type">string</span>)</span><br><span class="line">	<span class="keyword">if</span> !ok1 || !ok2 &#123; <span class="comment">// 不存在该key，需重新构建</span></span><br><span class="line">		state = <span class="number">1</span></span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	minVid, _ := strconv.Atoi(sMinVidVal)</span><br><span class="line">	ttl, _ := strconv.Atoi(sTtlVal)</span><br><span class="line"></span><br><span class="line">	state = <span class="number">0</span> <span class="comment">// 查询成功，state标为0</span></span><br><span class="line"></span><br><span class="line">	vidRes := resHMGet.Val()[<span class="number">2</span>:]</span><br><span class="line">	result = <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="type">uint</span>]<span class="type">int</span>, <span class="built_in">len</span>(videoIds))</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> i, vid := <span class="keyword">range</span> videoIds &#123;</span><br><span class="line">		<span class="keyword">if</span> _, ok := vidRes[i].(<span class="type">string</span>); ok &#123; <span class="comment">// 查询到点赞</span></span><br><span class="line">			result[vid] = <span class="number">1</span></span><br><span class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> vid &gt;= <span class="type">uint</span>(minVid) &#123; <span class="comment">// 热数据，用户没点赞</span></span><br><span class="line">			result[vid] = <span class="number">0</span></span><br><span class="line">		&#125; <span class="keyword">else</span> &#123; <span class="comment">// 冷数据，需要回源</span></span><br><span class="line">			result[vid] = <span class="number">2</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 判断是否超过域值，是否需要续期</span></span><br><span class="line">	judgeRebuildVideoLikedVideos(key, ttl)</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="接口及IP限流"><a href="#接口及IP限流" class="headerlink" title="接口及IP限流"></a>接口及IP限流</h2><p>采用 <strong>令牌桶</strong> 对可针对不同接口配置不同的限流策略，同时支持对用户IP限流，防止用户恶意攻击</p>
+<p>通过<code>github.com/juju/ratelimit</code>实现令牌桶，将接口做map的key，对应不同的*BucketConf，BucketConf包含一个Bucket，用于对接口进行限流，接口限流支持阻塞等待，配置maxWait</p>
+<p>每隔BucketConf配置一个map[string]*ratelimit.Bucket，用于对IP进行限流，IP限流不支持阻塞等待，达到阈值时直接阻止该请求。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> BucketMap = <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="type">string</span>]*BucketConf)</span><br><span class="line"><span class="keyword">var</span> defaultIpRateConf = &amp;IpRateConf&#123;</span><br><span class="line">	FillInterval: <span class="number">100</span> * time.Millisecond,</span><br><span class="line">	Capacity:     <span class="number">5</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> BucketConf <span class="keyword">struct</span> &#123;</span><br><span class="line">	Bucket  *ratelimit.Bucket</span><br><span class="line">	MaxWait time.Duration</span><br><span class="line"></span><br><span class="line">	IpRateConf   *IpRateConf</span><br><span class="line">	IpRateBucket <span class="keyword">map</span>[<span class="type">string</span>]*ratelimit.Bucket</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> IpRateConf <span class="keyword">struct</span> &#123;</span><br><span class="line">	FillInterval time.Duration</span><br><span class="line">	Capacity     <span class="type">int64</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>限流中间件初始化，对不同接口和对不同接口下的IP配置不同的限流策略</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// InitRateLimit 注册限流</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">InitRateLimit</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="comment">// 需要限流的接口在此注册</span></span><br><span class="line">	<span class="comment">// 参考文章：https://blog.csdn.net/m0_52528053/article/details/127294249</span></span><br><span class="line">	middleware.BucketMap[<span class="string">&quot;/api/v1/upload/token&quot;</span>] = &amp;middleware.BucketConf&#123;</span><br><span class="line">		<span class="comment">// 每10ms产生5个token，最多存储10个token</span></span><br><span class="line">		Bucket: ratelimit.NewBucketWithQuantum(<span class="number">10</span>*time.Millisecond, <span class="number">10</span>, <span class="number">5</span>),</span><br><span class="line">		<span class="comment">// 最大等待时间</span></span><br><span class="line">		MaxWait: <span class="number">20</span> * time.Millisecond,</span><br><span class="line"></span><br><span class="line">		IpRateConf: &amp;middleware.IpRateConf&#123;</span><br><span class="line">			FillInterval: time.Second,</span><br><span class="line">			Capacity:     <span class="number">5</span>,</span><br><span class="line">		&#125;,</span><br><span class="line">	&#125;</span><br><span class="line">	middleware.BucketMap[<span class="string">&quot;/api/v1/upload/callback&quot;</span>] = &amp;middleware.BucketConf&#123;</span><br><span class="line">		Bucket:  ratelimit.NewBucketWithQuantum(<span class="number">10</span>*time.Millisecond, <span class="number">10</span>, <span class="number">5</span>),</span><br><span class="line">		MaxWait: <span class="number">20</span> * time.Millisecond,</span><br><span class="line">	&#125;</span><br><span class="line">	middleware.BucketMap[<span class="string">&quot;default&quot;</span>] = &amp;middleware.BucketConf&#123;</span><br><span class="line">		Bucket:  ratelimit.NewBucketWithQuantum(<span class="number">10</span>*time.Millisecond, <span class="number">100</span>, <span class="number">20</span>),</span><br><span class="line">		MaxWait: <span class="number">10</span> * time.Millisecond,</span><br><span class="line">	&#125;</span><br><span class="line">	middleware.FillDefault()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>将代码注册到路由中间件，当请求失败时报错请求频繁。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 代码注册到路由中间件</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">RateLimit</span><span class="params">(c *gin.Context)</span></span> &#123;</span><br><span class="line">	bucketConf, ok := BucketMap[c.Request.URL.Path]</span><br><span class="line">	<span class="keyword">if</span> !ok &#123;</span><br><span class="line">		bucketConf = BucketMap[<span class="string">&quot;default&quot;</span>]</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> bucketConf.Bucket.WaitMaxDuration(<span class="number">1</span>, bucketConf.MaxWait) &#123;</span><br><span class="line">		ipRateValidate(c.ClientIP(), bucketConf.IpRateConf, bucketConf.IpRateBucket)</span><br><span class="line">		c.Next()</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	c.JSON(http.StatusOK, gin.H&#123;</span><br><span class="line">		<span class="string">&quot;code&quot;</span>: <span class="number">501</span>,</span><br><span class="line">		<span class="string">&quot;msg&quot;</span>:  <span class="string">&quot;请求频繁，请稍后重试&quot;</span>,</span><br><span class="line">	&#125;)</span><br><span class="line">	c.Abort()</span><br><span class="line">	<span class="keyword">return</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="待改进"><a href="#待改进" class="headerlink" title="待改进"></a>待改进</h2><blockquote>
+<p>七牛云存储 kodo 自定义变量直接使用用户id</p>
+</blockquote>
+<p>七牛云回调不支持自定义header，所以直接在自定义变量中传递的用户id来判断身份，这块肯定是不安全的，用户找到对应接口后，完全可以自己尝试去替换别人的头像或给别人上传视频。自定义变量应改为用户自身token，服务端单独鉴权</p>
+<blockquote>
+<p>用户 点赞&#x2F;取消点赞 时，直接写入<code>like_counts</code>表</p>
+</blockquote>
+<p>此处具有较大的优化空间，倘若每次点赞都回写一次，点赞这种高并发场景会将DB压垮。</p>
+<p>改进方案：</p>
+<ol>
+<li>接入消息队列，收到点赞消息后异步处理like_counts表</li>
+<li>使用消息队列解耦后，以视频id进行聚合，之后批量写入DB，例如vid&#x3D;13的视频，点赞量达到20后，对应字段直接加20，减少对DB的请求</li>
+</ol>
+
+                    
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E5%90%8E%E7%AB%AF/">后端</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/2023-11-15/66090ced97fe/"
+                                   title="Go项目-持续部署-阿里云服务器"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">Go项目-持续部署-阿里云服务器</span>
+                                        <span class="post-nav-item">上一篇</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/2023-10-22/1a999e0870b8/"
+                                   title="OAuth2介绍"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">OAuth2介绍</span>
+                                        <span class="post-nav-item">下一篇</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+    <div class="comments-container border-box">
+        <div id="comments-anchor" class="comment-area-title border-box">
+            <i class="fas fa-comments"></i>&nbsp;评论
+        </div>
+        <div class="comment-plugin-fail border-box">
+    <span class="fail-tip">评论插件加载失败</span>
+    <button class="reload keep-button">点击重新加载</button>
+</div>
+<div class="comment-plugin-loading flex-center border-box">
+    <i class="loading-icon fa-solid fa-spinner fa-spin"></i>
+    <span class="load-tip">正在加载评论插件</span>
+</div>
+<script data-pjax>
+  window.KeepCommentPlugin = {}
+  window.KeepCommentPlugin.hideLoading = () => {
+    const cplDom = document.querySelector('.comments-container .comment-plugin-loading')
+    cplDom.style.display = 'none'
+  }
+  window.KeepCommentPlugin.loadFailHandle = () => {
+    window.KeepCommentPlugin.hideLoading()
+    const cpfDom = document.querySelector('.comments-container .comment-plugin-fail')
+    cpfDom.style.display = 'flex'
+    cpfDom.querySelector('.reload').addEventListener('click', () => {
+      window.location.reload()
+    })
+  }
+</script>
+
+        
+            
+
+    <div class="valine-container">
+        <div id="vcomments"></div>
+        <script data-pjax
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"
+                async
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        ></script>
+        <script data-pjax
+                async
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        >
+          window.KeepCommentPlugin.initValine = () => {
+            const config = {
+              el: '#vcomments',
+              appId: '0HepQGr76M5xNgWk2Ecac7CC-gzGzoHsz',
+              appKey: '9bWzVBcRI0aSocVHtX3OBSYo',
+              meta: ['nick', 'mail', 'link'],
+              avatar: 'wavatar',
+              enableQQ: true,
+              placeholder: '',
+              lang: 'zh-CN'.toLowerCase()
+            }
+
+            if ('') {
+              config.serverURLs = ''
+            }
+
+            if (window?.Valine) {
+              new Valine(config)
+              window.KeepCommentPlugin.hideLoading()
+            } else {
+              setTimeout(() => {
+                window.KeepCommentPlugin.initValine()
+              }, 1000)
+            }
+          }
+
+          if ('true' === 'true') {
+            setTimeout(() => {
+              window.KeepCommentPlugin.initValine()
+            }, 1200)
+          } else {
+            window.addEventListener('DOMContentLoaded', window.KeepCommentPlugin.initValine)
+          }
+        </script>
+    </div>
+
+
+        
+    </div>
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc right-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">项目简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AF%94%E8%B5%9B%E9%A2%98%E7%9B%AE"><span class="nav-number">1.1.</span> <span class="nav-text">比赛题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E7%BB%88%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.2.</span> <span class="nav-text">最终实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%A6%E7%BB%86%E4%BB%8B%E7%BB%8D"><span class="nav-number">2.</span> <span class="nav-text">详细介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%98%E5%82%A8%E6%A8%A1%E5%9D%97"><span class="nav-number">2.1.</span> <span class="nav-text">存储模块</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%83%AD%E9%97%A8%E8%A7%86%E9%A2%91"><span class="nav-number">3.</span> <span class="nav-text">热门视频</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9C%80%E8%A7%A3%E5%86%B3%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">3.1.</span> <span class="nav-text">需解决的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF"><span class="nav-number">3.2.</span> <span class="nav-text">设计思路</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#score%E8%AE%BE%E8%AE%A1"><span class="nav-number">3.2.1.</span> <span class="nav-text">score设计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6"><span class="nav-number">3.2.2.</span> <span class="nav-text">版本控制</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="nav-number">3.3.</span> <span class="nav-text">代码实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E7%94%A8%E6%88%B7%E6%98%AF%E5%90%A6%E7%82%B9%E8%B5%9E"><span class="nav-number">4.</span> <span class="nav-text">判断用户是否点赞</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%A1%88%E4%B8%80%EF%BC%9A%E7%BC%93%E5%AD%98%E8%BF%87%E6%9C%9F%E4%B8%8D%E5%9B%9E%E6%BA%90"><span class="nav-number">4.1.</span> <span class="nav-text">方案一：缓存过期不回源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%A1%88%E4%BA%8C%EF%BC%9A%E7%94%A8%E6%88%B7%E7%BB%B4%E5%BA%A6%E5%AD%98%E5%82%A8%E7%82%B9%E8%B5%9E%E8%A7%86%E9%A2%91%EF%BC%8C%E5%86%B7%E7%83%AD%E6%95%B0%E6%8D%AE%E5%88%86%E7%A6%BB%E5%86%B7%E6%95%B0%E6%8D%AE%E5%9B%9E%E6%BA%90"><span class="nav-number">4.2.</span> <span class="nav-text">方案二：用户维度存储点赞视频，冷热数据分离冷数据回源</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91"><span class="nav-number">4.2.1.</span> <span class="nav-text">业务逻辑</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0-1"><span class="nav-number">4.3.</span> <span class="nav-text">代码实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A5%E5%8F%A3%E5%8F%8AIP%E9%99%90%E6%B5%81"><span class="nav-number">5.</span> <span class="nav-text">接口及IP限流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BE%85%E6%94%B9%E8%BF%9B"><span class="nav-number">6.</span> <span class="nav-text">待改进</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+        &copy;&nbsp;<span>2021</span>&nbsp;-&nbsp;2024
+        
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">tbghg</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        由&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;驱动&nbsp;&&nbsp;主题&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
+    
+
+    
+
+    
+        <div class="record-info info-item">
+            
+                
+                    <div class="record-item border-box">
+                        <a class=""
+                           target="_blank"
+                           href="https://beian.miit.gov.cn"
+                        >
+                            辽ICP备2021007417号
+                        </a>
+                    </div>
+                
+            
+        </div>
+    
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools right-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
+        
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        <!-- to bottom -->
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+            <li class="tools-item go-to-comments-tablet flex-center">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">项目简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AF%94%E8%B5%9B%E9%A2%98%E7%9B%AE"><span class="nav-number">1.1.</span> <span class="nav-text">比赛题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E7%BB%88%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.2.</span> <span class="nav-text">最终实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%A6%E7%BB%86%E4%BB%8B%E7%BB%8D"><span class="nav-number">2.</span> <span class="nav-text">详细介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%98%E5%82%A8%E6%A8%A1%E5%9D%97"><span class="nav-number">2.1.</span> <span class="nav-text">存储模块</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%83%AD%E9%97%A8%E8%A7%86%E9%A2%91"><span class="nav-number">3.</span> <span class="nav-text">热门视频</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9C%80%E8%A7%A3%E5%86%B3%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">3.1.</span> <span class="nav-text">需解决的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF"><span class="nav-number">3.2.</span> <span class="nav-text">设计思路</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#score%E8%AE%BE%E8%AE%A1"><span class="nav-number">3.2.1.</span> <span class="nav-text">score设计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6"><span class="nav-number">3.2.2.</span> <span class="nav-text">版本控制</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="nav-number">3.3.</span> <span class="nav-text">代码实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E7%94%A8%E6%88%B7%E6%98%AF%E5%90%A6%E7%82%B9%E8%B5%9E"><span class="nav-number">4.</span> <span class="nav-text">判断用户是否点赞</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%A1%88%E4%B8%80%EF%BC%9A%E7%BC%93%E5%AD%98%E8%BF%87%E6%9C%9F%E4%B8%8D%E5%9B%9E%E6%BA%90"><span class="nav-number">4.1.</span> <span class="nav-text">方案一：缓存过期不回源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%A1%88%E4%BA%8C%EF%BC%9A%E7%94%A8%E6%88%B7%E7%BB%B4%E5%BA%A6%E5%AD%98%E5%82%A8%E7%82%B9%E8%B5%9E%E8%A7%86%E9%A2%91%EF%BC%8C%E5%86%B7%E7%83%AD%E6%95%B0%E6%8D%AE%E5%88%86%E7%A6%BB%E5%86%B7%E6%95%B0%E6%8D%AE%E5%9B%9E%E6%BA%90"><span class="nav-number">4.2.</span> <span class="nav-text">方案二：用户维度存储点赞视频，冷热数据分离冷数据回源</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91"><span class="nav-number">4.2.1.</span> <span class="nav-text">业务逻辑</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0-1"><span class="nav-number">4.3.</span> <span class="nav-text">代码实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A5%E5%8F%A3%E5%8F%8AIP%E9%99%90%E6%B5%81"><span class="nav-number">5.</span> <span class="nav-text">接口及IP限流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BE%85%E6%94%B9%E8%BF%9B"><span class="nav-number">6.</span> <span class="nav-text">待改进</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+
+
+<!-- common js -->
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/js/toggle-theme.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/js/code-block.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/js/libs/anime.min.js"></script>
+
+<!-- local search -->
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/js/local-search.js"></script>
+
+
+<!-- lazyload -->
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/js/lazyload.js"></script>
+
+
+<div class="pjax">
+    <!-- home page -->
+    
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/js/post/post-helper.js"></script>
+
+        <!-- toc -->
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/js/post/toc.js"></script>
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart()
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd()
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'))
+            KEEP.initExecute()
+        });
+    });
+</script>
+
+
+
+
+</body>
+</html>

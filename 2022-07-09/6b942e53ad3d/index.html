@@ -1,0 +1,1322 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="tbghg">
+    <meta name="description" content="这里是TBH的博客，用于技术分享，记录日常。">
+    <meta name="author" content="tbghg">
+    
+    <title>
+        
+            算法总结——数组 |
+        
+        TBH个人博客
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="https://s1.ax1x.com/2023/01/12/pSurRG8.png">
+    
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/font/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/font/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/font/css/brands.min.css">
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"tbghg.top","root":"/","language":"zh-CN","path":"search.json"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"TBH个人博客","author":"tbghg","avatar":"/images/avatar.jpg","logo":"https://s1.ax1x.com/2023/01/12/pSurRG8.png","favicon":"https://s1.ax1x.com/2023/01/12/pSurRG8.png"},"menu":{"home":"/                        || fa-solid fa-home","archives":"/archives            || fa-solid fa-box-archive","about":"/about                || fa-solid fa-user-graduate","categories":"/categories      || fa-solid fa-layer-group","tools":"/tools                || fa-solid fa-tools","开往":"https://www.travellings.cn/go.html || fa-solid fa-train-subway"},"first_screen":{"enable":true,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"丰富多彩的生活需要强大的执行力||描绘属于自己的故事","hitokoto":false},"social_contact":{"enable":true,"links":{"github":"https://github.com/tbghg","weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":"1312186639@qq.com"}},"scroll":{"progress_bar":false,"percent":false,"hide_header":true},"home":{"announcement":null,"category":true,"tag":true,"post_datetime":"updated"},"post":{"author_badge":{"enable":false,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":true,"min2read":true},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":false,"reward":{"enable":false,"img_link":null,"text":null}},"code_block":{"tools":{"enable":true,"style":"mac"},"highlight_theme":"default"},"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true,"layout":"right"},"website_count":{"busuanzi_count":{"enable":false,"site_uv":false,"site_pv":false,"page_pv":false}},"local_search":{"enable":true,"preload":true},"comment":{"enable":true,"use":"valine","valine":{"appid":"0HepQGr76M5xNgWk2Ecac7CC-gzGzoHsz","appkey":"9bWzVBcRI0aSocVHtX3OBSYo","server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.36"},"waline":{"server_url":null,"reaction":false,"version":"3.2.1"},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":true},"lazyload":{"enable":true},"cdn":{"enable":true,"provider":"jsdelivr"},"pjax":{"enable":true},"footer":{"since":2021,"word_count":false,"site_deploy":{"enable":false,"provider":"github","url":null},"record":{"enable":true,"list":[{"code":"辽ICP备2021007417号","link":"https://beian.miit.gov.cn"}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"","source_data":{"links":[{"title":"朋友们 1"},{"name":"XPoet","link":"https://xpoet.cn/","description":"懒惰是程序员第一生产力","avatar":"https://cdn.statically.io/gh/XPoet/image-hosting@master/common-use/avatar.jpg"},{"name":"不知名艺术家","link":"https://jinzhanqi.com/","description":"love artist, love code.","avatar":"https://s3.ax1x.com/2020/11/17/DVvkB4.jpg"}],"photos":[{"url":"https://xpoet.cn/images/logo.png","name":"XPoet"},{"url":"/images/photos/img-1.png","name":"img1"},{"url":"/images/photos/img-2.png","name":"img2"}],"tools":[{"category":"聊天 AI"},{"name":"ChatGPT","link":"https://chat.openai.com/","description":"OpenAI 旗下 AI 聊天对话工具","image":"/images/tools/chatgpt.svg"},{"name":"Gemini","link":"https://gemini.google.com/app","description":"Google 旗下 AI 聊天对话工具","image":"/images/tools/gemini.svg"},{"category":"技术文档"},{"name":"字节跳动技术团队","link":"https://juejin.cn/user/1838039172387262/posts"},{"name":"腾讯技术工程官方号","link":"https://cloud.tencent.com/developer/user/170434/activities"},{"name":"淘宝技术","link":"https://tech.taobao.org/news"},{"name":"哔哩哔哩技术","link":"https://space.bilibili.com/393183630"},{"name":"美团技术团队","link":"https://tech.meituan.com/"},{"name":"技术文章摘抄","link":"http://learn.lianglianglee.com/","description":"内容较为丰富，收录了较多技术文章"},{"name":"硬核课堂","link":"https://space.bilibili.com/1324259795"},{"name":"戌米的论文笔记","link":"https://space.bilibili.com/61981458","description":"raft算法"}]},"version":"4.2.3"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"复制代码","copied":"已复制","fold":"折叠代码块","folded":"已折叠"}
+    KEEP.language_copy_copyright = {"copy":"复制版权信息","copied":"已复制","title":"原文标题","author":"原文作者","link":"原文链接"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="TBH个人博客" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+
+<main class="page-container border-box">
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="https://s1.ax1x.com/2023/01/12/pSurRG8.png">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               TBH个人博客
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-home"></i>
+                                
+                                首页
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-box-archive"></i>
+                                
+                                归档
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/about">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-user-graduate"></i>
+                                
+                                关于
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/categories">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-layer-group"></i>
+                                
+                                分类
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tools">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-tools"></i>
+                                
+                                工具
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" target="_blank" rel="noopener" href="https://www.travellings.cn/go.html">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-train-subway"></i>
+                                
+                                开往
+                                
+                            </a>
+                            
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="menu-text-color fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile border-box flex-start">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list border-box">
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-home"></i>
+                                </span>
+                            
+                            首页
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-box-archive"></i>
+                                </span>
+                            
+                            归档
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/about">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-user-graduate"></i>
+                                </span>
+                            
+                            关于
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/categories">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-layer-group"></i>
+                                </span>
+                            
+                            分类
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tools">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-tools"></i>
+                                </span>
+                            
+                            工具
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" target="_blank" rel="noopener" href="https://www.travellings.cn/go.html">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-train-subway"></i>
+                                </span>
+                            
+                            开往
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        算法总结——数组
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/avatar.jpg">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">tbghg</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2022-07-09 16:10:51</span>
+            </span>
+
+            <span class="meta-info-item post-update-date">
+                <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                <span class="datetime" data-updated="Sat Jul 09 2022 08:10:51 GMT+0000">2022-07-09 16:10:51</span>
+            </span>
+        
+
+        
+            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="post-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></li>
+                        
+                    
+                            <li class="category-item">&nbsp;<i class="icon fas fa-angle-right"></i>&nbsp;<a href="/categories/%E6%8A%80%E6%9C%AF/%E7%AE%97%E6%B3%95/">算法</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E7%AE%97%E6%B3%95/">算法</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+            <span class="meta-info-item post-wordcount">
+                <i class="icon fas fa-file-word"></i>&nbsp;<span>11.5k 字</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-min2read">
+                <i class="icon fas fa-clock"></i>&nbsp;<span>51 分钟</span>
+            </span>
+        
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body code-block-unshrink">
+                    
+
+                    
+                         <h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><p>[TOC]</p>
+<h2 id="1-前缀和"><a href="#1-前缀和" class="headerlink" title="1. 前缀和"></a>1. 前缀和</h2><p>我们先从问题出发引出前缀和，现在给定一个数组<code>q[8] = &#123;1, 2, 5, 3, 7, 9, 4, 5 &#125;</code>要求计算给定区间的和，如 <code>[ 1 , 2 ] --&gt; 2 + 5 = 7 , [ 3 , 6 ] --&gt; 3 + 7 + 9 + 4 = 23</code>。<br>这个题目我们直接遍历即可，但是如果要算的区间较多呢，例如给出300次询问，那我们便要进行300次遍历。数组长度为n，询问次数为m，则时间复杂度为o(nm)。</p>
+<p>接着我们引出前缀和，所谓前缀和，就是从位置0到位置i这个区间内的所有的数字之和。对于例子中给出的数组我们用<code>sum[8]</code>来表示前缀和，即<code>sum[i] = q[0] + …… + q[i]</code>，我们可以推出：<code>sum[0] = q[0]</code> , 当 <code>i &gt; 0</code>时<code>sum[i] = sum[i-1] + q[i]</code>。所以我们通过一次遍历便可求出数组的前缀和。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span> q[<span class="number">8</span>] = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">5</span>, <span class="number">3</span>, <span class="number">7</span>, <span class="number">9</span>, <span class="number">4</span>, <span class="number">5</span>&#125;;</span><br><span class="line">    <span class="type">int</span> sum[<span class="number">8</span>];</span><br><span class="line">    sum[<span class="number">0</span>] = q[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; <span class="number">8</span>; i++) &#123;</span><br><span class="line">        sum[i] = sum[i - <span class="number">1</span>] + q[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;  </span><br><span class="line">	a := []<span class="type">int</span>&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>&#125;  </span><br><span class="line">	sum := <span class="built_in">make</span>([]<span class="type">int</span>, <span class="built_in">len</span>(a))  </span><br><span class="line">	sum[<span class="number">0</span>] = a[<span class="number">0</span>]  </span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">1</span>; i &lt; <span class="built_in">len</span>(a); i++ &#123;  </span><br><span class="line">		sum[i] += sum[i<span class="number">-1</span>] + a[i]  </span><br><span class="line">	&#125;  </span><br><span class="line">	fmt.Println(sum)  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>经过观察可以发现，如果我们要求区间<code>[4, 7]</code>（数组下表）的和，我们只需要将前8位的和减去前4位的和，属于<code>o(1)</code>量级的计算。可以得出计算区间<code>[L, R]</code>的和的公式为<code>sum[R] - sum[L-1]</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span> q[<span class="number">8</span>] = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">5</span>, <span class="number">3</span>, <span class="number">7</span>, <span class="number">9</span>, <span class="number">4</span>, <span class="number">5</span>&#125;;</span><br><span class="line">    <span class="type">int</span> sum[<span class="number">8</span>];</span><br><span class="line">    sum[<span class="number">0</span>] = q[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; <span class="number">8</span>; i++) &#123;</span><br><span class="line">        sum[i] = sum[i - <span class="number">1</span>] + q[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> m, L, R; <span class="comment">// m代表询问次数</span></span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;m);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; m; i++) &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d %d&quot;</span>, &amp;L, &amp;R);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, sum[R] - sum[L - <span class="number">1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>接着我们将前缀和拓展到二维</p>
+<p>同样的，我们现在有一个二维数组如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> q[<span class="number">4</span>][<span class="number">4</span>] = &#123;</span><br><span class="line">    &#123;<span class="number">2</span>,  <span class="number">3</span>,  <span class="number">23</span>, <span class="number">5</span>&#125;,</span><br><span class="line">    &#123;<span class="number">6</span>,  <span class="number">33</span>, <span class="number">7</span>,  <span class="number">45</span>&#125;,</span><br><span class="line">    &#123;<span class="number">23</span>, <span class="number">4</span>,  <span class="number">9</span>,  <span class="number">56</span>&#125;,</span><br><span class="line">    &#123;<span class="number">34</span>, <span class="number">57</span>, <span class="number">78</span>, <span class="number">75</span>&#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>现在需要给出区域范围求出相应的区域和，例如给出<code>[1, 1]~[3, 2] --&gt; q[1][1] + q[1][2] + q[2][1] + q[2][2] + q[3][1] + q[3][2] = 188</code></p>
+<p>接着采用前缀和的思想我们将<code>sum[i][j]</code> 记为<code>[0, 0]~[i, j]</code>的区域和。</p>
+<p>如果我们要求<code>[x1, y1]~[x2, y2]</code>的区域和时，通过下表（图以<code>[1, 1]~[3, 2]</code>进行举例）可以直观看出，最终结果为整个大框减去两个橙色框加上重复减去的蓝色框，即：<code>ans = sum[x2][y2] - sum[x1 - 1][y2] - sum[x2][y1 - 1] + sum[x1 - 1][y1 - 1]</code></p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://s2.loli.net/2022/07/03/nfGhlrXwbaLkPxC.png"
+                        alt="image-20220702105143159"
+                 ></p>
+<p>这时我们可以推出<code>sum[i][j] = sum[i - 1][j] - sum[i][j - 1] + sum[i - 1][j - 1] + q[i][j]</code>，借此迭代出sum。</p>
+<p>考虑到数组越界，我们需要将i和j为0的情况单独计算</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> q[<span class="number">4</span>][<span class="number">4</span>] = &#123;</span><br><span class="line">    &#123;<span class="number">2</span>,  <span class="number">3</span>,  <span class="number">23</span>, <span class="number">5</span>&#125;,</span><br><span class="line">    &#123;<span class="number">6</span>,  <span class="number">33</span>, <span class="number">7</span>,  <span class="number">45</span>&#125;,</span><br><span class="line">    &#123;<span class="number">23</span>, <span class="number">4</span>,  <span class="number">9</span>,  <span class="number">56</span>&#125;,</span><br><span class="line">    &#123;<span class="number">34</span>, <span class="number">57</span>, <span class="number">78</span>, <span class="number">75</span>&#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="type">int</span> sum[<span class="number">4</span>][<span class="number">4</span>];</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    sum[<span class="number">0</span>][<span class="number">0</span>] = q[<span class="number">0</span>][<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>;i&lt;<span class="number">4</span>;i++) sum[i][<span class="number">0</span>] = sum[i<span class="number">-1</span>][<span class="number">0</span>] + q[i][<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">1</span>;j&lt;<span class="number">4</span>;j++) sum[<span class="number">0</span>][j] = sum[<span class="number">0</span>][j<span class="number">-1</span>] + q[<span class="number">0</span>][j];</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>;i&lt;<span class="number">4</span>;i++)</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">1</span>;j&lt;<span class="number">4</span>;j++)</span><br><span class="line">            sum[i][j] = sum[i][j<span class="number">-1</span>] + sum[i<span class="number">-1</span>][j] - sum[i<span class="number">-1</span>][j<span class="number">-1</span>] + q[i][j];</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>最后我们分为 x1 &#x3D; y1 &#x3D; 0、x1 &#x3D; 0, y1 !&#x3D; 0、y1 &#x3D; 0, x1 !&#x3D; 0及其他 四种情况计算ans</p>
+<ol>
+<li><code>x1 = y1 = 0</code>时，<code>ans = sum[x2][y2]</code></li>
+<li><code>x1 = 0, y1 != 0</code>时，相当于不需要考虑上侧的橙色框，只需减去左侧的橙色框<code>ans = sum[x2][y2] - sum[x2][y1 - 1]</code></li>
+<li><code>y1 = 0, x1 != 0</code>时，相当于不需要考虑左侧的橙色框，只需减去上侧的橙色框<code>ans = sum[x2][y2] - sum[x1 - 1][y2]</code></li>
+<li>其他，<code>ans = sum[x2][y2] - sum[x1 - 1][y2] - sum[x2][y1 - 1] + sum[x1 - 1][y1 - 1]</code></li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">calcResult</span><span class="params">(<span class="type">int</span> x1, <span class="type">int</span> y1, <span class="type">int</span> x2, <span class="type">int</span> y2)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (!x1 &amp;&amp; !y1) <span class="keyword">return</span> sum[x2][y2];</span><br><span class="line">    <span class="keyword">if</span> (!x1) <span class="keyword">return</span> sum[x2][y2] - sum[x2][y1 - <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">if</span> (!y1) <span class="keyword">return</span> sum[x2][y2] - sum[x1 - <span class="number">1</span>][y2];</span><br><span class="line">    <span class="keyword">return</span> sum[x2][y2] - sum[x1 - <span class="number">1</span>][y2] - sum[x2][y1 - <span class="number">1</span>] + sum[x1 - <span class="number">1</span>][y1 - <span class="number">1</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>完整代码如下</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> q[<span class="number">4</span>][<span class="number">4</span>] = &#123;</span><br><span class="line">        &#123;<span class="number">2</span>,  <span class="number">3</span>,  <span class="number">23</span>, <span class="number">5</span>&#125;,</span><br><span class="line">        &#123;<span class="number">6</span>,  <span class="number">33</span>, <span class="number">7</span>,  <span class="number">45</span>&#125;,</span><br><span class="line">        &#123;<span class="number">23</span>, <span class="number">4</span>,  <span class="number">9</span>,  <span class="number">56</span>&#125;,</span><br><span class="line">        &#123;<span class="number">34</span>, <span class="number">57</span>, <span class="number">78</span>, <span class="number">75</span>&#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="type">int</span> sum[<span class="number">4</span>][<span class="number">4</span>];</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">calcResult</span><span class="params">(<span class="type">int</span> x1, <span class="type">int</span> y1, <span class="type">int</span> x2, <span class="type">int</span> y2)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (!x1 &amp;&amp; !y1) <span class="keyword">return</span> sum[x2][y2];</span><br><span class="line">    <span class="keyword">if</span> (!x1) <span class="keyword">return</span> sum[x2][y2] - sum[x2][y1 - <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">if</span> (!y1) <span class="keyword">return</span> sum[x2][y2] - sum[x1 - <span class="number">1</span>][y2];</span><br><span class="line">    <span class="keyword">return</span> sum[x2][y2] - sum[x1 - <span class="number">1</span>][y2] - sum[x2][y1 - <span class="number">1</span>] + sum[x1 - <span class="number">1</span>][y1 - <span class="number">1</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    sum[<span class="number">0</span>][<span class="number">0</span>] = q[<span class="number">0</span>][<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; <span class="number">4</span>; i++) sum[i][<span class="number">0</span>] = sum[i - <span class="number">1</span>][<span class="number">0</span>] + q[i][<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt; <span class="number">4</span>; j++) sum[<span class="number">0</span>][j] = sum[<span class="number">0</span>][j - <span class="number">1</span>] + q[<span class="number">0</span>][j];</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; <span class="number">4</span>; i++)</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt; <span class="number">4</span>; j++)</span><br><span class="line">            sum[i][j] = sum[i][j - <span class="number">1</span>] + sum[i - <span class="number">1</span>][j] - sum[i - <span class="number">1</span>][j - <span class="number">1</span>] + q[i][j];</span><br><span class="line">    <span class="type">int</span> m,x1,x2,y1,y2;<span class="comment">// m代表询问次数</span></span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;m);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;m;i++)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d %d %d %d&quot;</span>,&amp;x1,&amp;y1,&amp;x2,&amp;y2);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>, calcResult(x1, y1, x2, y2));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="例题1-长度最小的子数组"><a href="#例题1-长度最小的子数组" class="headerlink" title="例题1 长度最小的子数组"></a>例题1 长度最小的子数组</h3><h4 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h4><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-size-subarray-sum/" >题目链接<i class="fas fa-external-link-alt"></i></a></p>
+<p>给定一个含有 n 个正整数的数组和一个正整数 target 。</p>
+<p>找出该数组中满足其和 ≥ target 的长度最小的连续子数组并返回其长度。如果不存在符合条件的子数组，返回 0 。</p>
+<p>要求时间复杂度不超过O(nlogn) </p>
+<p>示例 1：<br>输入：target &#x3D; 7, nums &#x3D; [2,3,1,2,4,3]<br>输出：2<br>解释：子数组 [4,3] 是该条件下的长度最小的子数组。</p>
+<p>示例 2：<br>输入：target &#x3D; 4, nums &#x3D; [1,4,4]<br>输出：1</p>
+<p>示例 3：<br>输入：target &#x3D; 11, nums &#x3D; [1,1,1,1,1,1,1,1]<br>输出：0</p>
+<p>其中：</p>
+<ul>
+<li>1 &lt;&#x3D; target &lt;&#x3D; 10^9</li>
+<li>1 &lt;&#x3D; nums.length &lt;&#x3D; 10^5</li>
+<li>1 &lt;&#x3D; nums[i] &lt;&#x3D; 10^5</li>
+</ul>
+<h4 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h4><p>本题可以采用前缀和 + 二分查找的方式求解，在大一C语言课程中我们应该已经学到过二分查找，这里对二分查找仍不熟悉的同学请将 <strong>[附加题](#附加题 二分查找)</strong> 认真完成，当然我们在查找与排序模块会对二分查找进一步学习。</p>
+<p>如果我们采用暴力解法（两层for循环直接跑）时间复杂度为o(n^2)显然不太合适，这里因为需要对区域进行求和我们可以考虑前缀和，因为所有数均为正整数，前缀和为有序数组，我们可以用二分查找快速定位到目标位置。</p>
+<p>整体过程为创建一个数组 sums 用于存储数组 nums 的前缀和，其中 sums[i] 表示从 nums[0] 到 nums[i−1] 的元素和。得到前缀和之后，对于每个开始下标 i，可通过二分查找得到大于或等于 i 的最小下标 bound，使得 sums[bound]−sums[i−1]≥s，并更新子数组的最小长度（此时子数组的长度是 bound−(i−1)）。</p>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">lower_bound</span><span class="params">(<span class="type">int</span> *sums, <span class="type">int</span> l, <span class="type">int</span> r, <span class="type">int</span> target)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (sums[r] &lt; target) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">while</span> (l &lt; r) &#123;</span><br><span class="line">        <span class="type">int</span> mid = l + (r - l) / <span class="number">2</span>;	<span class="comment">// 等同于(l+r)/2，防止越界</span></span><br><span class="line">        <span class="keyword">if</span> (sums[mid] &gt;= target) &#123;</span><br><span class="line">            r = mid;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            l = mid + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> l;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">minSubArrayLen</span><span class="params">(<span class="type">int</span> s, <span class="type">int</span> *nums, <span class="type">int</span> numsSize)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (numsSize == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> ans = INT_MAX;</span><br><span class="line">    <span class="type">int</span> *sums = (<span class="type">int</span> *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="type">int</span>) * (numsSize + <span class="number">1</span>));</span><br><span class="line">    <span class="comment">// 为了方便计算，令 size = n + 1</span></span><br><span class="line">    <span class="comment">// sums[0] = 0 意味着前 0 个元素的前缀和为 0</span></span><br><span class="line">    <span class="comment">// sums[1] = A[0] 前 1 个元素的前缀和为 A[0]</span></span><br><span class="line">    <span class="comment">// 以此类推</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= numsSize; i++) &#123;</span><br><span class="line">        sums[i] = sums[i - <span class="number">1</span>] + nums[i - <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= numsSize; i++) &#123;</span><br><span class="line">        <span class="type">int</span> target = s + sums[i - <span class="number">1</span>];</span><br><span class="line">        <span class="type">int</span> bound = lower_bound(sums, <span class="number">1</span>, numsSize, target);</span><br><span class="line">        <span class="keyword">if</span> (bound != <span class="number">-1</span>) &#123;</span><br><span class="line">            ans = ans &lt; bound - (i - <span class="number">1</span>) ? ans : bound - (i - <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans == INT_MAX ? <span class="number">0</span> : ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="课后作业"><a href="#课后作业" class="headerlink" title="课后作业"></a>课后作业</h3><p><a class="link"   target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1147" >题目链接<i class="fas fa-external-link-alt"></i></a></p>
+<p>对一个给定的自然数M，求出所有的连续的自然数段，这些连续的自然数段中的全部数之和为M。</p>
+<p>例子：1998+1999+2000+2001+2002 &#x3D; 10000，所以从1998到2002的一个自然数段为M&#x3D;10000的一个解。</p>
+<p><strong>输入格式</strong><br>包含一个整数的单独一行给出M的值（10 &lt; M &lt; 2,000,000）。</p>
+<p><strong>输出格式</strong><br>每行两个自然数，给出一个满足条件的连续自然数段中的第一个数和最后一个数，两数之间用一个空格隔开，所有输出行的第一个按从小到大的升序排列，对于给定的输入数据，保证至少有一个解。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 样例输入</span><br><span class="line">10000</span><br><span class="line"></span><br><span class="line">// 样例输出</span><br><span class="line">18 142 </span><br><span class="line">297 328 </span><br><span class="line">388 412 </span><br><span class="line">1998 2002</span><br></pre></td></tr></table></figure>
+
+<h3 id="作业答案"><a href="#作业答案" class="headerlink" title="作业答案"></a>作业答案</h3><p>这道题目有多种解法，在此我们可以考虑通过前缀和的方式求出区间和，通过二分查找缩短时间复杂度，与例题类似，在此不过多解释。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;stdio.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;malloc.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">lower_bound</span><span class="params">(<span class="type">long</span> <span class="type">long</span> *sum, <span class="type">long</span> l, <span class="type">long</span> r, <span class="type">long</span> <span class="type">long</span> target)</span> &#123;</span><br><span class="line">    <span class="keyword">while</span> (l &lt; r) &#123;</span><br><span class="line">        <span class="type">long</span> middle = l + (r - l) / <span class="number">2</span>; <span class="comment">// 防止越界</span></span><br><span class="line">        <span class="keyword">if</span> (sum[middle] &gt; target) r = middle;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (sum[middle] &lt; target) l = middle + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (sum[middle] == target) <span class="keyword">return</span> middle;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">long</span> M;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%ld&quot;</span>, &amp;M);</span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> *sum = (<span class="type">long</span> <span class="type">long</span> *) <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="type">long</span> <span class="type">long</span>) * (M+<span class="number">1</span>));</span><br><span class="line">    sum[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= M; i++) sum[i] = sum[i - <span class="number">1</span>] + i;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= M; i++) &#123;</span><br><span class="line">        <span class="type">int</span> bound = lower_bound(sum, i, M, M + sum[i - <span class="number">1</span>]);</span><br><span class="line">        <span class="keyword">if</span> (bound != <span class="number">-1</span>)</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%ld %ld\n&quot;</span>, i, bound);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-差分"><a href="#2-差分" class="headerlink" title="2. 差分"></a>2. 差分</h2><p>一般地，差分主要用于让一个序列某一特定范围内的所有值都加上或减去一个常数。</p>
+<p>直接说比较抽象，我们也是先从问题出发引出差分，现在给定一个数组q[8] &#x3D; {1, 2, 5, 3, 7, 9, 4, 5 }，现在需要对这个数组对相应区间中的所有数加上或减去一个值，执行该操作多次，最后返回数组的最终状况。例如：[3, 5]区间中所有元素加10，则将数组变为[1, 2, 5, 13, 17, 19, 4, 5 ]，[1, 4]区间中所有元素减3，则将数组变为[1, -1, 2, 10, 14, 19, 4, 5 ]。</p>
+<p>直接遍历去减就行，但是如果要运算的区间较多呢，例如给出300次变化，那我们便要进行300次遍历。数组长度为n，变化次数为m，则时间复杂度为o(nm)。</p>
+<p>接着我们引出差分，所谓差分，可以简单的看成序列中每个元素与其前一个元素的差。以给出的数组为例，d[8] &#x3D; [1, 1, 3, -2, 4, 2, -5, -1]，这串数看起来似乎没什么意义，但是我们对它求一下前缀和就会发现sum_d[8] &#x3D; [1, 2, 5, 3, 7, 9, 4, 5 ]即原数组。</p>
+<p>在这个过程中如果我们对d中第二个元素加3，就会发现sum_d从第二位起所有元素都加了3，同样的如果对第五位元素减去3，那么从第五位起所有元素又都减了3，这样操作下来，相当于第二个到第四个元素都加了3，同理，如果我们想要实现区间[3, 5]中的元素均加10，只需让d[3] &#x3D; d[3] + 10 , d[6] &#x3D; d[6] - 10，最后会反映在sum_d中。即[L, R]所有元素加value只需d[L] &#x3D; d[L] + value, d[R+1] &#x3D; d[R+1] - value，最后求出数组d的前缀和即为变化后的数组。</p>
+<p>接着我们可以发现，d只用来统计区间变化时的情况，所以我们实际上并不需要计算q的差分，d统一初始为0，记录区间的变化情况，求出sum_d后再加回到q上结果也是一样的。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="comment">// 注意这里d需要多开一个数组，因为add时存在r+1，否则会有数组越界的情况</span></span><br><span class="line"><span class="comment">// 当然也可以不多开，在add里面判断是否为边界单独处理，但代价是每次调用add时都要判断是否越界</span></span><br><span class="line"><span class="type">int</span> d[<span class="number">9</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">add</span><span class="params">(<span class="type">int</span> l, <span class="type">int</span> r, <span class="type">int</span> v)</span> &#123;</span><br><span class="line">    d[l] += v;</span><br><span class="line">    d[r + <span class="number">1</span>] -= v;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span> q[<span class="number">8</span>] = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">5</span>, <span class="number">3</span>, <span class="number">7</span>, <span class="number">9</span>, <span class="number">4</span>, <span class="number">5</span>&#125;;</span><br><span class="line">    add(<span class="number">2</span>, <span class="number">4</span>, <span class="number">5</span>);</span><br><span class="line">    add(<span class="number">1</span>, <span class="number">3</span>, <span class="number">2</span>);</span><br><span class="line">    add(<span class="number">0</span>, <span class="number">2</span>, <span class="number">-3</span>);</span><br><span class="line">    <span class="comment">// 计算前缀和</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; <span class="number">8</span>; i++) d[i] += d[i - <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">8</span>; i++) &#123;</span><br><span class="line">        q[i] += d[i];</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, q[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>同样的，我们推广到二维，类比前缀和的二维，我们不会再进行详细的介绍，简单带过一下，先给出个例子我们再去具体介绍，二维数组如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> q[<span class="number">4</span>][<span class="number">4</span>] = &#123;</span><br><span class="line">    &#123;<span class="number">2</span>,  <span class="number">3</span>,  <span class="number">23</span>, <span class="number">5</span>&#125;,</span><br><span class="line">    &#123;<span class="number">6</span>,  <span class="number">33</span>, <span class="number">7</span>,  <span class="number">45</span>&#125;,</span><br><span class="line">    &#123;<span class="number">23</span>, <span class="number">4</span>,  <span class="number">9</span>,  <span class="number">56</span>&#125;,</span><br><span class="line">    &#123;<span class="number">34</span>, <span class="number">57</span>, <span class="number">78</span>, <span class="number">75</span>&#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>区域<code>[1, 1]~[3, 2]</code>加3，区域<code>[1, 2]~[2, 3]</code>减5，最后给出变化后的数组。</p>
+<p>现在我们来看下图，如果我们要将红色区域+v，我们将x1,y1的差分数组+v，那它影响的区域为所有蓝色区域</p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://s2.loli.net/2022/07/03/43VZoOzlmIBcwjg.png"
+                        alt="image-20220702174648410"
+                 ></p>
+<p>所以我们需要修改的位置有：</p>
+<ul>
+<li><code>d[x1][y1] + v</code> </li>
+<li><code>d[x1][y2+1] + v</code></li>
+<li><code>d[x2+1][y1] + v</code></li>
+<li><code>d[x2+1][y2+1] - v</code></li>
+</ul>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://s2.loli.net/2022/07/03/z1TWquDLiJ7r3oF.png"
+                        alt="image-20220702175307611"
+                 ></p>
+<p>接着我们来看代码</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> n = <span class="number">4</span>;    <span class="comment">// 行数</span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> m = <span class="number">4</span>;    <span class="comment">// 列数</span></span><br><span class="line"><span class="type">int</span> q[<span class="number">4</span>][<span class="number">4</span>] = &#123;</span><br><span class="line">        &#123;<span class="number">2</span>,  <span class="number">3</span>,  <span class="number">23</span>, <span class="number">5</span>&#125;,</span><br><span class="line">        &#123;<span class="number">6</span>,  <span class="number">33</span>, <span class="number">7</span>,  <span class="number">45</span>&#125;,</span><br><span class="line">        &#123;<span class="number">23</span>, <span class="number">4</span>,  <span class="number">9</span>,  <span class="number">56</span>&#125;,</span><br><span class="line">        &#123;<span class="number">34</span>, <span class="number">57</span>, <span class="number">78</span>, <span class="number">75</span>&#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> d[<span class="number">5</span>][<span class="number">5</span>];    <span class="comment">// 多开一个长度防止越界</span></span><br><span class="line"><span class="type">int</span> sum[<span class="number">4</span>][<span class="number">4</span>];</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">add</span><span class="params">(<span class="type">int</span> x1, <span class="type">int</span> y1, <span class="type">int</span> x2, <span class="type">int</span> y2, <span class="type">int</span> v)</span> &#123;</span><br><span class="line">    d[x1][y1] += v;</span><br><span class="line">    d[x1][y2 + <span class="number">1</span>] -= v;</span><br><span class="line">    d[x2 + <span class="number">1</span>][y1] -= v;</span><br><span class="line">    d[x2 + <span class="number">1</span>][y2 + <span class="number">1</span>] += v;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">pre_sum</span><span class="params">()</span> &#123;</span><br><span class="line">    sum[<span class="number">0</span>][<span class="number">0</span>] = d[<span class="number">0</span>][<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; n; i++) sum[i][<span class="number">0</span>] = sum[i - <span class="number">1</span>][<span class="number">0</span>] + d[i][<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt; m; j++) sum[<span class="number">0</span>][j] = sum[<span class="number">0</span>][j - <span class="number">1</span>] + d[<span class="number">0</span>][j];</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; n; i++)</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt; m; j++)</span><br><span class="line">            sum[i][j] = sum[i][j - <span class="number">1</span>] + sum[i - <span class="number">1</span>][j] - sum[i - <span class="number">1</span>][j - <span class="number">1</span>] + d[i][j];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    add(<span class="number">1</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">3</span>);</span><br><span class="line">    add(<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>);</span><br><span class="line">    pre_sum();  <span class="comment">// 求出d的前缀和</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; m; ++j) &#123;</span><br><span class="line">            q[i][j] += sum[i][j];</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, q[i][j]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="例题1-统计奇数"><a href="#例题1-统计奇数" class="headerlink" title="例题1 统计奇数"></a>例题1 统计奇数</h3><h4 id="题目-1"><a href="#题目-1" class="headerlink" title="题目"></a>题目</h4><p><a class="link"   target="_blank" rel="noopener" href="https://ac.nowcoder.com/acm/problem/209813" >题目链接<i class="fas fa-external-link-alt"></i></a></p>
+<p>长度为n的数组初始全为0，每分钟数组元素的值都会自增1。m次操作，每次选择一个区间，在自增的基础上额外增1，求m次操作后数组中奇数的个数。</p>
+<p>示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 输入</span><br><span class="line">3,2,[1,2],[2,3]</span><br><span class="line">// 输出</span><br><span class="line">2</span><br></pre></td></tr></table></figure>
+
+<p>示例说明</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">第一分钟后 第一个数为2，第二个数为2，第三个数为1</span><br><span class="line">第二分钟后 第一个数为3，第二个数为4，第三个数为3，一共两个数为奇数，所以输出2</span><br></pre></td></tr></table></figure>
+
+<p>其中：</p>
+<ul>
+<li>1 ≤ n ≤ 2*10^5</li>
+<li>1 ≤ m ≤ 2*10^5</li>
+<li>1 ≤ l[i] ≤ r[i] ≤ n</li>
+</ul>
+<h4 id="分析-1"><a href="#分析-1" class="headerlink" title="分析"></a>分析</h4><p>需要注意的是按照题目的说法给出的区间[1,2]指的不是下表，而是第几个数，题目也比较简单，如果前面的部分看懂了这题没啥问题，简单练下手</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">static</span> <span class="type">int</span> d[<span class="number">200001</span>], sum[<span class="number">200001</span>];</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">oddnumber</span><span class="params">(<span class="type">int</span> n, <span class="type">int</span> m, <span class="type">int</span> *l, <span class="type">int</span> lLen, <span class="type">int</span> *r, <span class="type">int</span> rLen)</span> &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; m; i++)</span><br><span class="line">        d[l[i]]++, d[r[i] + <span class="number">1</span>]--;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">        sum[i] = sum[i - <span class="number">1</span>] + d[i];</span><br><span class="line">    <span class="type">int</span> Ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">        <span class="keyword">if</span> ((sum[i] + m) % <span class="number">2</span> == <span class="number">1</span>) Ans++;</span><br><span class="line">    <span class="keyword">return</span> Ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="课后作业-1"><a href="#课后作业-1" class="headerlink" title="课后作业"></a>课后作业</h3><p><a class="link"   target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3397" >题目链接<i class="fas fa-external-link-alt"></i></a></p>
+<h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><p>在 n x n 的格子上有 m 个地毯。</p>
+<p>给出这些地毯的信息，问每个点被多少个地毯覆盖。</p>
+<h4 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h4><p>第一行，两个正整数 n,m。意义如题所述。</p>
+<p>接下来 m 行，每行两个坐标 (x_1,y_1) 和 (x_2,y_2)，代表一块地毯，左上角是 (x_1,y_1)，右下角是 (x_2,y_2)。</p>
+<h4 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h4><p>输出 n 行，每行 n 个正整数。</p>
+<p>第 i 行第 j 列的正整数表示 (i,j) 这个格子被多少个地毯覆盖。</p>
+<h4 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h4><p>样例输入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">5 3</span><br><span class="line">2 2 3 3</span><br><span class="line">3 3 5 5</span><br><span class="line">1 2 1 4</span><br></pre></td></tr></table></figure>
+
+<p>样例输出</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">0 1 1 1 0</span><br><span class="line">0 1 1 0 0</span><br><span class="line">0 1 2 1 1</span><br><span class="line">0 0 1 1 1</span><br><span class="line">0 0 1 1 1</span><br></pre></td></tr></table></figure>
+
+<p>样例解释</p>
+<p>覆盖第一个地毯后：</p>
+<table>
+<thead>
+<tr>
+<th align="center">0</th>
+<th align="center">0</th>
+<th align="center">0</th>
+<th align="center">0</th>
+<th align="center">0</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+</tbody></table>
+<p>覆盖第一、二个地毯后：</p>
+<table>
+<thead>
+<tr>
+<th align="center">0</th>
+<th align="center">0</th>
+<th align="center">0</th>
+<th align="center">0</th>
+<th align="center">0</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">2</td>
+<td align="center">1</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">1</td>
+</tr>
+</tbody></table>
+<p>覆盖所有地毯后：</p>
+<table>
+<thead>
+<tr>
+<th align="center">0</th>
+<th align="center">1</th>
+<th align="center">1</th>
+<th align="center">1</th>
+<th align="center">0</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">2</td>
+<td align="center">1</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">1</td>
+</tr>
+</tbody></table>
+<h4 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h4><p>对于 20% 的数据，有 n &lt; 50，m &lt; 100。</p>
+<p>对于 100% 的数据，有 n,m &lt; 1000。</p>
+<h3 id="作业答案-1"><a href="#作业答案-1" class="headerlink" title="作业答案"></a>作业答案</h3><p>典型的二维差分，需要注意的点还是：</p>
+<ol>
+<li>注意数组越界，将特殊情况单独进行讨论</li>
+<li>区间指的不是下表，而是第几个数</li>
+<li>malloc为d开辟空间后需要初始化</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;malloc.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">add</span><span class="params">(<span class="type">int</span> x1, <span class="type">int</span> y1, <span class="type">int</span> x2, <span class="type">int</span> y2, <span class="type">int</span> **d)</span> &#123;</span><br><span class="line">    d[x1][y1] += <span class="number">1</span>;</span><br><span class="line">    d[x1][y2 + <span class="number">1</span>] -= <span class="number">1</span>;</span><br><span class="line">    d[x2 + <span class="number">1</span>][y1] -= <span class="number">1</span>;</span><br><span class="line">    d[x2 + <span class="number">1</span>][y2 + <span class="number">1</span>] += <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">pre_sum</span><span class="params">(<span class="type">int</span> numsSize, <span class="type">int</span> **d, <span class="type">int</span> **sum)</span> &#123;</span><br><span class="line">    sum[<span class="number">0</span>][<span class="number">0</span>] = d[<span class="number">0</span>][<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; numsSize; i++) sum[i][<span class="number">0</span>] = sum[i - <span class="number">1</span>][<span class="number">0</span>] + d[i][<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt; numsSize; j++) sum[<span class="number">0</span>][j] = sum[<span class="number">0</span>][j - <span class="number">1</span>] + d[<span class="number">0</span>][j];</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; numsSize; i++)</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt; numsSize; j++)</span><br><span class="line">            sum[i][j] = sum[i][j - <span class="number">1</span>] + sum[i - <span class="number">1</span>][j] - sum[i - <span class="number">1</span>][j - <span class="number">1</span>] + d[i][j];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span> n, m;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d %d&quot;</span>, &amp;n, &amp;m);</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> **d = (<span class="type">int</span> **) <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="type">int</span> *) * (n + <span class="number">1</span>));</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n + <span class="number">1</span>; ++i) &#123;</span><br><span class="line">        d[i] = (<span class="type">int</span> *) <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="type">int</span>) * (n + <span class="number">1</span>));</span><br><span class="line">        <span class="built_in">memset</span>(d[i], <span class="number">0</span>, <span class="keyword">sizeof</span>(<span class="type">int</span>) * (n + <span class="number">1</span>));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> **sum = (<span class="type">int</span> **) <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="type">int</span> *) * n);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">        sum[i] = (<span class="type">int</span> *) <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="type">int</span>) * n);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (m--) &#123;</span><br><span class="line">        <span class="type">int</span> x1, x2, y1, y2;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d %d %d %d&quot;</span>, &amp;x1, &amp;y1, &amp;x2, &amp;y2);</span><br><span class="line">        add(x1 - <span class="number">1</span>, y1 - <span class="number">1</span>, x2 - <span class="number">1</span>, y2 - <span class="number">1</span>, d);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    pre_sum(n, d, sum);  <span class="comment">// 求出d的前缀和</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; n; j++)</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, sum[i][j]);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-双指针"><a href="#3-双指针" class="headerlink" title="3. 双指针"></a>3. 双指针</h2><p>通过题目我们可以更加直观的了解，会在题目分析中进行详细解释，在此先不做介绍。</p>
+<h3 id="例题1-移除元素"><a href="#例题1-移除元素" class="headerlink" title="例题1 移除元素"></a>例题1 移除元素</h3><h4 id="题目-2"><a href="#题目-2" class="headerlink" title="题目"></a>题目</h4><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/remove-element" >题目链接<i class="fas fa-external-link-alt"></i></a></p>
+<p>给你一个数组 nums 和一个值 val，你需要<strong>原地</strong>移除所有数值等于 val 的元素，并返回移除后数组的新长度。<br>不要使用额外的数组空间，你必须仅使用 O(1) 额外空间并原地修改输入数组。<br>元素的顺序可以改变。<br>不需要考虑数组中超出新长度后面的元素。 </p>
+<p>示例 1：<br>输入：nums &#x3D; [3,2,2,3], val &#x3D; 3<br>输出：2, nums &#x3D; [2,2]<br>解释：函数应该返回新的长度 2, 并且 nums 中的前两个元素均为 2。你不需要考虑数组中超出新长度后面的元素。例如，函数返回的新长度为 2 ，而 nums &#x3D; [2,2,3,3] 或 nums &#x3D; [2,2,0,0]，也会被视作正确答案。</p>
+<p>示例 2：<br>输入：nums &#x3D; [0,1,2,2,3,0,4,2], val &#x3D; 2<br>输出：5, nums &#x3D; [0,1,4,0,3]<br>解释：函数应该返回新的长度 5, 并且 nums 中的前五个元素为 0, 1, 3, 0, 4。注意这五个元素可为任意顺序。你不需要考虑数组中超出新长度后面的元素。</p>
+<p>其中：</p>
+<ul>
+<li>0 &lt;&#x3D; nums.length &lt;&#x3D; 100</li>
+<li>0 &lt;&#x3D; nums[i] &lt;&#x3D; 50</li>
+<li>0 &lt;&#x3D; val &lt;&#x3D; 100</li>
+</ul>
+<h4 id="分析-2"><a href="#分析-2" class="headerlink" title="分析"></a>分析</h4><p><strong>通过一个快指针和慢指针在一个for循环下完成两个for循环的工作。</strong></p>
+<p>定义快慢指针</p>
+<ul>
+<li>快指针：寻找新数组的元素 ，新数组就是不含有目标元素的数组</li>
+<li>慢指针：指向更新 新数组下标的位置</li>
+</ul>
+<p>第一个指针（快指针）负责遍历，第二个指针（慢指针）负责接收第一个指针指向的不是删除元素的值</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 时间复杂度：O(n)</span></span><br><span class="line"><span class="comment">// 空间复杂度：O(1)</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">removeElement</span><span class="params">(<span class="type">int</span> *nums, <span class="type">int</span> numsSize, <span class="type">int</span> val)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> slowIndex = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> fastIndex = <span class="number">0</span>; fastIndex &lt; numsSize; fastIndex++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (val != nums[fastIndex])</span><br><span class="line">        &#123;</span><br><span class="line">            nums[slowIndex++] = nums[fastIndex];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> slowIndex;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>相向双指针方法：基于元素顺序可以改变的题目描述改变了元素相对位置，确保了移动最少元素</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 时间复杂度：O(n)</span></span><br><span class="line"><span class="comment">// 空间复杂度：O(1)</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">removeElement</span><span class="params">(<span class="type">int</span> *nums, <span class="type">int</span> numsSize, <span class="type">int</span> val)</span></span><br><span class="line">&#123;</span><br><span class="line">        <span class="type">int</span> leftIndex = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> rightIndex = numsSize - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (leftIndex &lt;= rightIndex) &#123;</span><br><span class="line">            <span class="comment">// 找左边等于val的元素</span></span><br><span class="line">            <span class="keyword">while</span> (leftIndex &lt;= rightIndex &amp;&amp; nums[leftIndex] != val)&#123;</span><br><span class="line">                ++leftIndex;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 找右边不等于val的元素</span></span><br><span class="line">            <span class="keyword">while</span> (leftIndex &lt;= rightIndex &amp;&amp; nums[rightIndex] == val) &#123;</span><br><span class="line">                -- rightIndex;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 将右边不等于val的元素覆盖左边等于val的元素</span></span><br><span class="line">            <span class="keyword">if</span> (leftIndex &lt; rightIndex) &#123;</span><br><span class="line">                nums[leftIndex++] = nums[rightIndex--];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> leftIndex;   <span class="comment">// leftIndex一定指向了最终数组末尾的下一个元素</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="课后作业-2"><a href="#课后作业-2" class="headerlink" title="课后作业"></a>课后作业</h3><h4 id="作业一"><a href="#作业一" class="headerlink" title="作业一"></a>作业一</h4><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/backspace-string-compare" >题目链接<i class="fas fa-external-link-alt"></i></a></p>
+<p>给定 s 和 t 两个字符串，当它们分别被输入到空白的文本编辑器后，如果两者相等，返回 true 。# 代表退格字符。<br>注意：如果对空文本输入退格字符，文本继续为空。<br>【附加要求：不能使用额外空间】</p>
+<p>示例 1：<br>输入：s &#x3D; “ab#c”, t &#x3D; “ad#c”<br>输出：true<br>解释：s 和 t 都会变成 “ac”。</p>
+<p>示例 2：<br>输入：s &#x3D; “ab##”, t &#x3D; “c#d#”<br>输出：true<br>解释：s 和 t 都会变成 “”。</p>
+<p>示例 3：<br>输入：s &#x3D; “a#c”, t &#x3D; “b”<br>输出：false<br>解释：s 会变成 “c”，但 t 仍然是 “b”。</p>
+<p>其中：</p>
+<ul>
+<li><code>1 &lt;= s.length, t.length &lt;= 200</code></li>
+<li><code>s</code> 和 <code>t</code> 只含有小写字母以及字符 <code>&#39;#&#39;</code></li>
+</ul>
+<h4 id="作业二"><a href="#作业二" class="headerlink" title="作业二"></a>作业二</h4><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/squares-of-a-sorted-array" >题目链接<i class="fas fa-external-link-alt"></i></a></p>
+<p>给你一个按 非递减顺序 排序的整数数组 nums，返回 每个数字的平方 组成的新数组，要求也按 非递减顺序 排序。<br>要求时间复杂度为O(n)</p>
+<p>示例 1：<br>输入：nums &#x3D; [-4,-1,0,3,10]<br>输出：[0,1,9,16,100]<br>解释：平方后，数组变为 [16,1,0,9,100]<br>排序后，数组变为 [0,1,9,16,100]</p>
+<p>示例 2：<br>输入：nums &#x3D; [-7,-3,2,3,11]<br>输出：[4,9,9,49,121]</p>
+<p>其中：</p>
+<ul>
+<li>1 &lt;&#x3D; nums.length &lt;&#x3D; 十的四次方</li>
+<li>负十的四次方&lt;&#x3D; nums[i] &lt;&#x3D; 十的四次方</li>
+<li>nums 已按 非递减顺序 排序</li>
+</ul>
+<h3 id="作业答案-2"><a href="#作业答案-2" class="headerlink" title="作业答案"></a>作业答案</h3><h4 id="作业一-1"><a href="#作业一-1" class="headerlink" title="作业一"></a>作业一</h4><p>一个字符是否会被删掉，只取决于该字符后面的退格符，而与该字符前面的退格符无关。因此当我们逆序地遍历字符串，就可以立即确定当前字符是否会被删掉。</p>
+<p>具体地，我们定义 <code>skip</code> 表示当前待删除的字符的数量。每次我们遍历到一个字符：</p>
+<ul>
+<li>若该字符为退格符，则我们需要多删除一个普通字符，我们让 <code>skip</code> 加 1</li>
+<li>若该字符为普通字符</li>
+<li>若 <code>skip</code> 为 0，则说明当前字符不需要删去</li>
+<li>若 <code>skip</code> 不为 0，则说明当前字符需要删去，我们让 <code>skip</code> 减 1</li>
+</ul>
+<p>这样，我们定义两个指针，分别指向两字符串的末尾。每次我们让两指针逆序地遍历两字符串，直到两字符串能够各自确定一个字符，然后将这两个字符进行比较。重复这一过程直到找到的两个字符不相等，或遍历完字符串为止。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">bool</span> <span class="title function_">backspaceCompare</span><span class="params">(<span class="type">char</span>* S, <span class="type">char</span>* T)</span> &#123;</span><br><span class="line">    <span class="type">int</span> i = <span class="built_in">strlen</span>(S) - <span class="number">1</span>, j = <span class="built_in">strlen</span>(T) - <span class="number">1</span>;</span><br><span class="line">    <span class="type">int</span> skipS = <span class="number">0</span>, skipT = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (i &gt;= <span class="number">0</span> || j &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">while</span> (i &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="comment">// 接收到字符或者S遍历结束时跳出循环</span></span><br><span class="line">            <span class="keyword">if</span> (S[i] == <span class="string">&#x27;#&#x27;</span>) &#123;</span><br><span class="line">                skipS++, i--;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (skipS &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                skipS--, i--;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (j &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="comment">// 接收到字符或者T遍历结束时跳出循环</span></span><br><span class="line">            <span class="keyword">if</span> (T[j] == <span class="string">&#x27;#&#x27;</span>) &#123;</span><br><span class="line">                skipT++, j--;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (skipT &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                skipT--, j--;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (i &gt;= <span class="number">0</span> &amp;&amp; j &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="comment">// S和T均接收到了字符，进行比较</span></span><br><span class="line">            <span class="keyword">if</span> (S[i] != T[j]) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// 至少一个字符串遍历结束，另一个遍历结束或者接收到了字符</span></span><br><span class="line">            <span class="keyword">if</span> (i &gt;= <span class="number">0</span> || j &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        i--, j--;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="作业二-1"><a href="#作业二-1" class="headerlink" title="作业二"></a>作业二</h4><p>方法一：正数负数两侧分别平方，负数侧单调递减，正数侧单调递增，可以使用归并排序，学完排序模块回顾即可。</p>
+<p>方法二：使用两个指针分别指向位置 0 和 n-1，每次比较两个指针对应的数，选择较大的那个<strong>逆序</strong>放入答案并移动指针。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span>* <span class="title function_">sortedSquares</span><span class="params">(<span class="type">int</span>* nums, <span class="type">int</span> numsSize, <span class="type">int</span>* returnSize)</span> &#123;</span><br><span class="line">    <span class="type">int</span>* ans = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="type">int</span>) * numsSize);</span><br><span class="line">    *returnSize = numsSize;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>, j = numsSize - <span class="number">1</span>, pos = numsSize - <span class="number">1</span>; i &lt;= j;) &#123;</span><br><span class="line">        <span class="keyword">if</span> (nums[i] * nums[i] &gt; nums[j] * nums[j]) &#123;</span><br><span class="line">            ans[pos] = nums[i] * nums[i];</span><br><span class="line">            ++i;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            ans[pos] = nums[j] * nums[j];</span><br><span class="line">            --j;</span><br><span class="line">        &#125;</span><br><span class="line">        --pos;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-滑动窗口"><a href="#4-滑动窗口" class="headerlink" title="4. 滑动窗口"></a>4. 滑动窗口</h2><h3 id="例题1-长度最小的子数组-1"><a href="#例题1-长度最小的子数组-1" class="headerlink" title="例题1 长度最小的子数组"></a>例题1 长度最小的子数组</h3><h4 id="题目-3"><a href="#题目-3" class="headerlink" title="题目"></a>题目</h4><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-size-subarray-sum/" >题目链接<i class="fas fa-external-link-alt"></i></a></p>
+<p>给定一个含有 n 个正整数的数组和一个正整数 target 。</p>
+<p>找出该数组中满足其和 ≥ target 的长度最小的 连续子数组 [numsl, numsl+1, …, numsr-1, numsr] ，并返回其长度。如果不存在符合条件的子数组，返回 0 。</p>
+<p>要求时间复杂度不超过O(nlogn) </p>
+<p>示例 1：<br>输入：target &#x3D; 7, nums &#x3D; [2,3,1,2,4,3]<br>输出：2<br>解释：子数组 [4,3] 是该条件下的长度最小的子数组。</p>
+<p>示例 2：<br>输入：target &#x3D; 4, nums &#x3D; [1,4,4]<br>输出：1</p>
+<p>示例 3：<br>输入：target &#x3D; 11, nums &#x3D; [1,1,1,1,1,1,1,1]<br>输出：0</p>
+<p>其中：</p>
+<ul>
+<li>1 &lt;&#x3D; target &lt;&#x3D; 十的九次方</li>
+<li>1 &lt;&#x3D; nums.length &lt;&#x3D; 十的五次方</li>
+<li>1 &lt;&#x3D; nums[i] &lt;&#x3D; 十的五次方</li>
+</ul>
+<h4 id="分析-3"><a href="#分析-3" class="headerlink" title="分析"></a>分析</h4><p>接下来就开始介绍数组操作中另一个重要的方法：<strong>滑动窗口</strong>。</p>
+<p>所谓滑动窗口，<strong>就是不断的调节子序列的起始位置和终止位置，从而得出我们要想的结果</strong>。</p>
+<p>这里还是以题目中的示例来举例，s&#x3D;7， 数组是 2，3，1，2，4，3，来看一下查找的过程：<br><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://s2.loli.net/2022/07/03/1JIbpLRmznel2NS.gif"
+                        alt="209.长度最小的子数组"
+                 ><br>最后找到 4，3 是最短距离。</p>
+<p>其实从动画中可以发现滑动窗口也可以理解为双指针法的一种！只不过这种解法更像是一个窗口的移动，所以叫做滑动窗口更适合一些。</p>
+<p>在本题中实现滑动窗口，主要确定如下三点：</p>
+<ul>
+<li>窗口内是什么？</li>
+<li>如何移动窗口的起始位置？</li>
+<li>如何移动窗口的结束位置？</li>
+</ul>
+<p>窗口就是满足其和 ≥ s 的长度最小的 连续 子数组。<br>窗口的起始位置如何移动：如果当前窗口的值大于s了，窗口就要向前移动了（也就是该缩小了）。<br>窗口的结束位置如何移动：窗口的结束位置就是遍历数组的指针，窗口的起始位置设置为数组的起始位置就可以了。</p>
+<p><strong>滑动窗口的精妙之处在于根据当前子序列和大小的情况，不断调节子序列的起始位置。从而将O(n^2)暴力解法降为O(n)。</strong></p>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">minSubArrayLen</span><span class="params">(<span class="type">int</span> target, <span class="type">int</span> *nums, <span class="type">int</span> numsSize)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> result = INT_MAX;</span><br><span class="line">    <span class="type">int</span> sum = <span class="number">0</span>;         <span class="comment">// 滑动窗口数值之和</span></span><br><span class="line">    <span class="type">int</span> i = <span class="number">0</span>;           <span class="comment">// 滑动窗口起始位置</span></span><br><span class="line">    <span class="type">int</span> subLength = <span class="number">0</span>;   <span class="comment">// 滑动窗口的长度</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; numsSize; j++)</span><br><span class="line">    &#123;</span><br><span class="line">        sum += nums[j];</span><br><span class="line">        <span class="comment">// 注意这里使用while，每次更新 i（起始位置），并不断比较子序列是否符合条件</span></span><br><span class="line">        <span class="keyword">while</span> (sum &gt;= target)</span><br><span class="line">        &#123;</span><br><span class="line">            subLength = (j - i + <span class="number">1</span>); <span class="comment">// 取子序列的长度</span></span><br><span class="line">            result = result &lt; subLength ? result : subLength;</span><br><span class="line">            sum -= nums[i++]; <span class="comment">// 这里体现出滑动窗口的精髓之处，不断变更i（子序列的起始位置）</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 如果result没有被赋值的话，就返回0，说明没有符合条件的子序列</span></span><br><span class="line">    <span class="keyword">return</span> result == INT_MAX ? <span class="number">0</span> : result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="课后作业-3"><a href="#课后作业-3" class="headerlink" title="课后作业"></a>课后作业</h3><h4 id="题目-4"><a href="#题目-4" class="headerlink" title="题目"></a>题目</h4><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-window-substring/" >题目链接<i class="fas fa-external-link-alt"></i></a></p>
+<p>给你一个字符串 s 、一个字符串 t 。返回 s 中涵盖 t 所有字符的最小子串。如果 s 中不存在涵盖 t 所有字符的子串，则返回空字符串 “” 。要求在<code>o(n)</code> 时间内解决此问题。</p>
+<p>注意：</p>
+<ul>
+<li>对于 t 中重复字符，我们寻找的子字符串中该字符数量必须不少于 t 中该字符数量。</li>
+<li>如果 s 中存在这样的子串，我们保证它是唯一的答案。</li>
+</ul>
+<p>示例 1：<br>输入：s &#x3D; “ADOBECODEBANC”, t &#x3D; “ABC”<br>输出：”BANC”</p>
+<p>示例 2：<br>输入：s &#x3D; “a”, t &#x3D; “a”<br>输出：”a”</p>
+<p>示例 3:<br>输入: s &#x3D; “a”, t &#x3D; “aa”<br>输出: “”<br>解释: t 中两个字符 ‘a’ 均应包含在 s 的子串中，<br>因此没有符合条件的子字符串，返回空字符串。</p>
+<p>其中：</p>
+<ul>
+<li>1 &lt;&#x3D; s.length, t.length &lt;&#x3D; 10^5</li>
+<li>s 和 t 由英文字母组成</li>
+</ul>
+<h4 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h4><p>这道题虽然标的是困难但实际上没那么难，都是同一题型，对于C++、Java哈希表直接用就行，C的话需要我们自己构造一下，关于哈希表的详细知识会在”查找“模块中进行详细解释，感兴趣的同学也可先行了解</p>
+<h3 id="作业答案-3"><a href="#作业答案-3" class="headerlink" title="作业答案"></a>作业答案</h3><h4 id="分析-4"><a href="#分析-4" class="headerlink" title="分析"></a>分析</h4><p>采用滑动窗口解决该问题。</p>
+<p>我们可以先记录t中字母的种类以及各字母需要的数量，显然，外层循环条件为右侧指针小于s的长度，在右侧指针推进时我们可以判断这个字母是否已经让满足数量，记录窗口中字母满足的个数，如果满足个数与t中的字母种类数相同，证明已达到要求，开始让左侧指针进行移动，减小字符串长度，直到不再满足要求。循环执行下去，就可得到我们想要的结果。</p>
+<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="type">char</span> *<span class="title function_">minWindow</span><span class="params">(<span class="type">char</span> *s, <span class="type">char</span> *t)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> lent = <span class="built_in">strlen</span>(t), lens = <span class="built_in">strlen</span>(s);</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> len = lens + <span class="number">1</span>; <span class="comment">//用来判断可能会出现的找不到的情况，因为找到的话那字符串总长不会超过lens</span></span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> *need = (<span class="type">int</span> *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="type">int</span>) * <span class="number">128</span>); <span class="comment">//字符串T中的字母种类和个数，用字母ASCII码做下标，值作为个数</span></span><br><span class="line">    <span class="built_in">memset</span>(need, <span class="number">0</span>, <span class="keyword">sizeof</span>(<span class="type">int</span>) * <span class="number">128</span>);</span><br><span class="line">    <span class="type">int</span> *window = (<span class="type">int</span> *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="type">int</span>) * <span class="number">128</span>); <span class="comment">//滑动窗口中包含的字母种类和个数，规则同need</span></span><br><span class="line">    <span class="built_in">memset</span>(window, <span class="number">0</span>, <span class="keyword">sizeof</span>(<span class="type">int</span>) * <span class="number">128</span>);</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> left = <span class="number">0</span>, right = <span class="number">0</span>; <span class="comment">//窗的左右边界，这是一个左闭右开的窗</span></span><br><span class="line">    <span class="type">int</span> cnt = <span class="number">0</span>;    <span class="comment">//字符串T中的字母种类</span></span><br><span class="line">    <span class="type">int</span> valid = <span class="number">0</span>; <span class="comment">//窗口中满足字符串T中的字母种类，比如字符串T中有字母a共10个，那么窗口中有10个a的时候这个值++</span></span><br><span class="line">    <span class="type">int</span> start = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//记录字符串T</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; lent; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        need[t[i]]++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">128</span>; i++)</span><br><span class="line">    &#123; <span class="comment">//字符串T中字母种类</span></span><br><span class="line">        <span class="keyword">if</span> (need[i] != <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            cnt++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (right &lt; lens) <span class="comment">//边界条件</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">char</span> c = s[right]; <span class="comment">//将要移入窗口的字符</span></span><br><span class="line">        right++;           <span class="comment">//扩窗</span></span><br><span class="line">        <span class="keyword">if</span> (need[c] != <span class="number">0</span>)</span><br><span class="line">        &#123; <span class="comment">//窗口数据更新</span></span><br><span class="line">            window[c]++;</span><br><span class="line">            <span class="keyword">if</span> (window[c] == need[c])</span><br><span class="line">            &#123;</span><br><span class="line">                valid++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (valid == cnt)</span><br><span class="line">        &#123; <span class="comment">//判断左侧窗口是否要收缩</span></span><br><span class="line">            <span class="keyword">if</span> (right - left &lt; len)</span><br><span class="line">            &#123; <span class="comment">//更新最小覆盖子串</span></span><br><span class="line">                start = left;</span><br><span class="line">                len = right - left;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="type">char</span> d = s[left]; <span class="comment">//将要移出窗口的字符</span></span><br><span class="line">            left++;           <span class="comment">//缩窗</span></span><br><span class="line">            <span class="keyword">if</span> (need[d] != <span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (window[d] == need[d])</span><br><span class="line">                &#123;</span><br><span class="line">                    valid--;</span><br><span class="line">                &#125;</span><br><span class="line">                window[d]--;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (len != lens + <span class="number">1</span>)</span><br><span class="line">    &#123; <span class="comment">//返回最小覆盖子串</span></span><br><span class="line">        <span class="type">char</span> *res = (<span class="type">char</span> *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="type">char</span>) * (len + <span class="number">1</span>));</span><br><span class="line">        *res = <span class="string">&#x27;\0&#x27;</span>;</span><br><span class="line">        <span class="built_in">strncat</span>(res, s + start, len);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-螺旋矩阵"><a href="#5-螺旋矩阵" class="headerlink" title="5. 螺旋矩阵"></a>5. 螺旋矩阵</h2><h3 id="例题1-螺旋矩阵Ⅱ"><a href="#例题1-螺旋矩阵Ⅱ" class="headerlink" title="例题1 螺旋矩阵Ⅱ"></a>例题1 螺旋矩阵Ⅱ</h3><h4 id="题目-5"><a href="#题目-5" class="headerlink" title="题目"></a>题目</h4><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/spiral-matrix-ii/" >题目链接<i class="fas fa-external-link-alt"></i></a></p>
+<p>给你一个正整数 <code>n</code> ，生成一个包含 <code>1</code> 到 <code>n2</code> 所有元素，且元素按顺时针顺序螺旋排列的 <code>n x n</code> 正方形矩阵 <code>matrix</code> 。</p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://s2.loli.net/2022/07/03/lOEUWJH8jcFzfG9.jpg"
+                        alt="img"
+                 ></p>
+<p>示例 1：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：n = 3</span><br><span class="line">输出：[[1,2,3],[8,9,4],[7,6,5]]</span><br></pre></td></tr></table></figure>
+
+<p>示例 2：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：n = 1</span><br><span class="line">输出：[[1]]</span><br></pre></td></tr></table></figure>
+
+<p>其中：1&lt;&#x3D; n &lt;&#x3D;20</p>
+<h4 id="分析-5"><a href="#分析-5" class="headerlink" title="分析"></a>分析</h4><p>本体不涉及具体的算法，但是对过程的分析能力较为考察。<br>如果不先对题目进行分析直接判断最后很可能造成混乱。</p>
+<p>当n为奇数时，最后会剩下单独的一个数，这个数我们最后单独处理，总共需要走n&#x2F;2圈（奇数向下取整）<br>当n为偶数时，总共需要走n&#x2F;2圈<br>我们可以写为定义loop为n&#x2F;2，外层循环写为<code>while(loop--)</code>，接着用4次循环进行右下左上的遍历，为保持统一性，我们输出时采用左闭右开。</p>
+<h4 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> **<span class="title function_">generateMatrix</span><span class="params">(<span class="type">int</span> n, <span class="type">int</span> *returnSize, <span class="type">int</span> **returnColumnSizes)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> startx = <span class="number">0</span>, starty = <span class="number">0</span>; <span class="comment">// 定义每循环一个圈的起始位置</span></span><br><span class="line">    <span class="type">int</span> loop = n / <span class="number">2</span>;           <span class="comment">// 每个圈循环几次，例如n为奇数3，那么loop = 1 只是循环一圈，矩阵中间的值需要单独处理</span></span><br><span class="line">    <span class="type">int</span> count = <span class="number">1</span>;              <span class="comment">// 用来给矩阵中每一个空格赋值</span></span><br><span class="line">    <span class="type">int</span> offset = <span class="number">1</span>;             <span class="comment">// 每一圈循环，需要控制每一条边遍历的长度</span></span><br><span class="line">    <span class="type">int</span> i, j;</span><br><span class="line">    *returnSize = n;</span><br><span class="line">    *returnColumnSizes = (<span class="type">int</span> *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="type">int</span>) * n);</span><br><span class="line">    <span class="type">int</span> **res = (<span class="type">int</span> **)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="type">int</span> *) * n);</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        res[i] = (<span class="type">int</span> *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="type">int</span>) * n);</span><br><span class="line">        (*returnColumnSizes)[i] = n;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (loop--)</span><br><span class="line">    &#123;</span><br><span class="line">        i = startx;</span><br><span class="line">        j = starty;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 下面开始的四个for就是模拟转了一圈</span></span><br><span class="line">        <span class="comment">// 模拟填充上行从左到右(左闭右开)</span></span><br><span class="line">        <span class="keyword">for</span> (j = starty; j &lt; starty + n - offset; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            res[startx][j] = count++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 模拟填充右列从上到下(左闭右开)</span></span><br><span class="line">        <span class="keyword">for</span> (i = startx; i &lt; startx + n - offset; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            res[i][j] = count++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 模拟填充下行从右到左(左闭右开)</span></span><br><span class="line">        <span class="keyword">for</span> (; j &gt; starty; j--)</span><br><span class="line">        &#123;</span><br><span class="line">            res[i][j] = count++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 模拟填充左列从下到上(左闭右开)</span></span><br><span class="line">        <span class="keyword">for</span> (; i &gt; startx; i--)</span><br><span class="line">        &#123;</span><br><span class="line">            res[i][j] = count++;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 第二圈开始的时候，起始位置要各自加1， 例如：第一圈起始位置是(0, 0)，第二圈起始位置是(1, 1)</span></span><br><span class="line">        startx++;</span><br><span class="line">        starty++;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// offset 控制每一圈里每一条边遍历的长度</span></span><br><span class="line">        offset += <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 如果n为奇数的话，需要单独给矩阵最中间的位置赋值</span></span><br><span class="line">    <span class="keyword">if</span> (n % <span class="number">2</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        res[n / <span class="number">2</span>][n / <span class="number">2</span>] = count;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="课后作业-4"><a href="#课后作业-4" class="headerlink" title="课后作业"></a>课后作业</h3><h4 id="题目-6"><a href="#题目-6" class="headerlink" title="题目"></a>题目</h4><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/spiral-matrix/" >题目链接<i class="fas fa-external-link-alt"></i></a></p>
+<p>给你一个 <code>m</code> 行 <code>n</code> 列的矩阵 <code>matrix</code> ，请按照 顺时针螺旋顺序 ，返回矩阵中的所有元素。</p>
+<p>示例 1：<br>输入：matrix &#x3D; [[1,2,3],[4,5,6],[7,8,9]]<br>输出：[1,2,3,6,9,8,7,4,5]</p>
+<p>示例 2：<br>输入：matrix &#x3D; [[1,2,3,4],[5,6,7,8],[9,10,11,12]]<br>输出：[1,2,3,4,8,12,11,10,9,5,6,7]</p>
+<p>其中：</p>
+<ul>
+<li>m &#x3D;&#x3D; matrix.length</li>
+<li>n &#x3D;&#x3D; matrix[i].length</li>
+<li>1 &lt;&#x3D; m, n &lt;&#x3D; 10</li>
+<li>-100 &lt;&#x3D; matrix[i][j] &lt;&#x3D; 100</li>
+</ul>
+<h4 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h4><p>这题跟例题差不多，把正方形换成了矩形，过程倒了过来，作为一个巩固练习，在此不多赘述。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span>* <span class="title function_">spiralOrder</span><span class="params">(<span class="type">int</span>** matrix, <span class="type">int</span> matrixSize, <span class="type">int</span>* matrixColSize, <span class="type">int</span>* returnSize)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (matrixSize == <span class="number">0</span> || matrixColSize[<span class="number">0</span>] == <span class="number">0</span>) &#123;</span><br><span class="line">        *returnSize = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> rows = matrixSize, columns = matrixColSize[<span class="number">0</span>];</span><br><span class="line">    <span class="type">int</span> total = rows * columns;</span><br><span class="line">    <span class="type">int</span>* order = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="type">int</span>) * total);</span><br><span class="line">    *returnSize = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> left = <span class="number">0</span>, right = columns - <span class="number">1</span>, top = <span class="number">0</span>, bottom = rows - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (left &lt;= right &amp;&amp; top &lt;= bottom) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> column = left; column &lt;= right; column++) &#123;</span><br><span class="line">            order[(*returnSize)++] = matrix[top][column];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> row = top + <span class="number">1</span>; row &lt;= bottom; row++) &#123;</span><br><span class="line">            order[(*returnSize)++] = matrix[row][right];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (left &lt; right &amp;&amp; top &lt; bottom) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> column = right - <span class="number">1</span>; column &gt; left; column--) &#123;</span><br><span class="line">                order[(*returnSize)++] = matrix[bottom][column];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> row = bottom; row &gt; top; row--) &#123;</span><br><span class="line">                order[(*returnSize)++] = matrix[row][left];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        left++;</span><br><span class="line">        right--;</span><br><span class="line">        top++;</span><br><span class="line">        bottom--;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> order;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="附加题-二分查找"><a href="#附加题-二分查找" class="headerlink" title="附加题 二分查找"></a>附加题 二分查找</h2><p>二分查找作为程序员的一项基本技能，是面试官最常使用来考察程序员基本素质的算法之一，也是解决很多查找类题目的常用方法，它可以达到O(log n)的时间复杂度。</p>
+<p>一般在出现以下特性时考虑二分查找</p>
+<ol>
+<li>待查找的数组有序或者部分有序</li>
+<li>要求时间复杂度低于O(n)，或者直接要求时间复杂度为O(log n)</li>
+</ol>
+<p>需要注意的是一旦数据中有重复元素，使用二分查找法返回的元素下标可能不是唯一的</p>
+<p>二分查找最重要的便是确定<strong>不变量</strong>，在二分查找中区间的定义便是不变量，在二分查找的过程中，保持不变量，就是在while寻找中每一次边界的处理都要坚持根据区间的定义来操作，这就是<strong>循环不变量</strong>规则。区间的定义一般为两种，左闭右闭即[left, right]，或者左闭右开即[left, right)，下面将分别进行展开。</p>
+<h3 id="写法一"><a href="#写法一" class="headerlink" title="写法一"></a>写法一</h3><p>我们定义 target 是在一个在左闭右闭的区间里，也就是[left, right] 。</p>
+<p>区间的定义这就决定了二分法的代码应该如何写，<strong>因为定义target在[left, right]区间，所以有如下两点：</strong></p>
+<ul>
+<li><code>while (left &lt;= right)</code> 要使用 &lt;&#x3D; ，因为<code>left == right</code>是有意义的，所以使用 &lt;&#x3D;</li>
+<li><code>if (nums[middle] &gt; target)</code> right 要赋值为 middle - 1，因为当前这个<code>nums[middle]</code>一定不是target，那么接下来要查找的左区间结束下标位置就是 middle + 1</li>
+</ul>
+<h3 id="写法二"><a href="#写法二" class="headerlink" title="写法二"></a>写法二</h3><p>如果说定义 target 是在一个在左闭右开的区间里，也就是[left, right) ，那么二分法的边界处理方式则截然不同。</p>
+<ul>
+<li><code>while (left &lt; right)</code>，这里使用 &lt; ,因为<code>left == right</code>在区间[left, right)是没有意义的</li>
+<li><code>if (nums[middle] &gt; target)</code> right 更新为 middle，因为当前<code>nums[middle]</code>不等于target，去左区间继续寻找，而寻找区间是左闭右开区间，所以right更新为middle，即：下一个查询区间不会去比较<code>nums[middle]</code></li>
+<li><code>if (nums[middle] &lt; target)</code> left 更新为 middle + 1，因为左侧与右侧不同，是闭区间，因为当前这个<code>nums[middle]</code>一定不是target，直接指向middle + 1即可</li>
+</ul>
+<h3 id="例题1-搜索插入位置"><a href="#例题1-搜索插入位置" class="headerlink" title="例题1 搜索插入位置"></a>例题1 搜索插入位置</h3><h4 id="题目-7"><a href="#题目-7" class="headerlink" title="题目"></a>题目</h4><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/search-insert-position/" >题目链接<i class="fas fa-external-link-alt"></i></a></p>
+<p>给定一个排序数组和一个目标值，在数组中找到目标值，并返回其索引。如果目标值不存在于数组中，返回它将会被按顺序插入的位置。</p>
+<p>请必须使用时间复杂度为 O(log n) 的算法。</p>
+<p>其中：</p>
+<ul>
+<li>1 &lt;&#x3D; nums.length &lt;&#x3D; 10^4</li>
+<li>-10^4 &lt;&#x3D; nums[i] &lt;&#x3D; 10^4</li>
+<li>nums 为 无重复元素 的 升序 排列数组</li>
+<li>-10^4 &lt;&#x3D; target &lt;&#x3D; 10^4</li>
+</ul>
+<h4 id="分析-6"><a href="#分析-6" class="headerlink" title="分析"></a>分析</h4><p>数组已排序、时间复杂度为 O(log n) ，我们首先可以考虑二分查找</p>
+<p>区间类型的话我们可以选用闭区间（其他区间不再举例），也就是说循环可以写为<code>while (left &lt; right)</code>，当目标值与<code>nums[middle]</code>不相等时，根据情况将right设置为middle - 1，或left设置为middle + 1即可。</p>
+<p>找到数字时返回索引：此时middle的值即为目标值索引<br>未找到数字时返回要插入的位置：此时high或low即为需要插入的位置</p>
+<p>最后注意一个小细节，left、right都是很大的数，计算middle的过程中，二者相加可能会溢出，造成除以二之后的值并不是我们想要的。所以我们可以将<code>middle = (left + right)/2; </code>修改为<code>middle = left + ((right - left) / 2);</code>。</p>
+<h4 id="代码-4"><a href="#代码-4" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">searchInsert</span><span class="params">(<span class="type">int</span>* nums, <span class="type">int</span> numsSize, <span class="type">int</span> target)</span>&#123;</span><br><span class="line">    <span class="type">int</span> right=numsSize<span class="number">-1</span>,left=<span class="number">0</span>,middle;</span><br><span class="line">    <span class="keyword">while</span>(left&lt;=right)&#123;</span><br><span class="line">        middle = left + ((right - left) / <span class="number">2</span>);</span><br><span class="line">        <span class="keyword">if</span>(nums[middle]==target)&#123;</span><br><span class="line">            <span class="keyword">return</span> middle;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span>( nums[middle]&lt;target)&#123;</span><br><span class="line">            left = middle + <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            right = middle <span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> left;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="例题2-在排序数组中查找元素的第一个和最后一个位置"><a href="#例题2-在排序数组中查找元素的第一个和最后一个位置" class="headerlink" title="例题2 在排序数组中查找元素的第一个和最后一个位置"></a>例题2 在排序数组中查找元素的第一个和最后一个位置</h3><h4 id="题目-8"><a href="#题目-8" class="headerlink" title="题目"></a>题目</h4><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-array/" >题目链接<i class="fas fa-external-link-alt"></i></a></p>
+<p>给你一个按照非递减顺序排列的整数数组 nums，和一个目标值 target。请你找出给定目标值在数组中的开始位置和结束位置。</p>
+<p>如果数组中不存在目标值 target，返回 [-1, -1]。</p>
+<p>你必须设计并实现时间复杂度为 O(log n) 的算法解决此问题。</p>
+<p>示例 1<br>输入：nums &#x3D; [5,7,7,8,8,10], target &#x3D; 8<br>输出：[3,4]</p>
+<p>示例 2<br>输入：nums &#x3D; [5,7,7,8,8,10], target &#x3D; 6<br>输出：[-1,-1]</p>
+<p>示例 3<br>输入：nums &#x3D; [], target &#x3D; 0<br>输出：[-1,-1]</p>
+<p>其中：</p>
+<ul>
+<li>0 &lt;&#x3D; nums.length &lt;&#x3D; 10^5</li>
+<li>-10^9&lt;&#x3D; nums[i] &lt;&#x3D; 10^9</li>
+<li>nums 是一个非递减数组</li>
+<li>-10^9 &lt;&#x3D; target &lt;&#x3D; 10^9</li>
+</ul>
+<h4 id="分析-7"><a href="#分析-7" class="headerlink" title="分析"></a>分析</h4><p>数组已排序、时间复杂度为 O(log n) ，先考虑二分查找，但是这题看着容易但实现起来细节方面还是比较绕的，我们首先把情况分析一下：</p>
+<ul>
+<li>情况一：target 在数组范围的右边或者左边，例如数组{3, 4, 5}，target为2或者数组{3, 4, 5}，target为6，此时应该返回{-1, -1}</li>
+<li>情况二：target 在数组范围中，且数组中不存在target，例如数组{3,6,7}，target为5，此时应该返回{-1, -1}</li>
+<li>情况三：target 在数组范围中，且数组中存在target，例如数组{3,6,7}，target为6，此时应该返回{1, 1}</li>
+</ul>
+<p>而我们的目标是左右边界两个</p>
+<p><strong>寻找右边界</strong></p>
+<p>寻找target的右边界（不包括target），记为<code>rightBorder</code><br>区间选用闭区间，即循环写为<code>while (left &lt;= right)</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 如果rightBorder为没有被赋值（即target在数组范围的左边，例如数组[3,3]，target为2），为了处理情况一</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">getRightBorder</span><span class="params">(<span class="type">int</span> *nums, <span class="type">int</span> numsSize, <span class="type">int</span> target)</span> &#123;</span><br><span class="line">    <span class="comment">// 定义target在左闭右闭的区间里，[left, right]</span></span><br><span class="line">    <span class="type">int</span> left = <span class="number">0</span>, right = numsSize - <span class="number">1</span>; </span><br><span class="line">    <span class="type">int</span> rightBorder = <span class="number">-2</span>; <span class="comment">// 记录rightBorder没有被赋值的情况</span></span><br><span class="line">    <span class="keyword">while</span> (left &lt;= right) &#123; <span class="comment">// 当left==right，区间[left, right]依然有效</span></span><br><span class="line">        <span class="type">int</span> middle = left + ((right - left) / <span class="number">2</span>);<span class="comment">// 防止溢出 等同于(left + right)/2</span></span><br><span class="line">        <span class="keyword">if</span> (nums[middle] &gt; target) &#123;</span><br><span class="line">            right = middle - <span class="number">1</span>; <span class="comment">// target 在左区间，所以[left, middle - 1]</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123; <span class="comment">// 当nums[middle] == target的时候，更新left，这样才能得到target的右边界</span></span><br><span class="line">            left = middle + <span class="number">1</span>;</span><br><span class="line">            rightBorder = left;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 情况一，这些数都比target大，返回-2</span></span><br><span class="line">    <span class="comment">// 情况二，位于中间，但是没有target，由于rightBorder每次都是middle + 1跟进，最后的值是插入位置右侧的数</span></span><br><span class="line">    <span class="comment">// 情况三，如果找到了，这里就是目标值的右侧一个数</span></span><br><span class="line">    <span class="keyword">return</span> rightBorder;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>寻找左边界</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 二分查找，寻找target的左边界leftBorder（不包括target）</span></span><br><span class="line"><span class="comment">// 如果leftBorder没有被赋值（即target在数组范围的右边，例如数组[3,3],target为4），为了处理情况一</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">getLeftBorder</span><span class="params">(<span class="type">int</span> *nums, <span class="type">int</span> numsSize, <span class="type">int</span> target)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> left = <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> right = numsSize - <span class="number">1</span>; <span class="comment">// 定义target在左闭右闭的区间里，[left, right]</span></span><br><span class="line">    <span class="type">int</span> leftBorder = <span class="number">-2</span>; <span class="comment">// 记录一下leftBorder没有被赋值的情况</span></span><br><span class="line">    <span class="keyword">while</span> (left &lt;= right) &#123;</span><br><span class="line">        <span class="type">int</span> middle = left + ((right - left) / <span class="number">2</span>);</span><br><span class="line">        <span class="keyword">if</span> (nums[middle] &gt;= target) &#123; <span class="comment">// 寻找左边界，就要在nums[middle] == target的时候更新right</span></span><br><span class="line">            right = middle - <span class="number">1</span>;</span><br><span class="line">            leftBorder = right;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            left = middle + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 情况一，这些数都比target小，返回-2</span></span><br><span class="line">    <span class="comment">// 情况二，位于中间，但是没有target，由于leftBorder每次都是middle - 1跟进，最后的值是插入位置左侧的数</span></span><br><span class="line">    <span class="comment">// 情况三，如果找到了，这里就是目标值的左侧一个数</span></span><br><span class="line">    <span class="keyword">return</span> leftBorder;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>处理三中情况</strong></p>
+<ul>
+<li>二者中有一个为-2，代表处于情况一，返回[-1,-1]即可</li>
+<li>rightBorder - leftBorder &gt; 1 代表情况三，这个数存在返回[ leftBorder + 1, rightBorder - 1 ] 即可</li>
+<li>剩余为情况二，返回[-1,-1]即可</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> *<span class="title function_">searchRange</span><span class="params">(<span class="type">int</span> *nums, <span class="type">int</span> numsSize, <span class="type">int</span> target, <span class="type">int</span> *returnSize)</span></span><br><span class="line">&#123;	<span class="comment">// 为了直观一些写的比较啰嗦</span></span><br><span class="line">    <span class="type">int</span> leftBorder = getLeftBorder(nums, numsSize, target);</span><br><span class="line">    <span class="type">int</span> rightBorder = getRightBorder(nums, numsSize, target);</span><br><span class="line">    <span class="type">int</span> *answer = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="type">int</span>) * <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (leftBorder == <span class="number">-2</span> || rightBorder == <span class="number">-2</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        answer[<span class="number">0</span>] = <span class="number">-1</span>;</span><br><span class="line">        answer[<span class="number">1</span>] = <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (rightBorder - leftBorder &gt; <span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        answer[<span class="number">0</span>] = leftBorder + <span class="number">1</span>;</span><br><span class="line">        answer[<span class="number">1</span>] = rightBorder - <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        answer[<span class="number">0</span>] = <span class="number">-1</span>;</span><br><span class="line">        answer[<span class="number">1</span>] = <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    *returnSize = <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">return</span> answer;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="代码-5"><a href="#代码-5" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;malloc.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> *<span class="title function_">searchRange</span><span class="params">(<span class="type">int</span> *nums, <span class="type">int</span> numsSize, <span class="type">int</span> target, <span class="type">int</span> *returnSize)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> leftBorder = getLeftBorder(nums, numsSize, target);</span><br><span class="line">    <span class="type">int</span> rightBorder = getRightBorder(nums, numsSize, target);</span><br><span class="line">    <span class="type">int</span> *answer = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="type">int</span>) * <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (leftBorder == <span class="number">-2</span> || rightBorder == <span class="number">-2</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        answer[<span class="number">0</span>] = <span class="number">-1</span>;</span><br><span class="line">        answer[<span class="number">1</span>] = <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (rightBorder - leftBorder &gt; <span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        answer[<span class="number">0</span>] = leftBorder + <span class="number">1</span>;</span><br><span class="line">        answer[<span class="number">1</span>] = rightBorder - <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        answer[<span class="number">0</span>] = <span class="number">-1</span>;</span><br><span class="line">        answer[<span class="number">1</span>] = <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    *returnSize = <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">return</span> answer;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">getLeftBorder</span><span class="params">(<span class="type">int</span> *nums, <span class="type">int</span> numsSize, <span class="type">int</span> target)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> left = <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> right = numsSize - <span class="number">1</span>; <span class="comment">// 定义target在左闭右闭的区间里，[left, right]</span></span><br><span class="line">    <span class="type">int</span> leftBorder = <span class="number">-2</span>;      <span class="comment">// 记录一下leftBorder没有被赋值的情况</span></span><br><span class="line">    <span class="keyword">while</span> (left &lt;= right)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> middle = left + ((right - left) / <span class="number">2</span>);</span><br><span class="line">        <span class="keyword">if</span> (nums[middle] &gt;= target)</span><br><span class="line">        &#123; <span class="comment">// 寻找左边界，就要在nums[middle] == target的时候更新right</span></span><br><span class="line">            right = middle - <span class="number">1</span>;</span><br><span class="line">            leftBorder = right;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            left = middle + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> leftBorder;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">getRightBorder</span><span class="params">(<span class="type">int</span> *nums, <span class="type">int</span> numsSize, <span class="type">int</span> target)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 定义target在左闭右闭的区间里，[left, right]</span></span><br><span class="line">    <span class="type">int</span> left = <span class="number">0</span>, right = numsSize - <span class="number">1</span>;</span><br><span class="line">    <span class="type">int</span> rightBorder = <span class="number">-2</span>; <span class="comment">// 记录rightBorder没有被赋值的情况</span></span><br><span class="line">    <span class="keyword">while</span> (left &lt;= right)</span><br><span class="line">    &#123;                                             <span class="comment">// 当left==right，区间[left, right]依然有效</span></span><br><span class="line">        <span class="type">int</span> middle = left + ((right - left) / <span class="number">2</span>); <span class="comment">// 防止溢出 等同于(left + right)/2</span></span><br><span class="line">        <span class="keyword">if</span> (nums[middle] &gt; target)</span><br><span class="line">        &#123;</span><br><span class="line">            right = middle - <span class="number">1</span>; <span class="comment">// target 在左区间，所以[left, middle - 1]</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123; <span class="comment">// 当nums[middle] == target的时候，更新left，这样才能得到target的右边界</span></span><br><span class="line">            left = middle + <span class="number">1</span>;</span><br><span class="line">            rightBorder = left;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 情况一，这些数都比target大，返回-2</span></span><br><span class="line">    <span class="comment">// 情况二，位于中间，但是没有target，由于rightBorder每次都是middle + 1跟进，最后的值是插入位置右侧的数</span></span><br><span class="line">    <span class="comment">// 情况三，如果找到了，这里就是目标值的右侧一个数</span></span><br><span class="line">    <span class="keyword">return</span> rightBorder;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="课后作业-5"><a href="#课后作业-5" class="headerlink" title="课后作业"></a>课后作业</h3><h4 id="题目-9"><a href="#题目-9" class="headerlink" title="题目"></a>题目</h4><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/sqrtx/" >题目链接<i class="fas fa-external-link-alt"></i></a></p>
+<p>给你一个非负整数 x ，计算并返回 x 的 算术平方根 。<br>由于返回类型是整数，结果只保留 整数部分 ，小数部分将被 舍去 。<br>注意：不允许使用任何内置指数函数和算符，例如 pow(x, 0.5) 或者 x ** 0.5 。 </p>
+<p>示例 1：<br>输入：x &#x3D; 4<br>输出：2</p>
+<p>示例 2：<br>输入：x &#x3D; 8<br>输出：2<br>解释：8 的算术平方根是 2.82842…, 由于返回类型是整数，小数部分将被舍去。</p>
+<p>其中：<code>0 &lt;= x &lt;= 2^31 - 1</code></p>
+<h3 id="作业答案-4"><a href="#作业答案-4" class="headerlink" title="作业答案"></a>作业答案</h3><p>采用二分查找，下界为1上界为x，比较中间元素的平方与x的大小关系，逐步缩小范围，没有太大难度，简单练习一下二分查找。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">mySqrt</span><span class="params">(<span class="type">int</span> x)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> l = <span class="number">0</span>, r = x, ans = <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">while</span> (l &lt;= r)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> mid = l + (r - l) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span> ((<span class="type">long</span> <span class="type">long</span>)mid * mid &lt;= x)</span><br><span class="line">        &#123;</span><br><span class="line">            ans = mid;</span><br><span class="line">            l = mid + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            r = mid - <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>时间复杂度：O(log x)，即为二分查找需要的次数。</li>
+<li>空间复杂度：O(1)。</li>
+</ul>
+
+                    
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/2022-07-09/724029e104d2/"
+                                   title="算法总结——队列"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">算法总结——队列</span>
+                                        <span class="post-nav-item">上一篇</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/2022-05-31/6721e810741b/"
+                                   title="Go语言踩坑小记"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">Go语言踩坑小记</span>
+                                        <span class="post-nav-item">下一篇</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+    <div class="comments-container border-box">
+        <div id="comments-anchor" class="comment-area-title border-box">
+            <i class="fas fa-comments"></i>&nbsp;评论
+        </div>
+        <div class="comment-plugin-fail border-box">
+    <span class="fail-tip">评论插件加载失败</span>
+    <button class="reload keep-button">点击重新加载</button>
+</div>
+<div class="comment-plugin-loading flex-center border-box">
+    <i class="loading-icon fa-solid fa-spinner fa-spin"></i>
+    <span class="load-tip">正在加载评论插件</span>
+</div>
+<script data-pjax>
+  window.KeepCommentPlugin = {}
+  window.KeepCommentPlugin.hideLoading = () => {
+    const cplDom = document.querySelector('.comments-container .comment-plugin-loading')
+    cplDom.style.display = 'none'
+  }
+  window.KeepCommentPlugin.loadFailHandle = () => {
+    window.KeepCommentPlugin.hideLoading()
+    const cpfDom = document.querySelector('.comments-container .comment-plugin-fail')
+    cpfDom.style.display = 'flex'
+    cpfDom.querySelector('.reload').addEventListener('click', () => {
+      window.location.reload()
+    })
+  }
+</script>
+
+        
+            
+
+    <div class="valine-container">
+        <div id="vcomments"></div>
+        <script data-pjax
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"
+                async
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        ></script>
+        <script data-pjax
+                async
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        >
+          window.KeepCommentPlugin.initValine = () => {
+            const config = {
+              el: '#vcomments',
+              appId: '0HepQGr76M5xNgWk2Ecac7CC-gzGzoHsz',
+              appKey: '9bWzVBcRI0aSocVHtX3OBSYo',
+              meta: ['nick', 'mail', 'link'],
+              avatar: 'wavatar',
+              enableQQ: true,
+              placeholder: '',
+              lang: 'zh-CN'.toLowerCase()
+            }
+
+            if ('') {
+              config.serverURLs = ''
+            }
+
+            if (window?.Valine) {
+              new Valine(config)
+              window.KeepCommentPlugin.hideLoading()
+            } else {
+              setTimeout(() => {
+                window.KeepCommentPlugin.initValine()
+              }, 1000)
+            }
+          }
+
+          if ('true' === 'true') {
+            setTimeout(() => {
+              window.KeepCommentPlugin.initValine()
+            }, 1200)
+          } else {
+            window.addEventListener('DOMContentLoaded', window.KeepCommentPlugin.initValine)
+          }
+        </script>
+    </div>
+
+
+        
+    </div>
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc right-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E7%BB%84"><span class="nav-number">1.</span> <span class="nav-text">数组</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%89%8D%E7%BC%80%E5%92%8C"><span class="nav-number">1.1.</span> <span class="nav-text">1. 前缀和</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%981-%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84"><span class="nav-number">1.1.1.</span> <span class="nav-text">例题1 长度最小的子数组</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E6%9E%90"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="nav-number">1.1.1.3.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%BE%E5%90%8E%E4%BD%9C%E4%B8%9A"><span class="nav-number">1.1.2.</span> <span class="nav-text">课后作业</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%9C%E4%B8%9A%E7%AD%94%E6%A1%88"><span class="nav-number">1.1.3.</span> <span class="nav-text">作业答案</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%B7%AE%E5%88%86"><span class="nav-number">1.2.</span> <span class="nav-text">2. 差分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%981-%E7%BB%9F%E8%AE%A1%E5%A5%87%E6%95%B0"><span class="nav-number">1.2.1.</span> <span class="nav-text">例题1 统计奇数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE-1"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E6%9E%90-1"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">分析</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%BE%E5%90%8E%E4%BD%9C%E4%B8%9A-1"><span class="nav-number">1.2.2.</span> <span class="nav-text">课后作业</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E6%A0%BC%E5%BC%8F"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%87%BA%E6%A0%BC%E5%BC%8F"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B7%E4%BE%8B"><span class="nav-number">1.2.2.4.</span> <span class="nav-text">样例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E8%8C%83%E5%9B%B4"><span class="nav-number">1.2.2.5.</span> <span class="nav-text">数据范围</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%9C%E4%B8%9A%E7%AD%94%E6%A1%88-1"><span class="nav-number">1.2.3.</span> <span class="nav-text">作业答案</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%8F%8C%E6%8C%87%E9%92%88"><span class="nav-number">1.3.</span> <span class="nav-text">3. 双指针</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%981-%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0"><span class="nav-number">1.3.1.</span> <span class="nav-text">例题1 移除元素</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE-2"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E6%9E%90-2"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">分析</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%BE%E5%90%8E%E4%BD%9C%E4%B8%9A-2"><span class="nav-number">1.3.2.</span> <span class="nav-text">课后作业</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%9C%E4%B8%9A%E4%B8%80"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">作业一</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%9C%E4%B8%9A%E4%BA%8C"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">作业二</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%9C%E4%B8%9A%E7%AD%94%E6%A1%88-2"><span class="nav-number">1.3.3.</span> <span class="nav-text">作业答案</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%9C%E4%B8%9A%E4%B8%80-1"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">作业一</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%9C%E4%B8%9A%E4%BA%8C-1"><span class="nav-number">1.3.3.2.</span> <span class="nav-text">作业二</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3"><span class="nav-number">1.4.</span> <span class="nav-text">4. 滑动窗口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%981-%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84-1"><span class="nav-number">1.4.1.</span> <span class="nav-text">例题1 长度最小的子数组</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE-3"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E6%9E%90-3"><span class="nav-number">1.4.1.2.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81-1"><span class="nav-number">1.4.1.3.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%BE%E5%90%8E%E4%BD%9C%E4%B8%9A-3"><span class="nav-number">1.4.2.</span> <span class="nav-text">课后作业</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE-4"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%B4%E6%98%8E"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">说明</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%9C%E4%B8%9A%E7%AD%94%E6%A1%88-3"><span class="nav-number">1.4.3.</span> <span class="nav-text">作业答案</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E6%9E%90-4"><span class="nav-number">1.4.3.1.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81-2"><span class="nav-number">1.4.3.2.</span> <span class="nav-text">代码</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5"><span class="nav-number">1.5.</span> <span class="nav-text">5. 螺旋矩阵</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%981-%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5%E2%85%A1"><span class="nav-number">1.5.1.</span> <span class="nav-text">例题1 螺旋矩阵Ⅱ</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE-5"><span class="nav-number">1.5.1.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E6%9E%90-5"><span class="nav-number">1.5.1.2.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81-3"><span class="nav-number">1.5.1.3.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%BE%E5%90%8E%E4%BD%9C%E4%B8%9A-4"><span class="nav-number">1.5.2.</span> <span class="nav-text">课后作业</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE-6"><span class="nav-number">1.5.2.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AD%94%E6%A1%88"><span class="nav-number">1.5.2.2.</span> <span class="nav-text">答案</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%99%84%E5%8A%A0%E9%A2%98-%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE"><span class="nav-number">1.6.</span> <span class="nav-text">附加题 二分查找</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%99%E6%B3%95%E4%B8%80"><span class="nav-number">1.6.1.</span> <span class="nav-text">写法一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%99%E6%B3%95%E4%BA%8C"><span class="nav-number">1.6.2.</span> <span class="nav-text">写法二</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%981-%E6%90%9C%E7%B4%A2%E6%8F%92%E5%85%A5%E4%BD%8D%E7%BD%AE"><span class="nav-number">1.6.3.</span> <span class="nav-text">例题1 搜索插入位置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE-7"><span class="nav-number">1.6.3.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E6%9E%90-6"><span class="nav-number">1.6.3.2.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81-4"><span class="nav-number">1.6.3.3.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%982-%E5%9C%A8%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E6%9F%A5%E6%89%BE%E5%85%83%E7%B4%A0%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%92%8C%E6%9C%80%E5%90%8E%E4%B8%80%E4%B8%AA%E4%BD%8D%E7%BD%AE"><span class="nav-number">1.6.4.</span> <span class="nav-text">例题2 在排序数组中查找元素的第一个和最后一个位置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE-8"><span class="nav-number">1.6.4.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E6%9E%90-7"><span class="nav-number">1.6.4.2.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81-5"><span class="nav-number">1.6.4.3.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%BE%E5%90%8E%E4%BD%9C%E4%B8%9A-5"><span class="nav-number">1.6.5.</span> <span class="nav-text">课后作业</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE-9"><span class="nav-number">1.6.5.1.</span> <span class="nav-text">题目</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%9C%E4%B8%9A%E7%AD%94%E6%A1%88-4"><span class="nav-number">1.6.6.</span> <span class="nav-text">作业答案</span></a></li></ol></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+        &copy;&nbsp;<span>2021</span>&nbsp;-&nbsp;2024
+        
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">tbghg</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        由&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;驱动&nbsp;&&nbsp;主题&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
+    
+
+    
+
+    
+        <div class="record-info info-item">
+            
+                
+                    <div class="record-item border-box">
+                        <a class=""
+                           target="_blank"
+                           href="https://beian.miit.gov.cn"
+                        >
+                            辽ICP备2021007417号
+                        </a>
+                    </div>
+                
+            
+        </div>
+    
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools right-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
+        
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        <!-- to bottom -->
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+            <li class="tools-item go-to-comments-tablet flex-center">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E7%BB%84"><span class="nav-number">1.</span> <span class="nav-text">数组</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%89%8D%E7%BC%80%E5%92%8C"><span class="nav-number">1.1.</span> <span class="nav-text">1. 前缀和</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%981-%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84"><span class="nav-number">1.1.1.</span> <span class="nav-text">例题1 长度最小的子数组</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E6%9E%90"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="nav-number">1.1.1.3.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%BE%E5%90%8E%E4%BD%9C%E4%B8%9A"><span class="nav-number">1.1.2.</span> <span class="nav-text">课后作业</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%9C%E4%B8%9A%E7%AD%94%E6%A1%88"><span class="nav-number">1.1.3.</span> <span class="nav-text">作业答案</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%B7%AE%E5%88%86"><span class="nav-number">1.2.</span> <span class="nav-text">2. 差分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%981-%E7%BB%9F%E8%AE%A1%E5%A5%87%E6%95%B0"><span class="nav-number">1.2.1.</span> <span class="nav-text">例题1 统计奇数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE-1"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E6%9E%90-1"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">分析</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%BE%E5%90%8E%E4%BD%9C%E4%B8%9A-1"><span class="nav-number">1.2.2.</span> <span class="nav-text">课后作业</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E6%A0%BC%E5%BC%8F"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%87%BA%E6%A0%BC%E5%BC%8F"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B7%E4%BE%8B"><span class="nav-number">1.2.2.4.</span> <span class="nav-text">样例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E8%8C%83%E5%9B%B4"><span class="nav-number">1.2.2.5.</span> <span class="nav-text">数据范围</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%9C%E4%B8%9A%E7%AD%94%E6%A1%88-1"><span class="nav-number">1.2.3.</span> <span class="nav-text">作业答案</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%8F%8C%E6%8C%87%E9%92%88"><span class="nav-number">1.3.</span> <span class="nav-text">3. 双指针</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%981-%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0"><span class="nav-number">1.3.1.</span> <span class="nav-text">例题1 移除元素</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE-2"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E6%9E%90-2"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">分析</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%BE%E5%90%8E%E4%BD%9C%E4%B8%9A-2"><span class="nav-number">1.3.2.</span> <span class="nav-text">课后作业</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%9C%E4%B8%9A%E4%B8%80"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">作业一</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%9C%E4%B8%9A%E4%BA%8C"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">作业二</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%9C%E4%B8%9A%E7%AD%94%E6%A1%88-2"><span class="nav-number">1.3.3.</span> <span class="nav-text">作业答案</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%9C%E4%B8%9A%E4%B8%80-1"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">作业一</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%9C%E4%B8%9A%E4%BA%8C-1"><span class="nav-number">1.3.3.2.</span> <span class="nav-text">作业二</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3"><span class="nav-number">1.4.</span> <span class="nav-text">4. 滑动窗口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%981-%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84-1"><span class="nav-number">1.4.1.</span> <span class="nav-text">例题1 长度最小的子数组</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE-3"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E6%9E%90-3"><span class="nav-number">1.4.1.2.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81-1"><span class="nav-number">1.4.1.3.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%BE%E5%90%8E%E4%BD%9C%E4%B8%9A-3"><span class="nav-number">1.4.2.</span> <span class="nav-text">课后作业</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE-4"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%B4%E6%98%8E"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">说明</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%9C%E4%B8%9A%E7%AD%94%E6%A1%88-3"><span class="nav-number">1.4.3.</span> <span class="nav-text">作业答案</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E6%9E%90-4"><span class="nav-number">1.4.3.1.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81-2"><span class="nav-number">1.4.3.2.</span> <span class="nav-text">代码</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5"><span class="nav-number">1.5.</span> <span class="nav-text">5. 螺旋矩阵</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%981-%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5%E2%85%A1"><span class="nav-number">1.5.1.</span> <span class="nav-text">例题1 螺旋矩阵Ⅱ</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE-5"><span class="nav-number">1.5.1.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E6%9E%90-5"><span class="nav-number">1.5.1.2.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81-3"><span class="nav-number">1.5.1.3.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%BE%E5%90%8E%E4%BD%9C%E4%B8%9A-4"><span class="nav-number">1.5.2.</span> <span class="nav-text">课后作业</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE-6"><span class="nav-number">1.5.2.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AD%94%E6%A1%88"><span class="nav-number">1.5.2.2.</span> <span class="nav-text">答案</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%99%84%E5%8A%A0%E9%A2%98-%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE"><span class="nav-number">1.6.</span> <span class="nav-text">附加题 二分查找</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%99%E6%B3%95%E4%B8%80"><span class="nav-number">1.6.1.</span> <span class="nav-text">写法一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%99%E6%B3%95%E4%BA%8C"><span class="nav-number">1.6.2.</span> <span class="nav-text">写法二</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%981-%E6%90%9C%E7%B4%A2%E6%8F%92%E5%85%A5%E4%BD%8D%E7%BD%AE"><span class="nav-number">1.6.3.</span> <span class="nav-text">例题1 搜索插入位置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE-7"><span class="nav-number">1.6.3.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E6%9E%90-6"><span class="nav-number">1.6.3.2.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81-4"><span class="nav-number">1.6.3.3.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%982-%E5%9C%A8%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E6%9F%A5%E6%89%BE%E5%85%83%E7%B4%A0%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%92%8C%E6%9C%80%E5%90%8E%E4%B8%80%E4%B8%AA%E4%BD%8D%E7%BD%AE"><span class="nav-number">1.6.4.</span> <span class="nav-text">例题2 在排序数组中查找元素的第一个和最后一个位置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE-8"><span class="nav-number">1.6.4.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E6%9E%90-7"><span class="nav-number">1.6.4.2.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81-5"><span class="nav-number">1.6.4.3.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%BE%E5%90%8E%E4%BD%9C%E4%B8%9A-5"><span class="nav-number">1.6.5.</span> <span class="nav-text">课后作业</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE-9"><span class="nav-number">1.6.5.1.</span> <span class="nav-text">题目</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%9C%E4%B8%9A%E7%AD%94%E6%A1%88-4"><span class="nav-number">1.6.6.</span> <span class="nav-text">作业答案</span></a></li></ol></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+
+
+<!-- common js -->
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/js/toggle-theme.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/js/code-block.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/js/libs/anime.min.js"></script>
+
+<!-- local search -->
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/js/local-search.js"></script>
+
+
+<!-- lazyload -->
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/js/lazyload.js"></script>
+
+
+<div class="pjax">
+    <!-- home page -->
+    
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/js/post/post-helper.js"></script>
+
+        <!-- toc -->
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/js/post/toc.js"></script>
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart()
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd()
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'))
+            KEEP.initExecute()
+        });
+    });
+</script>
+
+
+
+
+</body>
+</html>

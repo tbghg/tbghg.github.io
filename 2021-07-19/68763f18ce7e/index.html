@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="tbghg">
+    <meta name="description" content="这里是TBH的博客，用于技术分享，记录日常。">
+    <meta name="author" content="tbghg">
+    
+    <title>
+        
+            buuctf rip 1 详细wp |
+        
+        TBH个人博客
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="https://s1.ax1x.com/2023/01/12/pSurRG8.png">
+    
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/font/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/font/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/font/css/brands.min.css">
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"tbghg.top","root":"/","language":"zh-CN","path":"search.json"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"TBH个人博客","author":"tbghg","avatar":"/images/avatar.jpg","logo":"https://s1.ax1x.com/2023/01/12/pSurRG8.png","favicon":"https://s1.ax1x.com/2023/01/12/pSurRG8.png"},"menu":{"home":"/                        || fa-solid fa-home","archives":"/archives            || fa-solid fa-box-archive","about":"/about                || fa-solid fa-user-graduate","categories":"/categories      || fa-solid fa-layer-group","tools":"/tools                || fa-solid fa-tools","开往":"https://www.travellings.cn/go.html || fa-solid fa-train-subway"},"first_screen":{"enable":true,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"丰富多彩的生活需要强大的执行力||描绘属于自己的故事","hitokoto":false},"social_contact":{"enable":true,"links":{"github":"https://github.com/tbghg","weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":"1312186639@qq.com"}},"scroll":{"progress_bar":false,"percent":false,"hide_header":true},"home":{"announcement":null,"category":true,"tag":true,"post_datetime":"updated"},"post":{"author_badge":{"enable":false,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":true,"min2read":true},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":false,"reward":{"enable":false,"img_link":null,"text":null}},"code_block":{"tools":{"enable":true,"style":"mac"},"highlight_theme":"default"},"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true,"layout":"right"},"website_count":{"busuanzi_count":{"enable":false,"site_uv":false,"site_pv":false,"page_pv":false}},"local_search":{"enable":true,"preload":true},"comment":{"enable":true,"use":"valine","valine":{"appid":"0HepQGr76M5xNgWk2Ecac7CC-gzGzoHsz","appkey":"9bWzVBcRI0aSocVHtX3OBSYo","server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.36"},"waline":{"server_url":null,"reaction":false,"version":"3.2.1"},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":true},"lazyload":{"enable":true},"cdn":{"enable":true,"provider":"jsdelivr"},"pjax":{"enable":true},"footer":{"since":2021,"word_count":false,"site_deploy":{"enable":false,"provider":"github","url":null},"record":{"enable":true,"list":[{"code":"辽ICP备2021007417号","link":"https://beian.miit.gov.cn"}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"","source_data":{"links":[{"title":"朋友们 1"},{"name":"XPoet","link":"https://xpoet.cn/","description":"懒惰是程序员第一生产力","avatar":"https://cdn.statically.io/gh/XPoet/image-hosting@master/common-use/avatar.jpg"},{"name":"不知名艺术家","link":"https://jinzhanqi.com/","description":"love artist, love code.","avatar":"https://s3.ax1x.com/2020/11/17/DVvkB4.jpg"}],"photos":[{"url":"https://xpoet.cn/images/logo.png","name":"XPoet"},{"url":"/images/photos/img-1.png","name":"img1"},{"url":"/images/photos/img-2.png","name":"img2"}],"tools":[{"category":"聊天 AI"},{"name":"ChatGPT","link":"https://chat.openai.com/","description":"OpenAI 旗下 AI 聊天对话工具","image":"/images/tools/chatgpt.svg"},{"name":"Gemini","link":"https://gemini.google.com/app","description":"Google 旗下 AI 聊天对话工具","image":"/images/tools/gemini.svg"},{"category":"技术文档"},{"name":"字节跳动技术团队","link":"https://juejin.cn/user/1838039172387262/posts"},{"name":"腾讯技术工程官方号","link":"https://cloud.tencent.com/developer/user/170434/activities"},{"name":"淘宝技术","link":"https://tech.taobao.org/news"},{"name":"哔哩哔哩技术","link":"https://space.bilibili.com/393183630"},{"name":"美团技术团队","link":"https://tech.meituan.com/"},{"name":"技术文章摘抄","link":"http://learn.lianglianglee.com/","description":"内容较为丰富，收录了较多技术文章"},{"name":"硬核课堂","link":"https://space.bilibili.com/1324259795"},{"name":"戌米的论文笔记","link":"https://space.bilibili.com/61981458","description":"raft算法"}]},"version":"4.2.3"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"复制代码","copied":"已复制","fold":"折叠代码块","folded":"已折叠"}
+    KEEP.language_copy_copyright = {"copy":"复制版权信息","copied":"已复制","title":"原文标题","author":"原文作者","link":"原文链接"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="TBH个人博客" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+
+<main class="page-container border-box">
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="https://s1.ax1x.com/2023/01/12/pSurRG8.png">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               TBH个人博客
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-home"></i>
+                                
+                                首页
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-box-archive"></i>
+                                
+                                归档
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/about">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-user-graduate"></i>
+                                
+                                关于
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/categories">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-layer-group"></i>
+                                
+                                分类
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tools">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-tools"></i>
+                                
+                                工具
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" target="_blank" rel="noopener" href="https://www.travellings.cn/go.html">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-train-subway"></i>
+                                
+                                开往
+                                
+                            </a>
+                            
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="menu-text-color fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile border-box flex-start">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list border-box">
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-home"></i>
+                                </span>
+                            
+                            首页
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-box-archive"></i>
+                                </span>
+                            
+                            归档
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/about">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-user-graduate"></i>
+                                </span>
+                            
+                            关于
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/categories">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-layer-group"></i>
+                                </span>
+                            
+                            分类
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tools">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-tools"></i>
+                                </span>
+                            
+                            工具
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" target="_blank" rel="noopener" href="https://www.travellings.cn/go.html">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-train-subway"></i>
+                                </span>
+                            
+                            开往
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        buuctf rip 1 详细wp
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/avatar.jpg">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">tbghg</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2021-07-19 18:51:58</span>
+            </span>
+
+            <span class="meta-info-item post-update-date">
+                <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                <span class="datetime" data-updated="Mon Jul 19 2021 10:51:58 GMT+0000">2021-07-19 18:51:58</span>
+            </span>
+        
+
+        
+            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="post-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></li>
+                        
+                    
+                            <li class="category-item">&nbsp;<i class="icon fas fa-angle-right"></i>&nbsp;<a href="/categories/%E6%8A%80%E6%9C%AF/CTF/">CTF</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/CTF/">CTF</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/PWN/">PWN</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+            <span class="meta-info-item post-wordcount">
+                <i class="icon fas fa-file-word"></i>&nbsp;<span>4.4k 字</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-min2read">
+                <i class="icon fas fa-clock"></i>&nbsp;<span>15 分钟</span>
+            </span>
+        
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body code-block-unshrink">
+                    
+
+                    
+                         <h1 id="buuctf-rip-详细wp"><a href="#buuctf-rip-详细wp" class="headerlink" title="buuctf rip 详细wp"></a>buuctf rip 详细wp</h1><blockquote>
+<p>【转载】</p>
+<p>原文地址：<a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/refrain-again/p/15001283.html" >https://www.cnblogs.com/refrain-again/p/15001283.html<i class="fas fa-external-link-alt"></i></a></p>
+<p>作者：<a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/refrain-again/" >refrain-again<i class="fas fa-external-link-alt"></i></a></p>
+<p>TBH：感谢这位大佬！</p>
+</blockquote>
+<p>buu上rip这道题作为pwn里面最简单的栈题，意外的发现网上很多wp因为远程环境的更新，需要维持堆栈平衡，所以原先老旧的wp在本地可以打通，但在远程却打不通，甚至很多人的blog就拿着原本可以打通的wp贴上去，自己都没有实操一遍，我相信很多人都和我一样因为这些wp对初期学习造成了不小的困扰，特别是初期自己底层知识什么都不懂的时候，看到一些甚至是在胡乱解释的wp，就不知道该如何进行后续的学习了，所以今天我通过近两天的摸索，写一篇尽量正确的wp，因为我自己水平有限，一些细节的地方可能会有错误，但大的思路一定是对的，希望能给大家提供帮助，其中用到了别人ppt里现成的图，本人仅用作学习交流，侵删。</p>
+<p>ps：因为这里是作为本人的学习笔记，所以前面会有大量的关于栈如何工作的基础内容，不想看的可以直接跳过去看最后的wp</p>
+<h2 id="1-Stack-栈-的工作原理"><a href="#1-Stack-栈-的工作原理" class="headerlink" title="1.Stack(栈)的工作原理"></a>1.Stack(栈)的工作原理</h2><p><strong>推荐文章：</strong></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/25816426" >手把手教你栈溢出从入门到放弃（上）<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/25892385" >手把手教你栈溢出从入门到放弃（下）<i class="fas fa-external-link-alt"></i></a></p>
+<h3 id="1-1-C语言内存分布"><a href="#1-1-C语言内存分布" class="headerlink" title="1.1 C语言内存分布"></a>1.1 C语言内存分布</h3><p>首先我们来看当一个c语言函数在执行的时候，操作系统是如何调度内存将数据存放并且完成相关函数操作的</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/WJThUf"><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://z3.ax1x.com/2021/07/19/WJThUf.png"
+                        alt="WJThUf.png"
+                 ></a></p>
+<p>在右边的图中，我们可以大致的了解，一个c程序被编译成可执行文件执行时，他在内存中的存储情况如该图所示，这是一个内存空间，地址由底部逐渐升高，其中，最上层的kernel是操作系统的核心源码，他是操作系统完成各项功能的关键，这一部分我们暂时不做深入的研究，在早期的学习中，我们关注的是Stack(栈)，Heap(堆)，BSS(静态内存分配)。</p>
+<p>其中Stack(栈)用于静态分配中的存放局部变量，如局部变量t和ptr都被储存在了栈中，而BSS存储全局变量，Heap则负责存储动态分配的内存空间，如c语言中的malloc&#x2F;free分配内存时，就会分配到Heap区域。</p>
+<p>而Heap与Stack中间的内存空间，则是共享的一片内存空间，Heap从低地址向高地址分配空间，Stack从高地址向低地址分配空间，从而完整高效的使用了这一片内存空间。</p>
+<h3 id="1-2栈中的内存分布与工作原理"><a href="#1-2栈中的内存分布与工作原理" class="headerlink" title="1.2栈中的内存分布与工作原理"></a>1.2栈中的内存分布与工作原理</h3><p>好了，现在我们已经大致了解了c语言的内存分布，其中heap和Bss尤其是heap会在后面更深入的学习中使用，我也会在后续的wp中更新相关知识，今天这道题只需要用的栈的相关知识，现在我们来看，当函数调用时，栈的内存空间是如何分布的。</p>
+<p>栈这个数据结构相信大家早就学过，首先我们需要了解一下栈中常用的3个寄存器,64位cpu对应rsp,rbp,rip三个寄存器。而32位cpu则对应esp，ebp，eip三个寄存器。然后我们了解一下栈帧的概念，一个栈帧就是保存一个函数的状态，简单来说就是一个函数所需要的栈空间，rsp&#x2F;esp永远指向栈帧的栈顶，rbp&#x2F;ebp则永远指向栈帧的栈底,rip&#x2F;eip指向当前栈栈帧执行的命令。如图中文字所，栈从高地址向低地址开辟内存空间，所以低地址的是栈顶，而栈底的第一个栈帧在这里存放着我们的主函数的父函数，简单来说就是在c语言的编译过程中还有很多函数如scanf等由他人的库写好的函数我们需要进行“链接”，所以main函数并不是最栈顶的函数，当然main以上的函数我们这题不需要进行研究，你也可以当做栈顶就是main函数，因为栈先进后出的特性，所以当在main函数中需要调用其他函数时，就开辟一个新的函数栈帧，并存储上一个栈的栈底，当调用结束时，将现在的栈帧弹出，恢复到原来的main函数继续执行完main函数，比如，当上面的代码main函数调用到sum函数时，便会开辟一个新的栈帧，这里需要注意的是，main函数调用sum函数完成1+2时，1和2会被逆向存储在自己的栈帧（main函数的栈帧）中，然后完成sum函数以后，回到main函数继续执行剩余操作。</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/WJ7gWF"><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://z3.ax1x.com/2021/07/19/WJ7gWF.png"
+                        alt="WJ7gWF.png"
+                 ></a></p>
+<p>下面，我们来看每个栈帧的具体结构</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/WJ7WQJ"><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://z3.ax1x.com/2021/07/19/WJ7WQJ.png"
+                        alt="WJ7WQJ.png"
+                 ></a></p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/WJ7cJU"><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://z3.ax1x.com/2021/07/19/WJ7cJU.png"
+                        alt="WJ7cJU.png"
+                 ></a></p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/WJ72z4"><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://z3.ax1x.com/2021/07/19/WJ72z4.png"
+                        alt="WJ72z4.png"
+                 ></a></p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/WJ76iT"><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://z3.ax1x.com/2021/07/19/WJ76iT.png"
+                        alt="WJ76iT.png"
+                 ></a></p>
+<p>上面的几张图，就是创建新栈帧的过程，当然，图中所演示的是在32位cpu中的情况，也是就是寄存器与存储字长有着细微的变化，但是差别并不是很大，并且，图中的对于寄存器的各种操作都是在汇编代码中具体实现的，这里我们并不赘述太多，相信大家都对简单的汇编或多或少有些了解，图中我们可以看到两个相邻的栈帧，子函数(callee’s function state)栈帧的Return Address紧挨着父函数(caller’s…state)，而我们需要注意的是，Return Address是什么呢？在第二张图中，很明确的告诉我们，在调用子函数时，我们将汇编中父函数的下一个汇编指令的地址，放入Return Address，这样我们在子函数完成时，便可以将Return Address中的值弹入rip&#x2F;eip中，这样程序便会从上次调用的地方继续完成父函数，而这一点，也就是我们实行栈溢出的关键，我们不妨想一想，如果我们能够通过某种方式，操控Return Address的返回地址，那么是不是意味着，我们可以任意操控远程的机器指向任何指令，也就是说我们只要可以篡改Return Address指向一个危险函数的地址，理论上，我们就可以通过危险函数干任何我们想干的事情。那么我们再来看看当子函数调用结束后，是如何删除子函数的栈帧返回父函数的。</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/WJHklQ"><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://z3.ax1x.com/2021/07/19/WJHklQ.png"
+                        alt="WJHklQ.png"
+                 ></a></p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/WJHFSg"><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://z3.ax1x.com/2021/07/19/WJHFSg.png"
+                        alt="WJHFSg.png"
+                 ></a></p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/WJHPfS"><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://z3.ax1x.com/2021/07/19/WJHPfS.png"
+                        alt="WJHPfS.png"
+                 ></a></p>
+<p>这里具体需要ppt中的汇编代码辅助理解，但是汇编代码的流程图实在太多，改天有空我会发上去，大概就是esp先等于ebp，然后再pop ebp 将esp指向的地址的值赋给ebp，也就是此时的父函数的一个栈帧的栈底，于是ebp就回到了父函数的栈底，而因为pop以后esp自动加一指向Return Address（因为栈是从高地址指向低地址，所以是加一），然后再执行return指令，简单的讲就是pop eip，将esp指向的值弹入到eip中，前面我们说过Return Address里存放的是当前栈帧函数的父函数调用当前函数时下一个指令的地址，而eip又是当前要执行的指令地址的寄存器，于是这样就会回到父函数继续执行父函数的下一个指令。而此时pop以后esp再次加一，所以就回到了父函数栈帧的栈顶，ebp也在上一次pop ebp时就回到了父函数的栈底，而这样一个过程可以理论上被无数次执行，所以用栈来实现函数调用及其的方便。</p>
+<h2 id="2-buuctf-rip-wp"><a href="#2-buuctf-rip-wp" class="headerlink" title="2.buuctf rip wp"></a>2.buuctf rip wp</h2><h3 id="2-1栈溢出的原理"><a href="#2-1栈溢出的原理" class="headerlink" title="2.1栈溢出的原理"></a>2.1栈溢出的原理</h3><p>那么上面我们学习了栈的基础知识，我们便以buu上的这一道rip来看一下最简单的栈溢出。</p>
+<p>如果你认真的看了上面的栈的工作流程，那么你就会发现，实际上在一个函数调用完以后就要将Return Address的值返回rip&#x2F;eip，他的值也就是父函数调用此函数时下一个指令的地址，而rip&#x2F;eip将执行这一指令，并继续完成父函数，那么我们只要设法将Return Address的值改变到一个危险函数的地址，我们就可以通过这个危险函数获得系统的控制权。</p>
+<p>那么我们怎么样才可以改变Return Address的地址呢？我们知道子函数在调用时，如果子函数中有局部变量，那么他将被存储到子函数的栈帧中，以这道rip为例，下载rip给我们的elf文件，将其拖入ida pro,按f5将其反编译成c语言伪代码</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/WJHKYT"><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://z3.ax1x.com/2021/07/19/WJHKYT.png"
+                        alt="WJHKYT.png"
+                 ></a></p>
+<p>我们可以看到，主要有一个main函数，还有一个fun函数</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/WJHukV"><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://z3.ax1x.com/2021/07/19/WJHukV.png"
+                        alt="WJHukV.png"
+                 ></a></p>
+<p>这个elf可执行文件，补充一下，elf是linux下的可执行文件，相当于windows中的exe文件，他的反编译文件是由一个main函数和一个fun函数组成的，当我们用虚拟机在unbantu中正常执行他时，他只会执行main函数，因为fun函数并没有被调用，而fun函数也就是我们上面说的危险函数，system是c语言下的一个可以执行shell命令的函数，目前你可以简单理解为，执行了这个危险函数，我们就拿到了远端服务器的shell，也就是相当于在windows下以管理员身份开启cmd，那么我们就可以通过一系列后续指令控制远端服务器，但在ctf中，我们只需要拿到shell以后获得flag就算成功。</p>
+<p>那么，回过头来，我们再来看这个main函数，我们刚刚说过，函数的局部变量会存放在他的栈中，那么在main函数中，他char了一个s，也就是在main函数的栈帧中，划分了一个15字节的存储空间，我们在unbantu中file一下这个文件:</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/WJHB1e"><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://z3.ax1x.com/2021/07/19/WJHB1e.png"
+                        alt="WJHB1e.png"
+                 ></a></p>
+<p>我们可以发现，这是一个64位的elf文件，也就是说，每个存储单元是8个字节（如果不知道的去学学计组），简单的讲就是一个字节是8位，因为他是64位，所以一个存储单元就是8个字节，同理32位就是4个字节。</p>
+<p>然后我们可以先通过checksec查看保护机制(不知道没关系，以后才会用到)，因为这题是任何保护都没有打开的，所以我们可以实现最简单的栈溢出</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/WJHrXd"><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://z3.ax1x.com/2021/07/19/WJHrXd.png"
+                        alt="WJHrXd.png"
+                 ></a></p>
+<p>接回上面的话题，我们开辟了一个15个字节的存储空间，那么在栈帧中系统就会给我们分配一个15个字节的存储空间，那么我们再注意一下我们是如何写入这15个字节的数据的，没错，我们使用的是gets函数，相信大家在c语言中都学习过这个函数，我们在c语言的学习中知道，这个函数时可以无限制输入数据的，但当时，我们并没有意识到gets函数时危险的，现在，我们通过前面栈的工作原理的学习，我们发现，我们明明只分配了15个字节的内存空间，但是我们可以输入无数个字节，那么这会导致什么问题呢？请大家自己回过头再去看一看前面栈的结构图</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/WJHD6H"><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://z3.ax1x.com/2021/07/19/WJHD6H.png"
+                        alt="WJHD6H.png"
+                 ></a></p>
+<p>此时，我们的s就在Local Variables，把他想象成一个水桶，我们如果可以一直往里面不停的倒水，那么这个水桶的水满了，是不是就可以溢出到另一个水桶Caller’s ebp里？再继续倒水，那是不是就溢出到了Return Address里，那么原本不属于Return Address的水由于其他水桶的溢出而进入了Return Address，也就是改变了Return Address的值。这个时候，我们前面所说的，通过改变Return Address的值来完成对危险函数的调用，是不是就可以实现了？</p>
+<p>那么，最后的问题就是，我们该怎么确定溢出多少水呢？这个也是很简单的问题，Local Variables也就是char s[]划定了15个字节的内存空间,那么我们需要知道这个内存空间在栈中的位置，就可以知道需要多少个字节才能到达</p>
+<p>我们打开 ida pro ，作为最简单的栈题，我们在 ida pro 中的 main 函数在创建空间s时已经清晰的告诉了我们距离 rbp 的距离是 Fh ,这是16进制也就是15个字节，当然，这只是理想的情况，在复杂一些的情况中，开辟的内存地址显然不会像这题一样紧挨着上一个 rbp ，甚至有时出题人会故意在 ida 的静态调试中告诉你错误的地址，这个时候你需要用 pwndbg 进行动态调试，这题通过动态调试也可以发现，二者的地址是一样的。所以我们首先需要输入15个字节到达 rbp 的位置。</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/WJH0pD"><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://z3.ax1x.com/2021/07/19/WJH0pD.png"
+                        alt="WJH0pD.png"
+                 ></a></p>
+<p>然后 Caller’s ebp 中存储的是上一个函数的 ebp 的值，当然，我们这个图的例子是32位的系统，而我们是64位的系统，所以 ebp 应该是 rbp 才对，是8个字节，那么我们还需要8个自己的数据把 Caller’s rbp 的数据填满（当然在本题中应该是 rbp ，因为是64位的系统)，这样我们就填满了前两个水桶，你可以理解为水即将溢出进入Return Address了，所以接下来我们输入的值，将溢出进入 Return Address ，也就是说，这时我们还需要输入危险函数，也就是fun函数的地址，查看一下ida pro发现fun函数的地址是 0x401186，于是只需要再输入 0x401186这一地址值，该地址就被我们送到了Return Address，当这个函数调用结束后就会被送到rip，执行fun函数，从而控制shell。</p>
+<h3 id="2-2-exp"><a href="#2-2-exp" class="headerlink" title="2.2 exp"></a>2.2 exp</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">p = remote(<span class="string">&quot;node4.buuoj.cn&quot;</span>,<span class="number">27296</span>)</span><br><span class="line">payload=<span class="string">b&#x27;A&#x27;</span>*<span class="number">15</span>+<span class="string">b&#x27;B&#x27;</span>*<span class="number">8</span>+p64(<span class="number">0x401186</span>+<span class="number">1</span>)</span><br><span class="line">p.sendline(payload)</span><br><span class="line"></span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
+<p>作为最简单的 pwn 题，当然是最简单的 exp ，只要知道原理几行代码就可以搞定，我们发送了15个A用来填充s，再发送8个字节用来填充b，将地址打包为 p64 位的数据一起发送，就可以完成栈溢出，至于最后为什么要 +1 ，我们可以发现，不加一我们在本地可以打通，但是却打不通远程，这也是我开头说的，和以前 payload 不一样的地方，原理我们是没有错的，这里 +1 是为了堆栈平衡，详细可以看大佬的博客<a class="link"   target="_blank" rel="noopener" href="http://blog.eonew.cn/archives/958" >http://blog.eonew.cn/archives/958<i class="fas fa-external-link-alt"></i></a></p>
+<p>因为现在已经是凌晨三点，再加上我对这里还有点模糊，也就不废话了，总之我们学的知识是没有错的，这里需要堆栈平衡应该也是远程 buu 的服务器更新以后 linux 环境发生了变化，加了新的要求，而不是因为其他原因，改成15个字节直接发送地址不加一也可以完成交互，但是并不是因为不需要覆盖 rbp ，而是满足堆栈平衡的一种另外一种方式，后续如果学明白了会更新。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>虽然是最简单的 pwn 题，exp只有短短几行代码，但是想要完全掌握背后的知识，却不是那么简单，哪怕是已经学了两天，今天在复盘栈的工作原理的时候，发现自己也会很多不熟练的地方，所以只有将基础打牢，能在脑海中自动演示栈的工作原理，才能完成后续更加复杂的学习，这也是二进制安全难入门的地方之一，在此与各位师傅共勉。</p>
+<p>这里面用的图，全都是某个安全团队大师傅讲pwn入门公开课用的图，因为一些问题不太方便公开，如果有人需要完整ppt的话，如果有疑问或者想要ppt再或者想要一起学习的师傅可以中私信联系我。</p>
+<p>其实大家看完这题以后一定和我刚学完一样会有一个疑惑，那就是实际情况中，怎么可能会有人傻到将程序设置一个后门函数呢？实际情况中确实是不会有人这么傻的，因此这只是一个最简单的栈溢出题，意在让你了解栈工作的基本原理，属于 level 0，在后续更深入的学习中，我们会遇到更符合实际情况的题目，也会见招拆招，构造出更复杂的 payload 。</p>
+<p>那么就是这样，写完已经凌晨三点了，还是那句话，很简单的题目，但很多厉害的大佬都懒得详细写这些，可能我第一次写博客写的也不是很好，但希望对各位能有所帮助，就是这样，睡觉了。</p>
+
+                    
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/CTF/">CTF</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/PWN/">PWN</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/2021-08-09/9c0d67d4a04b/"
+                                   title="阿里云连接socket服务器失败避坑"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">阿里云连接socket服务器失败避坑</span>
+                                        <span class="post-nav-item">上一篇</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/2021-07-14/150bb368cd1a/"
+                                   title="Python程序设计：滑雪大冒险"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">Python程序设计：滑雪大冒险</span>
+                                        <span class="post-nav-item">下一篇</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+    <div class="comments-container border-box">
+        <div id="comments-anchor" class="comment-area-title border-box">
+            <i class="fas fa-comments"></i>&nbsp;评论
+        </div>
+        <div class="comment-plugin-fail border-box">
+    <span class="fail-tip">评论插件加载失败</span>
+    <button class="reload keep-button">点击重新加载</button>
+</div>
+<div class="comment-plugin-loading flex-center border-box">
+    <i class="loading-icon fa-solid fa-spinner fa-spin"></i>
+    <span class="load-tip">正在加载评论插件</span>
+</div>
+<script data-pjax>
+  window.KeepCommentPlugin = {}
+  window.KeepCommentPlugin.hideLoading = () => {
+    const cplDom = document.querySelector('.comments-container .comment-plugin-loading')
+    cplDom.style.display = 'none'
+  }
+  window.KeepCommentPlugin.loadFailHandle = () => {
+    window.KeepCommentPlugin.hideLoading()
+    const cpfDom = document.querySelector('.comments-container .comment-plugin-fail')
+    cpfDom.style.display = 'flex'
+    cpfDom.querySelector('.reload').addEventListener('click', () => {
+      window.location.reload()
+    })
+  }
+</script>
+
+        
+            
+
+    <div class="valine-container">
+        <div id="vcomments"></div>
+        <script data-pjax
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"
+                async
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        ></script>
+        <script data-pjax
+                async
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        >
+          window.KeepCommentPlugin.initValine = () => {
+            const config = {
+              el: '#vcomments',
+              appId: '0HepQGr76M5xNgWk2Ecac7CC-gzGzoHsz',
+              appKey: '9bWzVBcRI0aSocVHtX3OBSYo',
+              meta: ['nick', 'mail', 'link'],
+              avatar: 'wavatar',
+              enableQQ: true,
+              placeholder: '',
+              lang: 'zh-CN'.toLowerCase()
+            }
+
+            if ('') {
+              config.serverURLs = ''
+            }
+
+            if (window?.Valine) {
+              new Valine(config)
+              window.KeepCommentPlugin.hideLoading()
+            } else {
+              setTimeout(() => {
+                window.KeepCommentPlugin.initValine()
+              }, 1000)
+            }
+          }
+
+          if ('true' === 'true') {
+            setTimeout(() => {
+              window.KeepCommentPlugin.initValine()
+            }, 1200)
+          } else {
+            window.addEventListener('DOMContentLoaded', window.KeepCommentPlugin.initValine)
+          }
+        </script>
+    </div>
+
+
+        
+    </div>
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc right-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#buuctf-rip-%E8%AF%A6%E7%BB%86wp"><span class="nav-number">1.</span> <span class="nav-text">buuctf rip 详细wp</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Stack-%E6%A0%88-%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="nav-number">1.1.</span> <span class="nav-text">1.Stack(栈)的工作原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-C%E8%AF%AD%E8%A8%80%E5%86%85%E5%AD%98%E5%88%86%E5%B8%83"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1 C语言内存分布</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2%E6%A0%88%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%88%86%E5%B8%83%E4%B8%8E%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.2栈中的内存分布与工作原理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-buuctf-rip-wp"><span class="nav-number">1.2.</span> <span class="nav-text">2.buuctf rip wp</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1%E6%A0%88%E6%BA%A2%E5%87%BA%E7%9A%84%E5%8E%9F%E7%90%86"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1栈溢出的原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-exp"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 exp</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.3.</span> <span class="nav-text">总结</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+        &copy;&nbsp;<span>2021</span>&nbsp;-&nbsp;2024
+        
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">tbghg</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        由&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;驱动&nbsp;&&nbsp;主题&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
+    
+
+    
+
+    
+        <div class="record-info info-item">
+            
+                
+                    <div class="record-item border-box">
+                        <a class=""
+                           target="_blank"
+                           href="https://beian.miit.gov.cn"
+                        >
+                            辽ICP备2021007417号
+                        </a>
+                    </div>
+                
+            
+        </div>
+    
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools right-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
+        
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        <!-- to bottom -->
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+            <li class="tools-item go-to-comments-tablet flex-center">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#buuctf-rip-%E8%AF%A6%E7%BB%86wp"><span class="nav-number">1.</span> <span class="nav-text">buuctf rip 详细wp</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Stack-%E6%A0%88-%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="nav-number">1.1.</span> <span class="nav-text">1.Stack(栈)的工作原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-C%E8%AF%AD%E8%A8%80%E5%86%85%E5%AD%98%E5%88%86%E5%B8%83"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1 C语言内存分布</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2%E6%A0%88%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%88%86%E5%B8%83%E4%B8%8E%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.2栈中的内存分布与工作原理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-buuctf-rip-wp"><span class="nav-number">1.2.</span> <span class="nav-text">2.buuctf rip wp</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1%E6%A0%88%E6%BA%A2%E5%87%BA%E7%9A%84%E5%8E%9F%E7%90%86"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1栈溢出的原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-exp"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 exp</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.3.</span> <span class="nav-text">总结</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+
+
+<!-- common js -->
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/js/toggle-theme.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/js/code-block.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/js/libs/anime.min.js"></script>
+
+<!-- local search -->
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/js/local-search.js"></script>
+
+
+<!-- lazyload -->
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/js/lazyload.js"></script>
+
+
+<div class="pjax">
+    <!-- home page -->
+    
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/js/post/post-helper.js"></script>
+
+        <!-- toc -->
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/js/post/toc.js"></script>
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart()
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd()
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'))
+            KEEP.initExecute()
+        });
+    });
+</script>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="tbghg">
+    <meta name="description" content="这里是TBH的博客，用于技术分享，记录日常。">
+    <meta name="author" content="tbghg">
+    
+    <title>
+        
+            字节后端青训营抖音项目汇报文档（打工魂小组） |
+        
+        TBH个人博客
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="https://s1.ax1x.com/2023/01/12/pSurRG8.png">
+    
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/font/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/font/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/font/css/brands.min.css">
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"tbghg.top","root":"/","language":"zh-CN","path":"search.json"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"TBH个人博客","author":"tbghg","avatar":"/images/avatar.jpg","logo":"https://s1.ax1x.com/2023/01/12/pSurRG8.png","favicon":"https://s1.ax1x.com/2023/01/12/pSurRG8.png"},"menu":{"home":"/                        || fa-solid fa-home","archives":"/archives            || fa-solid fa-box-archive","about":"/about                || fa-solid fa-user-graduate","categories":"/categories      || fa-solid fa-layer-group","tools":"/tools                || fa-solid fa-tools","开往":"https://www.travellings.cn/go.html || fa-solid fa-train-subway"},"first_screen":{"enable":true,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"丰富多彩的生活需要强大的执行力||描绘属于自己的故事","hitokoto":false},"social_contact":{"enable":true,"links":{"github":"https://github.com/tbghg","weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":"1312186639@qq.com"}},"scroll":{"progress_bar":false,"percent":false,"hide_header":true},"home":{"announcement":null,"category":true,"tag":true,"post_datetime":"updated"},"post":{"author_badge":{"enable":false,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":true,"min2read":true},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":false,"reward":{"enable":false,"img_link":null,"text":null}},"code_block":{"tools":{"enable":true,"style":"mac"},"highlight_theme":"default"},"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true,"layout":"right"},"website_count":{"busuanzi_count":{"enable":false,"site_uv":false,"site_pv":false,"page_pv":false}},"local_search":{"enable":true,"preload":true},"comment":{"enable":true,"use":"valine","valine":{"appid":"0HepQGr76M5xNgWk2Ecac7CC-gzGzoHsz","appkey":"9bWzVBcRI0aSocVHtX3OBSYo","server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.36"},"waline":{"server_url":null,"reaction":false,"version":"3.2.1"},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":true},"lazyload":{"enable":true},"cdn":{"enable":true,"provider":"jsdelivr"},"pjax":{"enable":true},"footer":{"since":2021,"word_count":false,"site_deploy":{"enable":false,"provider":"github","url":null},"record":{"enable":true,"list":[{"code":"辽ICP备2021007417号","link":"https://beian.miit.gov.cn"}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"","source_data":{"links":[{"title":"朋友们 1"},{"name":"XPoet","link":"https://xpoet.cn/","description":"懒惰是程序员第一生产力","avatar":"https://cdn.statically.io/gh/XPoet/image-hosting@master/common-use/avatar.jpg"},{"name":"不知名艺术家","link":"https://jinzhanqi.com/","description":"love artist, love code.","avatar":"https://s3.ax1x.com/2020/11/17/DVvkB4.jpg"}],"photos":[{"url":"https://xpoet.cn/images/logo.png","name":"XPoet"},{"url":"/images/photos/img-1.png","name":"img1"},{"url":"/images/photos/img-2.png","name":"img2"}],"tools":[{"category":"聊天 AI"},{"name":"ChatGPT","link":"https://chat.openai.com/","description":"OpenAI 旗下 AI 聊天对话工具","image":"/images/tools/chatgpt.svg"},{"name":"Gemini","link":"https://gemini.google.com/app","description":"Google 旗下 AI 聊天对话工具","image":"/images/tools/gemini.svg"},{"category":"技术文档"},{"name":"字节跳动技术团队","link":"https://juejin.cn/user/1838039172387262/posts"},{"name":"腾讯技术工程官方号","link":"https://cloud.tencent.com/developer/user/170434/activities"},{"name":"淘宝技术","link":"https://tech.taobao.org/news"},{"name":"哔哩哔哩技术","link":"https://space.bilibili.com/393183630"},{"name":"美团技术团队","link":"https://tech.meituan.com/"},{"name":"技术文章摘抄","link":"http://learn.lianglianglee.com/","description":"内容较为丰富，收录了较多技术文章"},{"name":"硬核课堂","link":"https://space.bilibili.com/1324259795"},{"name":"戌米的论文笔记","link":"https://space.bilibili.com/61981458","description":"raft算法"}]},"version":"4.2.3"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"复制代码","copied":"已复制","fold":"折叠代码块","folded":"已折叠"}
+    KEEP.language_copy_copyright = {"copy":"复制版权信息","copied":"已复制","title":"原文标题","author":"原文作者","link":"原文链接"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="TBH个人博客" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+
+<main class="page-container border-box">
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="https://s1.ax1x.com/2023/01/12/pSurRG8.png">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               TBH个人博客
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-home"></i>
+                                
+                                首页
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-box-archive"></i>
+                                
+                                归档
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/about">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-user-graduate"></i>
+                                
+                                关于
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/categories">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-layer-group"></i>
+                                
+                                分类
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tools">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-tools"></i>
+                                
+                                工具
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" target="_blank" rel="noopener" href="https://www.travellings.cn/go.html">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-train-subway"></i>
+                                
+                                开往
+                                
+                            </a>
+                            
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="menu-text-color fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile border-box flex-start">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list border-box">
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-home"></i>
+                                </span>
+                            
+                            首页
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-box-archive"></i>
+                                </span>
+                            
+                            归档
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/about">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-user-graduate"></i>
+                                </span>
+                            
+                            关于
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/categories">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-layer-group"></i>
+                                </span>
+                            
+                            分类
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tools">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-tools"></i>
+                                </span>
+                            
+                            工具
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" target="_blank" rel="noopener" href="https://www.travellings.cn/go.html">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-train-subway"></i>
+                                </span>
+                            
+                            开往
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        字节后端青训营抖音项目汇报文档（打工魂小组）
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/avatar.jpg">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">tbghg</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2022-07-18 20:46:57</span>
+            </span>
+
+            <span class="meta-info-item post-update-date">
+                <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                <span class="datetime" data-updated="Mon Jul 18 2022 12:46:57 GMT+0000">2022-07-18 20:46:57</span>
+            </span>
+        
+
+        
+            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="post-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></li>
+                        
+                    
+                            <li class="category-item">&nbsp;<i class="icon fas fa-angle-right"></i>&nbsp;<a href="/categories/%E6%8A%80%E6%9C%AF/%E9%A1%B9%E7%9B%AE/">项目</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E5%90%8E%E7%AB%AF/">后端</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E5%AD%97%E8%8A%82/">字节</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+            <span class="meta-info-item post-wordcount">
+                <i class="icon fas fa-file-word"></i>&nbsp;<span>5.3k 字</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-min2read">
+                <i class="icon fas fa-clock"></i>&nbsp;<span>21 分钟</span>
+            </span>
+        
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body code-block-unshrink">
+                    
+
+                    
+                         <blockquote>
+<p>基本信息：本文档主要介绍2022字节跳动后端青训营抖音项目</p>
+<p>时间：2022.05-2022.06</p>
+<p>成员：田冰航、徐洪湘、向政昌</p>
+</blockquote>
+<p>图片有点多，飞书这里不能直接引用，重新下载有点不方便，所以图片有所删减，建议移步：<a class="link"   target="_blank" rel="noopener" href="https://yvrcskowz5.feishu.cn/docs/doccnJpAemQe5YEr9TmIxL2JCXb" >极简版抖音项目汇报文档（打工魂小组）<i class="fas fa-external-link-alt"></i></a></p>
+<h1 id="一、项目概要"><a href="#一、项目概要" class="headerlink" title="一、项目概要"></a>一、项目概要</h1><h2 id="1-1-项目仓库和成果展示"><a href="#1-1-项目仓库和成果展示" class="headerlink" title="1.1 项目仓库和成果展示"></a>1.1 项目仓库和成果展示</h2><ol>
+<li>项目仓库地址：<a class="link"   target="_blank" rel="noopener" href="https://github.com/TBgHg/ByteDance" >GitHub项目地址<i class="fas fa-external-link-alt"></i></a></li>
+<li>视频演示：<a class="link"   target="_blank" rel="noopener" href="https://a68c7718pj.feishu.cn/file/boxcnV0P0XZOkLAcu1t2IAww3cd" >抖音演示视频.mp4<i class="fas fa-external-link-alt"></i></a></li>
+</ol>
+<h2 id="1-2-项目环境配置说明"><a href="#1-2-项目环境配置说明" class="headerlink" title="1.2 项目环境配置说明"></a>1.2 项目环境配置说明</h2><h3 id="1-2-1-项目使用"><a href="#1-2-1-项目使用" class="headerlink" title="1.2.1 项目使用"></a>1.2.1 项目使用</h3><ol>
+<li>已将数据库部署于服务器上，也可根据<a class="link"   target="_blank" rel="noopener" href="https://yvrcskowz5.feishu.cn/docs/doccnJpAemQe5YEr9TmIxL2JCXb#%E8%A1%A8%E8%AE%BE%E8%AE%A1" >表设计<i class="fas fa-external-link-alt"></i></a>模块中给出的建表语句在本地创建数据库</li>
+<li>启动<code>Redis</code>（非必须）</li>
+<li>在<code>ByteDance/pkg/common/config.go</code>中填写相应配置项（也可使用当前默认配置）</li>
+<li>安装依赖。在<code>ByteDance</code>目录下运行<code>go mod tidy</code></li>
+<li>运行。运行<code>go build &amp;&amp; ByteDance.exe</code>，端口开放于<code>8000</code></li>
+</ol>
+<h3 id="1-2-2-项目说明"><a href="#1-2-2-项目说明" class="headerlink" title="1.2.2 项目说明"></a>1.2.2 项目说明</h3><ol>
+<li>视频模块中采用阿里云<code>OSS</code>对象存储</li>
+<li>数据库部署在服务器中，但服务器性能较差</li>
+<li>采用<code>ffmpeg</code>获取视频封面，<code>ffmpeg.exe</code>已同步上传项目，但对于<code>windows</code>以外的电脑需要提前安装<code>ffmpeg</code></li>
+<li><code>Redis</code>并不是启动项目所必须的，但缺省时会缺少限制频率的功能</li>
+</ol>
+<h2 id="1-3-成员分工"><a href="#1-3-成员分工" class="headerlink" title="1.3 成员分工"></a>1.3 成员分工</h2><table>
+<thead>
+<tr>
+<th><strong>成员</strong></th>
+<th><strong>分工</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>田冰航</td>
+<td>数据库设计，项目结构设计，用户注册功能，获取视频流功能，上传视频功能，查看已发布视频功能</td>
+</tr>
+<tr>
+<td>向政昌</td>
+<td>Validate数据验证，敏感词过滤，Redis中间件限制频率，评论功能， 点赞功能，相关功能文档撰写</td>
+</tr>
+<tr>
+<td>徐洪湘</td>
+<td>JWT令牌功能实现，数据库设计，项目结构设计，关注功能，相关功能文档攥写</td>
+</tr>
+</tbody></table>
+<h2 id="1-4-技术使用"><a href="#1-4-技术使用" class="headerlink" title="1.4 技术使用"></a>1.4 技术使用</h2><ul>
+<li>Gin</li>
+<li>Gen</li>
+<li>MySQL</li>
+<li>OSS</li>
+<li>Git</li>
+<li>Redis</li>
+<li>JWT</li>
+</ul>
+<h1 id="二、功能实现"><a href="#二、功能实现" class="headerlink" title="二、功能实现"></a>二、功能实现</h1><h2 id="2-1-用户模块"><a href="#2-1-用户模块" class="headerlink" title="2.1 用户模块"></a>2.1 用户模块</h2><ol>
+<li><p>注册操作</p>
+<ul>
+<li><p>使用使用Validate验证器对参数进行验证</p>
+</li>
+<li><p>检测用户名是否已存在</p>
+</li>
+<li><p>校验密码强度，要求用户名必须小于32位字符，密码大于8位小于32位字符，至少包含一位数字，字母和特殊字符</p>
+</li>
+<li><p>对密码加盐后使用<code>md5</code>加密，写入数据库中</p>
+</li>
+<li><p>将用户ID封装后返回</p>
+</li>
+</ul>
+</li>
+<li><p>登录操作</p>
+<ul>
+<li><p>使用使用Validate验证器对参数进行验证</p>
+</li>
+<li><p>对密码进行同样的加密，检测数据库中是否存在该记录且deleted为0</p>
+</li>
+<li><p>更新登录时间</p>
+</li>
+<li><p>将user_id作为payload通过JWT生成Token</p>
+</li>
+<li><p>将Token和user_id进行封装并返回</p>
+</li>
+</ul>
+</li>
+<li><p>获取用户信息</p>
+<ul>
+<li><p>使用JWT中间件对Token进行验证</p>
+<ol>
+<li><p>验证失败：返回失败原因，阻止向下运行</p>
+</li>
+<li><p>验证成功：将user_id存入上下文中</p>
+</li>
+</ol>
+</li>
+<li><p>查询用户信息封装后返回</p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="2-2-视频模块"><a href="#2-2-视频模块" class="headerlink" title="2.2 视频模块"></a>2.2 视频模块</h2><ol>
+<li><p>获取视频流</p>
+<ul>
+<li><p>使用JWT中间件对Token进行验证</p>
+<ol>
+<li>验证失败：不进行操作，继续进行</li>
+<li>验证成功：将user_id存入上下文中</li>
+</ol>
+</li>
+<li><p>内联查询最新发布的十个视频及作者信息</p>
+<ol>
+<li><p>上下文中含有user_id：并发查询十个视频是否被该用户点赞，作者是否被该用户关注</p>
+</li>
+<li><p>上下文中不含user_id：默认为视频未点赞，作者未被关注</p>
+</li>
+</ol>
+</li>
+<li><p>封装数据返回信息</p>
+</li>
+</ul>
+</li>
+<li><p>发布视频</p>
+<ul>
+<li><p>使用JWT中间件对Token进行验证</p>
+<ol>
+<li>验证失败：返回失败原因，阻止向下运行</li>
+<li>验证成功：将user_id存入上下文中</li>
+</ol>
+</li>
+<li><p>从参数中获取视频及视频信息，从上下文中获取user_id</p>
+</li>
+<li><p>采用雪花算法生成视频及封面名称作为标识</p>
+</li>
+<li><p>使用<code>ffmpeg</code>截取视频第一帧作为封面</p>
+</li>
+<li><p>将封面、视频上传至阿里云OSS中，截取并上传封面与上传视频二者并发进行</p>
+</li>
+<li><p>将视频名称、封面名称及视频和作者的相关信息存入数据库中</p>
+</li>
+<li><p>封装发布完成情况并返回</p>
+</li>
+</ul>
+</li>
+<li><p>查看已发布视频</p>
+<ul>
+<li><p>使用JWT中间件对Token进行验证</p>
+<ol>
+<li>验证失败：返回失败原因，阻止向下运行</li>
+<li>验证成功：将user_id存入上下文中</li>
+</ol>
+</li>
+<li><p>从上下文中获取user_id</p>
+</li>
+<li><p>内联查询已发布的所有视频及本人信息</p>
+</li>
+<li><p>封装数据返回信息</p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="2-3-关注模块"><a href="#2-3-关注模块" class="headerlink" title="2.3 关注模块"></a>2.3 关注模块</h2><ol>
+<li><p>关注操作</p>
+<ul>
+<li><p>使用JWT中间件对Token进行验证</p>
+<ol>
+<li>验证失败：返回失败原因，阻止向下运行</li>
+<li>验证成功：将user_id存入上下文中</li>
+</ol>
+</li>
+<li><p>使用使用Validate验证器对参数进行验证</p>
+</li>
+<li><p>根据所传入信息对数据库进行更新（已经关注过），如果数据库没有改条数据，则创建该数据（没有关注过）</p>
+</li>
+<li><p>根据查询信息进行数据封装后返回</p>
+</li>
+</ul>
+</li>
+<li><p>获取关注列表</p>
+<ul>
+<li><p>使用JWT中间件对Token进行验证</p>
+<ol>
+<li><p>验证失败：返回失败原因，阻止向下运行</p>
+</li>
+<li><p>验证成功：将user_id存入上下文中</p>
+</li>
+</ol>
+</li>
+<li><p>使用使用Validate验证器对参数进行验证</p>
+</li>
+<li><p>根据登录用户id使用联合索引获取关注用户id列表，并发查询关注用户名和关注总数和粉丝总数</p>
+</li>
+<li><p>根据查询信息进行数据封装后返回</p>
+</li>
+</ul>
+</li>
+<li><p>获取粉丝列表</p>
+<ul>
+<li><p>使用JWT中间件对Token进行验证</p>
+<ol>
+<li>验证失败：返回失败原因，阻止向下运行</li>
+<li>验证成功：将user_id存入上下文中</li>
+</ol>
+</li>
+<li><p>使用使用Validate验证器对参数进行验证</p>
+</li>
+<li><p>根据登录用户id使用联合索引获取粉丝用户id列表，并发查询粉丝用户名和关注总数和粉丝总数</p>
+</li>
+<li><p>根据查询信息进行数据封装后返回</p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="2-4-评论模块"><a href="#2-4-评论模块" class="headerlink" title="2.4 评论模块"></a>2.4 评论模块</h2><ol>
+<li><p>评论操作</p>
+<ul>
+<li><p>使用JWT中间件对Token进行验证</p>
+<ol>
+<li>验证失败：返回失败原因，阻止向下运行</li>
+<li>验证成功：将user_id存入上下文中</li>
+</ol>
+</li>
+<li><p>使用使用Validate验证器对参数进行验证</p>
+</li>
+<li><p>根据所传入信息，若action_type为1且评论内容存在，数据库中创建该数据，若action_type为2且视频id存在对数据库进行更新（软删除）。</p>
+</li>
+<li><p>根据查询信息进行数据封装后返回</p>
+</li>
+</ul>
+</li>
+<li><p>获取评论列表</p>
+<ul>
+<li><p>使用JWT中间件对Token进行验证</p>
+<ol>
+<li>验证失败：返回失败原因，阻止向下运行</li>
+<li>验证成功：将user_id存入上下文中</li>
+</ol>
+</li>
+<li><p>使用使用Validate验证器对参数进行验证</p>
+</li>
+<li><p>根据视频id使用联合查询获取评论信息列表（包含评论用户信息）</p>
+</li>
+<li><p>根据查询信息进行数据封装后返回</p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="2-5-点赞模块"><a href="#2-5-点赞模块" class="headerlink" title="2.5 点赞模块"></a>2.5 点赞模块</h2><ol>
+<li><p>点赞操作</p>
+<ul>
+<li><p>使用JWT中间件对Token进行验证</p>
+<ol>
+<li>验证失败：返回失败原因，阻止向下运行</li>
+<li>验证成功：将user_id存入上下文中</li>
+</ol>
+</li>
+<li><p>使用使用Validate验证器对参数进行验证</p>
+</li>
+<li><p>根据所传入信息对数据库进行更新（已经点赞过，取消点赞），如果数据库没有该条数据，则创建该数据（没有点赞过，进行点赞）</p>
+</li>
+<li><p>根据查询信息进行数据封装后返回</p>
+</li>
+</ul>
+</li>
+<li><p>获取点赞列表</p>
+<ul>
+<li><p>使用JWT中间件对Token进行验证</p>
+<ol>
+<li>验证失败：返回失败原因，阻止向下运行</li>
+<li>验证成功：将user_id存入上下文中</li>
+</ol>
+</li>
+<li><p>使用使用Validate验证器对参数进行验证</p>
+</li>
+<li><p>根据登录用户id使用联合查询获取点赞视频信息列表（包含视频作者部分信息），然后并发查询视频作者关注总数、粉丝总数和是否已关注</p>
+</li>
+<li><p>根据查询信息进行数据封装后返回</p>
+</li>
+</ul>
+</li>
+</ol>
+<h1 id="三、代码质量"><a href="#三、代码质量" class="headerlink" title="三、代码质量"></a>三、代码质量</h1><h2 id="3-1-MVC"><a href="#3-1-MVC" class="headerlink" title="3.1 MVC"></a>3.1 MVC</h2><ol>
+<li>Request<ul>
+<li>创建数据传输对象封装传入数据</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> RegUserData <span class="keyword">struct</span> &#123;</span><br><span class="line">	ID    <span class="type">int</span>    <span class="string">`json:&quot;user_id&quot;`</span></span><br><span class="line">	Token <span class="type">string</span> <span class="string">`json:&quot;token&quot;`</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> LoginData <span class="keyword">struct</span> &#123;</span><br><span class="line">	ID    <span class="type">int</span>    <span class="string">`json:&quot;user_id&quot;`</span></span><br><span class="line">	Token <span class="type">string</span> <span class="string">`json:&quot;token&quot;`</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> GetUserInfoData <span class="keyword">struct</span> &#123;</span><br><span class="line">	ID            <span class="type">int32</span>  <span class="string">`json:&quot;id&quot;`</span></span><br><span class="line">	UseName       <span class="type">string</span> <span class="string">`json:&quot;name&quot;`</span></span><br><span class="line">	FollowCount   <span class="type">int64</span>  <span class="string">`json:&quot;follow_count&quot;`</span></span><br><span class="line">	FollowerCount <span class="type">int64</span>  <span class="string">`json:&quot;follower_count&quot;`</span></span><br><span class="line">	IsFollow      <span class="type">bool</span>   <span class="string">`json:&quot;is_follow&quot;`</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><p>Response</p>
+<ul>
+<li><p>sevice层封装返回数据的对象</p>
+</li>
+<li><p>controller层进一步封装数据对象，如添加返回响应信息，响应码等</p>
+</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 用户登录返回值</span></span><br><span class="line"><span class="keyword">type</span> loginResponse <span class="keyword">struct</span> &#123;</span><br><span class="line">	common.Response</span><br><span class="line">	user.LoginData</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 用户注册返回值</span></span><br><span class="line"><span class="keyword">type</span> regUserResponse <span class="keyword">struct</span> &#123;</span><br><span class="line">	common.Response</span><br><span class="line">	user.RegUserData</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取用户信息</span></span><br><span class="line"><span class="keyword">type</span> getUserInfoResponse <span class="keyword">struct</span> &#123;</span><br><span class="line">	common.Response</span><br><span class="line">	User user.GetUserInfoData <span class="string">`json:&quot;user&quot;`</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// RegisterLoginRequest 注册 登录请求</span></span><br><span class="line"><span class="keyword">type</span> RegisterLoginRequest <span class="keyword">struct</span> &#123;</span><br><span class="line">	Username <span class="type">string</span> <span class="string">`form:&quot;username&quot;  validate:&quot;required&quot;`</span></span><br><span class="line">	Password <span class="type">string</span> <span class="string">`form:&quot;password&quot;  validate:&quot;required&quot;`</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>controller</li>
+</ol>
+<p>controller层只负责token验证，数据有效性验证，和数据请求的预处理和返回数据的封装，达到进一步解耦，职责明确</p>
+<ol start="4">
+<li>service</li>
+</ol>
+<p>service层只负责接受来自controller层的数据，所有的业务逻辑都在这里处理，并调用repository层中设计数据库的操作，最后封装来自数据库的数据，返回给controller层</p>
+<ol start="5">
+<li>repository</li>
+</ol>
+<p>repository层只负责对数据库的操作，比如DDL，DQL等，如果数据库出现问题，则可以直在repository层查找错误，利于后期维护</p>
+<h2 id="3-2-命名规范"><a href="#3-2-命名规范" class="headerlink" title="3.2 命名规范"></a>3.2 命名规范</h2><ol>
+<li>模块命名</li>
+</ol>
+<p>以user模块举例：</p>
+<ul>
+<li>contoller：query_xxx_info.go</li>
+<li>service命名query_xxx_info.go</li>
+<li>repository层则是模块名xxx.go</li>
+</ul>
+<ol start="2">
+<li><p>函数命名：采用驼峰命名法</p>
+</li>
+<li><p>变量命名：根据英文释义采用驼峰命名法，可直观看出变量作用</p>
+</li>
+</ol>
+<h2 id="3-3-常量与配置管理"><a href="#3-3-常量与配置管理" class="headerlink" title="3.3 常量与配置管理"></a>3.3 常量与配置管理</h2><ol>
+<li>常量管理</li>
+</ol>
+<p>将所有消息规整在一个文件中，便于根据报错信息查找引用及时进行定位</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 用户注册</span></span><br><span class="line"><span class="keyword">const</span> (</span><br><span class="line">	AlreadyRegisteredStatusMsg = <span class="string">&quot;该用户名已被注册&quot;</span></span><br><span class="line">	RegisterSuccessStatusMsg   = <span class="string">&quot;注册成功&quot;</span></span><br><span class="line">	MatchFailedStatusMsg       = <span class="string">&quot;账号密码需要小于32字符，密码包含至少一位数字，字母和特殊字符&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 用户登录</span></span><br><span class="line"><span class="keyword">const</span> (</span><br><span class="line">	WrongUsernameOrPasswordMsg = <span class="string">&quot;用户名或密码错误&quot;</span></span><br><span class="line">	LoginSuccessStatusMsg      = <span class="string">&quot;登陆成功&quot;</span></span><br><span class="line">	AccountBlocked             = <span class="string">&quot;账号已被冻结&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取用户信息</span></span><br><span class="line"><span class="keyword">const</span> (</span><br><span class="line">	UserIDNotExistMsg     = <span class="string">&quot;用户ID不存在&quot;</span></span><br><span class="line">	GetUserInfoSuccessMsg = <span class="string">&quot;获取用户信息成功&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 等……</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>配置管理</li>
+</ol>
+<p>将数据库、OSS和JWT相关配置项进行抽离，便于对项目进行配置</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> MySqlDSN = <span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Redis 配置</span></span><br><span class="line"><span class="keyword">const</span> (</span><br><span class="line">   RedisLocalhost = <span class="string">&quot;localhost:6379&quot;</span></span><br><span class="line">   RedisPassword  = <span class="string">&quot;&quot;</span></span><br><span class="line">   RedisDB        = <span class="number">0</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">// MD5Salt MD5加密时的盐</span></span><br><span class="line"><span class="keyword">const</span> MD5Salt = <span class="string">&quot;UII34HJ6OIO&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// JWT</span></span><br><span class="line"><span class="keyword">const</span> (</span><br><span class="line">   Issuer              = <span class="string">&quot;xhx&quot;</span> <span class="comment">// 签发人</span></span><br><span class="line">   MySecret            = <span class="string">&quot;F3Jfa5AD&quot;</span></span><br><span class="line">   TokenExpirationTime = <span class="number">14</span> * <span class="number">24</span> * time.Hour * time.Duration(<span class="number">1</span>) <span class="comment">// Token过期时间</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">// OSSPreURL OSS前缀</span></span><br><span class="line"><span class="keyword">const</span> OSSPreURL = <span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// SensitiveWordsPath 敏感词路径</span></span><br><span class="line"><span class="keyword">const</span> SensitiveWordsPath = <span class="string">&quot;./utils/SensitiveWords.txt&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="3-4-日志记录"><a href="#3-4-日志记录" class="headerlink" title="3.4 日志记录"></a>3.4 日志记录</h2><p>使用<code>go.uber.org/zap</code>进行日志管理，文件配置项如下：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//文件writeSyncer</span></span><br><span class="line">fileWriteSyncer := zapcore.AddSync(&amp;lumberjack.Logger&#123;</span><br><span class="line">   Filename:   <span class="string">&quot;./logs/ByteDance.log&quot;</span>, <span class="comment">//日志文件存放目录</span></span><br><span class="line">   MaxSize:    <span class="number">1</span>,                      <span class="comment">//文件大小限制,单位MB</span></span><br><span class="line">   MaxBackups: <span class="number">5</span>,                      <span class="comment">//最大保留日志文件数量</span></span><br><span class="line">   MaxAge:     <span class="number">30</span>,                     <span class="comment">//日志文件保留天数</span></span><br><span class="line">   Compress:   <span class="literal">false</span>,                  <span class="comment">//是否压缩处理</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>全局配置Log变量，记录四种类型的日志：Info、Warn、Error、Fatal</p>
+<ul>
+<li>Info类型</li>
+</ul>
+<p>MySQL、Redis、OSS初始化成功时输出</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">db, err = gorm.Open(mysql.Open(common.MySqlDSN))</span><br><span class="line"><span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">   utils.Log.Fatal(<span class="string">&quot;数据库连接错误&quot;</span> + err.Error())</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">   utils.Log.Info(<span class="string">&quot;MySQL连接成功&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Warn类型</li>
+</ul>
+<p>Redis未连接时输出（未连接Redis会确实限制频率功能，当项目可以正常运行）</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 通过 *redis.Client.Ping() 来检查是否成功连接到了redis服务器</span></span><br><span class="line">_, err := RedisDb.Ping().Result()</span><br><span class="line"><span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">   utils.Log.Warn(<span class="string">&quot;Redis连接失败&quot;</span>)</span><br><span class="line">   <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">   utils.Log.Info(<span class="string">&quot;Redis连接成功&quot;</span>)</span><br><span class="line">   <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Error类型：程序正常运行时，不该出现的错误</li>
+</ul>
+<p>数据库查询错误、类型转化错误等</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 文件上传日志记录</span></span><br><span class="line"><span class="keyword">if</span> fileType == <span class="string">&quot;video&quot;</span> &#123;</span><br><span class="line">   fileSuffix = <span class="string">&quot;.mp4&quot;</span></span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> fileType == <span class="string">&quot;picture&quot;</span> &#123;</span><br><span class="line">   fileSuffix = <span class="string">&quot;.jpg&quot;</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">   Log.Error(<span class="string">&quot;无法上传&quot;</span> + fileType + <span class="string">&quot;类型文件&quot;</span>)</span><br><span class="line">   <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Fatal类型：错误出现后，系统无法正常启动</li>
+</ul>
+<p>MySQL连接失败</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">db, err = gorm.Open(mysql.Open(common.MySqlDSN))</span><br><span class="line"><span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">   utils.Log.Fatal(<span class="string">&quot;数据库连接错误&quot;</span> + err.Error())</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">   utils.Log.Info(<span class="string">&quot;MySQL连接成功&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="四、项目设计"><a href="#四、项目设计" class="headerlink" title="四、项目设计"></a>四、项目设计</h1><h2 id="4-1-数据库设计"><a href="#4-1-数据库设计" class="headerlink" title="4.1 数据库设计"></a>4.1 数据库设计</h2><h3 id="4-1-1-数据库ER图"><a href="#4-1-1-数据库ER图" class="headerlink" title="4.1.1 数据库ER图"></a>4.1.1 数据库ER图</h3><p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://s1.ax1x.com/2023/01/12/pSugF7d.png"
+                        alt="ER图"
+                 ></p>
+<h3 id="4-1-2-数据库表"><a href="#4-1-2-数据库表" class="headerlink" title="4.1.2 数据库表"></a>4.1.2 数据库表</h3><ol>
+<li>user表<ul>
+<li>username,deleted联合索引</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> <span class="keyword">user</span></span><br><span class="line">(</span><br><span class="line">    id          <span class="type">int</span> auto_increment comment <span class="string">&#x27;PK，直接自增&#x27;</span></span><br><span class="line">        <span class="keyword">primary</span> key,</span><br><span class="line">    username    <span class="type">varchar</span>(<span class="number">32</span>)                        <span class="keyword">not</span> <span class="keyword">null</span> comment <span class="string">&#x27;UK，账号&#x27;</span>,</span><br><span class="line">    password    <span class="type">varchar</span>(<span class="number">32</span>)                        <span class="keyword">not</span> <span class="keyword">null</span> comment <span class="string">&#x27;密码（MD5）&#x27;</span>,</span><br><span class="line">    enable      tinyint  <span class="keyword">default</span> <span class="number">1</span>                 <span class="keyword">null</span> comment <span class="string">&#x27;账号是否可用&#x27;</span>,</span><br><span class="line">    deleted     tinyint  <span class="keyword">default</span> <span class="number">0</span>                 <span class="keyword">null</span> comment <span class="string">&#x27;删除标识位&#x27;</span>,</span><br><span class="line">    login_time  datetime <span class="keyword">default</span> <span class="built_in">CURRENT_TIMESTAMP</span> <span class="keyword">null</span>,</span><br><span class="line">    create_time datetime <span class="keyword">default</span> <span class="built_in">CURRENT_TIMESTAMP</span> <span class="keyword">null</span> comment <span class="string">&#x27;注册时间&#x27;</span></span><br><span class="line">)</span><br><span class="line">    comment <span class="string">&#x27;用户表，储存用户信息&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">create</span> index user_username_deleted_index</span><br><span class="line">    <span class="keyword">on</span> <span class="keyword">user</span> (username, deleted);</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>video表<ol>
+<li>author_id,removed,deleted联合索引</li>
+<li>time,removed,deleted联合索引</li>
+</ol>
+</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> video</span><br><span class="line">(</span><br><span class="line">    id        <span class="type">int</span> auto_increment</span><br><span class="line">        <span class="keyword">primary</span> key,</span><br><span class="line">    author_id <span class="type">int</span>               <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">    play_url  <span class="type">varchar</span>(<span class="number">32</span>)       <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">    cover_url <span class="type">varchar</span>(<span class="number">32</span>)       <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">    <span class="type">time</span>      <span class="type">int</span>               <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">    title     <span class="type">varchar</span>(<span class="number">128</span>)      <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">    removed   tinyint <span class="keyword">default</span> <span class="number">0</span> <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">    deleted   tinyint <span class="keyword">default</span> <span class="number">0</span> <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">    <span class="keyword">constraint</span> video_user_id_fk</span><br><span class="line">        <span class="keyword">foreign</span> key (author_id) <span class="keyword">references</span> <span class="keyword">user</span> (id)</span><br><span class="line">)</span><br><span class="line">    comment <span class="string">&#x27;存储视频信息&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">create</span> index video_author_id_removed_deleted_index</span><br><span class="line">    <span class="keyword">on</span> video (author_id, removed, deleted);</span><br><span class="line"></span><br><span class="line"><span class="keyword">create</span> index video_time_removed_deleted_index</span><br><span class="line">    <span class="keyword">on</span> video (<span class="type">time</span>, removed, deleted);</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>follow表<ol>
+<li>user_id,removed,deleted联合索引</li>
+<li>fun_id,removed,deleted联合索引</li>
+</ol>
+</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> follow</span><br><span class="line">(</span><br><span class="line">    id      <span class="type">int</span> auto_increment</span><br><span class="line">        <span class="keyword">primary</span> key,</span><br><span class="line">    user_id <span class="type">int</span>               <span class="keyword">null</span>,</span><br><span class="line">    fun_id  <span class="type">int</span>               <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">    removed tinyint <span class="keyword">default</span> <span class="number">0</span> <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">    deleted tinyint <span class="keyword">default</span> <span class="number">0</span> <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">    <span class="keyword">constraint</span> follow_user_id2fun_fk_2</span><br><span class="line">        <span class="keyword">foreign</span> key (fun_id) <span class="keyword">references</span> <span class="keyword">user</span> (id),</span><br><span class="line">    <span class="keyword">constraint</span> follow_user_id2user_fk</span><br><span class="line">        <span class="keyword">foreign</span> key (user_id) <span class="keyword">references</span> <span class="keyword">user</span> (id)</span><br><span class="line">)</span><br><span class="line">    comment <span class="string">&#x27;关注表&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">create</span> index follow_fun_id_removed_deleted_index</span><br><span class="line">    <span class="keyword">on</span> follow (fun_id, removed, deleted);</span><br><span class="line"></span><br><span class="line"><span class="keyword">create</span> index follow_user_id_removed_deleted_index</span><br><span class="line">    <span class="keyword">on</span> follow (user_id, removed, deleted);</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>favorite表<ol>
+<li>video_id,removed,deleted联合索引</li>
+<li>user_id,removed,deleted联合索引</li>
+</ol>
+</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> favorite</span><br><span class="line">(</span><br><span class="line">    id       <span class="type">int</span> auto_increment</span><br><span class="line">        <span class="keyword">primary</span> key,</span><br><span class="line">    video_id <span class="type">int</span>                <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">    user_id  <span class="type">int</span>                <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">    removed  tinyint <span class="keyword">default</span> <span class="number">-1</span> <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">    deleted  tinyint <span class="keyword">default</span> <span class="number">0</span>  <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">    <span class="keyword">constraint</span> favorite_user_id_fk</span><br><span class="line">        <span class="keyword">foreign</span> key (user_id) <span class="keyword">references</span> <span class="keyword">user</span> (id),</span><br><span class="line">    <span class="keyword">constraint</span> favorite_video_id_fk</span><br><span class="line">        <span class="keyword">foreign</span> key (video_id) <span class="keyword">references</span> video (id)</span><br><span class="line">)</span><br><span class="line">    comment <span class="string">&#x27;用户视频点赞表&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">create</span> index favorite_user_id_video_id_removed_deleted_index</span><br><span class="line">    <span class="keyword">on</span> favorite (user_id, video_id, removed, deleted);</span><br><span class="line"></span><br><span class="line"><span class="keyword">create</span> index favorite_video_id_removed_deleted_user_id_index</span><br><span class="line">    <span class="keyword">on</span> favorite (video_id, removed, deleted, user_id);</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>comment表<ol>
+<li>user_id</li>
+<li>video_id,removed,deleted联合索引</li>
+<li>create_time,removed,deleted联合索引</li>
+</ol>
+</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> comment</span><br><span class="line">(</span><br><span class="line">    id          <span class="type">int</span> auto_increment</span><br><span class="line">        <span class="keyword">primary</span> key,</span><br><span class="line">    user_id     <span class="type">int</span>                                <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">    video_id    <span class="type">int</span>                                <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">    create_time datetime <span class="keyword">default</span> <span class="built_in">CURRENT_TIMESTAMP</span> <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">    removed     tinyint  <span class="keyword">default</span> <span class="number">0</span>                 <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">    deleted     tinyint  <span class="keyword">default</span> <span class="number">0</span>                 <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">    content     text                               <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">    <span class="keyword">constraint</span> comment_user_id_fk</span><br><span class="line">        <span class="keyword">foreign</span> key (user_id) <span class="keyword">references</span> <span class="keyword">user</span> (id),</span><br><span class="line">    <span class="keyword">constraint</span> comment_video_id_fk</span><br><span class="line">        <span class="keyword">foreign</span> key (video_id) <span class="keyword">references</span> video (id)</span><br><span class="line">)</span><br><span class="line">    comment <span class="string">&#x27;评论表&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">create</span> index comment_create_time_removed_deleted_index</span><br><span class="line">    <span class="keyword">on</span> comment (create_time, removed, deleted);</span><br><span class="line"></span><br><span class="line"><span class="keyword">create</span> index comment_video_id_removed_deleted_index</span><br><span class="line">    <span class="keyword">on</span> comment (video_id, removed, deleted);</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="4-2-项目结构设计"><a href="#4-2-项目结构设计" class="headerlink" title="4.2 项目结构设计"></a>4.2 项目结构设计</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">ByteDance</span><br><span class="line">│  .gitignore</span><br><span class="line">│  ffmpeg.exe  // 截取视频第一帧</span><br><span class="line">│  go.mod</span><br><span class="line">│  Readme.md</span><br><span class="line">│  router.go   // 创建路由</span><br><span class="line">│  server.go   // 项目启动入口</span><br><span class="line">│</span><br><span class="line">├─cmd</span><br><span class="line">│  ├─user</span><br><span class="line">│  │  │  user_common_model.go  // user模块中共用的结构体</span><br><span class="line">│  │  │</span><br><span class="line">│  │  ├─controller    // 控制层，接受参数，编写流程逻辑，返回信息</span><br><span class="line">│  │  │      query_user_info.go</span><br><span class="line">│  │  │</span><br><span class="line">│  │  ├─repository    // 负责与数据库的交互</span><br><span class="line">│  │  │      user.go</span><br><span class="line">│  │  │</span><br><span class="line">│  │  └─service          // 处理流程中的主要函数</span><br><span class="line">│  │          query_user_info.go</span><br><span class="line">│  │</span><br><span class="line">│  ├─comment      // 其他模块与user模块结构相同</span><br><span class="line">│  ├─favorite</span><br><span class="line">│  ├─follow</span><br><span class="line">│  └─video</span><br><span class="line">│</span><br><span class="line">├─dal     // MySQL、Redis初始化</span><br><span class="line">│  │  dal.go</span><br><span class="line">│  ├─method</span><br><span class="line">│  │      dal_common_method.go // 共用的查询方法</span><br><span class="line">│  │      method.go            // 自定义查询方法，用Gen生成</span><br><span class="line">│  │</span><br><span class="line">│  ├─model    // Gen生成的数据模型</span><br><span class="line">│  └─query    // Gen生成的数据库操作方法</span><br><span class="line">│</span><br><span class="line">├─logs    // 日志存放位置</span><br><span class="line">├─pkg</span><br><span class="line">│  ├─common</span><br><span class="line">│  │      common.go       // 模块公用部分</span><br><span class="line">│  │      config.go           // 配置项</span><br><span class="line">│  │</span><br><span class="line">│  ├─middleware        // 中间件</span><br><span class="line">│  │      middleware.go</span><br><span class="line">│  │</span><br><span class="line">│  └─msg   // 定义返回消息</span><br><span class="line">│          msg.go</span><br><span class="line">│</span><br><span class="line">└─utils        // 工具类</span><br><span class="line">    │  jwt.go           // 生成Token令牌</span><br><span class="line">    │  log.go           // 日志生成</span><br><span class="line">    │  password.go       // MD5加密，检测密码强度</span><br><span class="line">    │  SensitiveWords.txt       // 项目 </span><br><span class="line">    │  sensitive_word.go</span><br><span class="line">    │  snowflake.go          // 雪花算法</span><br><span class="line">    │  upload_file.go       // OSS中上传文件</span><br><span class="line">    └─generate</span><br><span class="line">            generate.go             // Gen生成模块与方法</span><br></pre></td></tr></table></figure>
+
+<h1 id="五、项目亮点"><a href="#五、项目亮点" class="headerlink" title="五、项目亮点"></a>五、项目亮点</h1><h2 id="5-1-代码管理"><a href="#5-1-代码管理" class="headerlink" title="5.1 代码管理"></a>5.1 代码管理</h2><p>使用Git进行分工合作，对版本进行控制 （1）版本迭代更加清晰 （2）提升开发效率 （3）利于代码review的实现，规范团队项目开发</p>
+<h2 id="5-2高性能"><a href="#5-2高性能" class="headerlink" title="5.2高性能"></a>5.2高性能</h2><h3 id="5-2-1-OSS对象存储"><a href="#5-2-1-OSS对象存储" class="headerlink" title="5.2.1 OSS对象存储"></a>5.2.1 OSS对象存储</h3><p>采用阿里云oss存储上传视频 （1）节省服务器空间，单独的文件管理界面，管理网站文件和本地电脑一样方便</p>
+<h3 id="5-2-2-雪花算法"><a href="#5-2-2-雪花算法" class="headerlink" title="5.2.2 雪花算法"></a>5.2.2 雪花算法</h3><p>采用雪花算法生成给上传的视频设置随机id （1）高性能：ID在内存生成，不依赖数据库 （2）高可用：ID在内存生成，不依赖数据库 （3）容量大：每秒能生成百万量级的ID</p>
+<h3 id="5-2-3-GEN自定义模型"><a href="#5-2-3-GEN自定义模型" class="headerlink" title="5.2.3 GEN自定义模型"></a>5.2.3 GEN自定义模型</h3><p>首先进行表设计，将数据库部署在服务器上，通过Gen生成模型和查询方式，对常用查询方法采用自定义方法的方式 （1）简化代码且减少编码时间</p>
+<h3 id="5-2-4-MySQL索引"><a href="#5-2-4-MySQL索引" class="headerlink" title="5.2.4 MySQL索引"></a>5.2.4 MySQL索引</h3><p>数据库表统一采用InnoDB存储引擎，索引结构默认B+树，通过主键索引，二级索引中遵循最左前缀法则对数据进行搜索 （1）主键索引也为聚集索引，聚集索引的查询速度非常的快，因为整个 B+树本身就是一颗多叉平衡树，叶子节点也都是有序的，定位到索引的节点，就相当于定位到了数据 （2）二级索引也为非聚集索引，更新代价比聚集索引要小。非聚集索引的更新代价就没有聚集索引那么大了，非聚集索引的叶子节点是不存放数据的，只存放主键信息或指针</p>
+<h3 id="5-2-5-单例模式"><a href="#5-2-5-单例模式" class="headerlink" title="5.2.5 单例模式"></a>5.2.5 单例模式</h3><p>用init函数对每个模块的dao对象，数据库连接等进行初始化，放在内存当中，当要使用的时候，即可以从内存中直接取出，不用新建对象 （1）提供了对唯一实例的受控访问 （2）由于在系统内存中只存在一个对象，因此可以 节约系统资源，当需要频繁创建和销毁的对象时单例模式无疑可以提高系统的性能 （3）避免对共享资源的多重占用 （4）通过饿汉模式，在所有程序执行开始前被调用直接创建并初始化单例对象，所以并不存在线程安全的问题</p>
+<h3 id="5-2-6-并发编程"><a href="#5-2-6-并发编程" class="headerlink" title="5.2.6 并发编程"></a>5.2.6 并发编程</h3><p>通过go语言的协程，优雅地进行并发编程，以此并发对数据库进行操作，大大提升其响应速度，因为MySQL的InnoDB引擎支持事务，所以不用担心起并发安全问题 （1）Goroutine所需要的内存通常只有2kb，而线程则需要1Mb,内存消耗更少 （2）由于线程创建时需要向操作系统申请资源，并且在销毁时将资源归还，因此它的创建和销毁的开销比较大。相比之下，goroutine的创建和销毁是由go语言在运行时自己管理的，因此开销更低</p>
+<h2 id="5-3-安全问题"><a href="#5-3-安全问题" class="headerlink" title="5.3 安全问题"></a>5.3 安全问题</h2><h3 id="5-3-1-Token验证"><a href="#5-3-1-Token验证" class="headerlink" title="5.3.1 Token验证"></a>5.3.1 Token验证</h3><p>采用JWT进行Token验证，中间件中对Token进行解析和判断，阻止Token不合法或已过期的请求，将token中携带的user_id信息写入 *gin.Context 声明的参数中供后续使用，考虑到前端未采用refresh_token进行刷新，将Token过期时间设置为14天 （1）解决了用户鉴权问题 （2）防止 CSRF攻击</p>
+<h3 id="5-3-2-防止SQL注入"><a href="#5-3-2-防止SQL注入" class="headerlink" title="5.3.2 防止SQL注入"></a>5.3.2 <strong>防止SQL注入</strong></h3><p>根据所选框架为Gen，Gen 提供了自动同步数据表结构体到 GORM 模型，使用非常简单，即使数据库字段信息改变，可以一键同步，数据库查询相关代码可以一键生成，CRUD 只需要调用对应的方法，开发体验飞起 （1）GEN 采用了类型安全限制，所有参数都做了安全限制，完全不用担心存在注入 （2）自定义 SQL 只需要通过模板注释到 interface 的方法上，自动生成安全的代码SQL ，也不会出现SQL 注入问题</p>
+<h3 id="5-3-3-参数校验"><a href="#5-3-3-参数校验" class="headerlink" title="5.3.3 参数校验"></a>5.3.3 参数校验</h3><p>采用Validate对请求参数进行合法性校验，阻止不符合参数要求的请求，二次避免SQL、XSS注入，防止通过发送请求对程序进破坏。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// FavoriteListResponse 点赞列表返回值</span></span><br><span class="line"><span class="keyword">type</span> FavoriteListResponse <span class="keyword">struct</span> &#123;</span><br><span class="line">	common.Response</span><br><span class="line">	VideoList []video.TheVideoInfo <span class="string">`json:&quot;video_list&quot;`</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// FavoriteActionRequest 点赞与取消请求</span></span><br><span class="line"><span class="keyword">type</span> FavoriteActionRequest <span class="keyword">struct</span> &#123;</span><br><span class="line">	Token      <span class="type">string</span> <span class="string">`form:&quot;token&quot;        validate:&quot;required,jwt&quot;`</span></span><br><span class="line">	VideoId    <span class="type">int64</span>  <span class="string">`form:&quot;video_id&quot;     validate:&quot;required,numeric,min=1&quot;`</span></span><br><span class="line">	ActionType <span class="type">int32</span>  <span class="string">`form:&quot;action_type&quot;  validate:&quot;required,numeric,oneof=1 2&quot;`</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-3-4-密码安全"><a href="#5-3-4-密码安全" class="headerlink" title="5.3.4 密码安全"></a>5.3.4 密码安全</h3><p>对参数进行校验，要求用户名必须小于32位字符，密码大于8位小于32位字符，至少包含一位数字，字母和特殊字符。 将用户密码加盐使用<code>md5</code>加密再存入数据库中确保用户密码的安全性</p>
+<h3 id="5-3-5-敏感词检测"><a href="#5-3-5-敏感词检测" class="headerlink" title="5.3.5 敏感词检测"></a>5.3.5 敏感词检测</h3><p>采用go-wordsfilter对评论和发布视频请求中的文本信息进行敏感词检测，敏感词类型涉及黄赌毒、党政、欺骗消费者等方面。检测到敏感词后，阻止本次请求，并写入日志。</p>
+<h2 id="5-4-高可用"><a href="#5-4-高可用" class="headerlink" title="5.4 高可用"></a>5.4 高可用</h2><h3 id="5-4-1-恶意请求限流"><a href="#5-4-1-恶意请求限流" class="headerlink" title="5.4.1 恶意请求限流"></a>5.4.1 恶意请求限流</h3><p>采用Redis记录请求ip，设置过期时间为5秒，同一ip5秒内访问超过100次的其余请求在中间件中被阻止，避免网站负载升高或者造成网站带宽阻塞而拒绝或无法响应正常用户的请求，防止通过发送请求对程序进破坏。</p>
+<h3 id="5-4-2-性能测试"><a href="#5-4-2-性能测试" class="headerlink" title="5.4.2 性能测试"></a>5.4.2 性能测试</h3><p>测试工具:Apifox v2.1.16，Jmeter 采用Apifox进行测试集接口自动化，根据不同测试环境和测试数据，生成压力测试报告进行局部调优 假设实际运行开发中 以最大流量的视频流为例 40线程数 RT平均耗时为1.2s 吞吐量为37.3&#x2F;min</p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://s1.ax1x.com/2023/01/12/pSugVht.png"
+                       
+                 ></p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://s1.ax1x.com/2023/01/12/pSugEtI.png"
+                       
+                 ></p>
+
+                    
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E5%90%8E%E7%AB%AF/">后端</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E5%AD%97%E8%8A%82/">字节</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/2022-07-18/ab5a107cdd1b/"
+                                   title="MySQL中datetime与timestamp区别"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">MySQL中datetime与timestamp区别</span>
+                                        <span class="post-nav-item">上一篇</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/2022-07-18/8f324487ccc8/"
+                                   title="字节后端青训营抖音项目文档"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">字节后端青训营抖音项目文档</span>
+                                        <span class="post-nav-item">下一篇</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+    <div class="comments-container border-box">
+        <div id="comments-anchor" class="comment-area-title border-box">
+            <i class="fas fa-comments"></i>&nbsp;评论
+        </div>
+        <div class="comment-plugin-fail border-box">
+    <span class="fail-tip">评论插件加载失败</span>
+    <button class="reload keep-button">点击重新加载</button>
+</div>
+<div class="comment-plugin-loading flex-center border-box">
+    <i class="loading-icon fa-solid fa-spinner fa-spin"></i>
+    <span class="load-tip">正在加载评论插件</span>
+</div>
+<script data-pjax>
+  window.KeepCommentPlugin = {}
+  window.KeepCommentPlugin.hideLoading = () => {
+    const cplDom = document.querySelector('.comments-container .comment-plugin-loading')
+    cplDom.style.display = 'none'
+  }
+  window.KeepCommentPlugin.loadFailHandle = () => {
+    window.KeepCommentPlugin.hideLoading()
+    const cpfDom = document.querySelector('.comments-container .comment-plugin-fail')
+    cpfDom.style.display = 'flex'
+    cpfDom.querySelector('.reload').addEventListener('click', () => {
+      window.location.reload()
+    })
+  }
+</script>
+
+        
+            
+
+    <div class="valine-container">
+        <div id="vcomments"></div>
+        <script data-pjax
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"
+                async
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        ></script>
+        <script data-pjax
+                async
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        >
+          window.KeepCommentPlugin.initValine = () => {
+            const config = {
+              el: '#vcomments',
+              appId: '0HepQGr76M5xNgWk2Ecac7CC-gzGzoHsz',
+              appKey: '9bWzVBcRI0aSocVHtX3OBSYo',
+              meta: ['nick', 'mail', 'link'],
+              avatar: 'wavatar',
+              enableQQ: true,
+              placeholder: '',
+              lang: 'zh-CN'.toLowerCase()
+            }
+
+            if ('') {
+              config.serverURLs = ''
+            }
+
+            if (window?.Valine) {
+              new Valine(config)
+              window.KeepCommentPlugin.hideLoading()
+            } else {
+              setTimeout(() => {
+                window.KeepCommentPlugin.initValine()
+              }, 1000)
+            }
+          }
+
+          if ('true' === 'true') {
+            setTimeout(() => {
+              window.KeepCommentPlugin.initValine()
+            }, 1200)
+          } else {
+            window.addEventListener('DOMContentLoaded', window.KeepCommentPlugin.initValine)
+          }
+        </script>
+    </div>
+
+
+        
+    </div>
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc right-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E9%A1%B9%E7%9B%AE%E6%A6%82%E8%A6%81"><span class="nav-number">1.</span> <span class="nav-text">一、项目概要</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-%E9%A1%B9%E7%9B%AE%E4%BB%93%E5%BA%93%E5%92%8C%E6%88%90%E6%9E%9C%E5%B1%95%E7%A4%BA"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 项目仓库和成果展示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-%E9%A1%B9%E7%9B%AE%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E8%AF%B4%E6%98%8E"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 项目环境配置说明</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-1-%E9%A1%B9%E7%9B%AE%E4%BD%BF%E7%94%A8"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.2.1 项目使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-2-%E9%A1%B9%E7%9B%AE%E8%AF%B4%E6%98%8E"><span class="nav-number">1.2.2.</span> <span class="nav-text">1.2.2 项目说明</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-%E6%88%90%E5%91%98%E5%88%86%E5%B7%A5"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 成员分工</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-%E6%8A%80%E6%9C%AF%E4%BD%BF%E7%94%A8"><span class="nav-number">1.4.</span> <span class="nav-text">1.4 技术使用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0"><span class="nav-number">2.</span> <span class="nav-text">二、功能实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-%E7%94%A8%E6%88%B7%E6%A8%A1%E5%9D%97"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 用户模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-%E8%A7%86%E9%A2%91%E6%A8%A1%E5%9D%97"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 视频模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-%E5%85%B3%E6%B3%A8%E6%A8%A1%E5%9D%97"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 关注模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-%E8%AF%84%E8%AE%BA%E6%A8%A1%E5%9D%97"><span class="nav-number">2.4.</span> <span class="nav-text">2.4 评论模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-5-%E7%82%B9%E8%B5%9E%E6%A8%A1%E5%9D%97"><span class="nav-number">2.5.</span> <span class="nav-text">2.5 点赞模块</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E4%BB%A3%E7%A0%81%E8%B4%A8%E9%87%8F"><span class="nav-number">3.</span> <span class="nav-text">三、代码质量</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-MVC"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 MVC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 命名规范</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-%E5%B8%B8%E9%87%8F%E4%B8%8E%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 常量与配置管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-%E6%97%A5%E5%BF%97%E8%AE%B0%E5%BD%95"><span class="nav-number">3.4.</span> <span class="nav-text">3.4 日志记录</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1"><span class="nav-number">4.</span> <span class="nav-text">四、项目设计</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 数据库设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-1-%E6%95%B0%E6%8D%AE%E5%BA%93ER%E5%9B%BE"><span class="nav-number">4.1.1.</span> <span class="nav-text">4.1.1 数据库ER图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-2-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8"><span class="nav-number">4.1.2.</span> <span class="nav-text">4.1.2 数据库表</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 项目结构设计</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E9%A1%B9%E7%9B%AE%E4%BA%AE%E7%82%B9"><span class="nav-number">5.</span> <span class="nav-text">五、项目亮点</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-%E4%BB%A3%E7%A0%81%E7%AE%A1%E7%90%86"><span class="nav-number">5.1.</span> <span class="nav-text">5.1 代码管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2%E9%AB%98%E6%80%A7%E8%83%BD"><span class="nav-number">5.2.</span> <span class="nav-text">5.2高性能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-1-OSS%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8"><span class="nav-number">5.2.1.</span> <span class="nav-text">5.2.1 OSS对象存储</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-2-%E9%9B%AA%E8%8A%B1%E7%AE%97%E6%B3%95"><span class="nav-number">5.2.2.</span> <span class="nav-text">5.2.2 雪花算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-3-GEN%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A8%A1%E5%9E%8B"><span class="nav-number">5.2.3.</span> <span class="nav-text">5.2.3 GEN自定义模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-4-MySQL%E7%B4%A2%E5%BC%95"><span class="nav-number">5.2.4.</span> <span class="nav-text">5.2.4 MySQL索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-5-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F"><span class="nav-number">5.2.5.</span> <span class="nav-text">5.2.5 单例模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-6-%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B"><span class="nav-number">5.2.6.</span> <span class="nav-text">5.2.6 并发编程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-3-%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98"><span class="nav-number">5.3.</span> <span class="nav-text">5.3 安全问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-1-Token%E9%AA%8C%E8%AF%81"><span class="nav-number">5.3.1.</span> <span class="nav-text">5.3.1 Token验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-2-%E9%98%B2%E6%AD%A2SQL%E6%B3%A8%E5%85%A5"><span class="nav-number">5.3.2.</span> <span class="nav-text">5.3.2 防止SQL注入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-3-%E5%8F%82%E6%95%B0%E6%A0%A1%E9%AA%8C"><span class="nav-number">5.3.3.</span> <span class="nav-text">5.3.3 参数校验</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-4-%E5%AF%86%E7%A0%81%E5%AE%89%E5%85%A8"><span class="nav-number">5.3.4.</span> <span class="nav-text">5.3.4 密码安全</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-5-%E6%95%8F%E6%84%9F%E8%AF%8D%E6%A3%80%E6%B5%8B"><span class="nav-number">5.3.5.</span> <span class="nav-text">5.3.5 敏感词检测</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-4-%E9%AB%98%E5%8F%AF%E7%94%A8"><span class="nav-number">5.4.</span> <span class="nav-text">5.4 高可用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-4-1-%E6%81%B6%E6%84%8F%E8%AF%B7%E6%B1%82%E9%99%90%E6%B5%81"><span class="nav-number">5.4.1.</span> <span class="nav-text">5.4.1 恶意请求限流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-4-2-%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95"><span class="nav-number">5.4.2.</span> <span class="nav-text">5.4.2 性能测试</span></a></li></ol></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+        &copy;&nbsp;<span>2021</span>&nbsp;-&nbsp;2024
+        
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">tbghg</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        由&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;驱动&nbsp;&&nbsp;主题&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
+    
+
+    
+
+    
+        <div class="record-info info-item">
+            
+                
+                    <div class="record-item border-box">
+                        <a class=""
+                           target="_blank"
+                           href="https://beian.miit.gov.cn"
+                        >
+                            辽ICP备2021007417号
+                        </a>
+                    </div>
+                
+            
+        </div>
+    
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools right-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
+        
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        <!-- to bottom -->
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+            <li class="tools-item go-to-comments-tablet flex-center">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E9%A1%B9%E7%9B%AE%E6%A6%82%E8%A6%81"><span class="nav-number">1.</span> <span class="nav-text">一、项目概要</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-%E9%A1%B9%E7%9B%AE%E4%BB%93%E5%BA%93%E5%92%8C%E6%88%90%E6%9E%9C%E5%B1%95%E7%A4%BA"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 项目仓库和成果展示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-%E9%A1%B9%E7%9B%AE%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E8%AF%B4%E6%98%8E"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 项目环境配置说明</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-1-%E9%A1%B9%E7%9B%AE%E4%BD%BF%E7%94%A8"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.2.1 项目使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-2-%E9%A1%B9%E7%9B%AE%E8%AF%B4%E6%98%8E"><span class="nav-number">1.2.2.</span> <span class="nav-text">1.2.2 项目说明</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-%E6%88%90%E5%91%98%E5%88%86%E5%B7%A5"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 成员分工</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-%E6%8A%80%E6%9C%AF%E4%BD%BF%E7%94%A8"><span class="nav-number">1.4.</span> <span class="nav-text">1.4 技术使用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0"><span class="nav-number">2.</span> <span class="nav-text">二、功能实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-%E7%94%A8%E6%88%B7%E6%A8%A1%E5%9D%97"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 用户模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-%E8%A7%86%E9%A2%91%E6%A8%A1%E5%9D%97"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 视频模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-%E5%85%B3%E6%B3%A8%E6%A8%A1%E5%9D%97"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 关注模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-%E8%AF%84%E8%AE%BA%E6%A8%A1%E5%9D%97"><span class="nav-number">2.4.</span> <span class="nav-text">2.4 评论模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-5-%E7%82%B9%E8%B5%9E%E6%A8%A1%E5%9D%97"><span class="nav-number">2.5.</span> <span class="nav-text">2.5 点赞模块</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E4%BB%A3%E7%A0%81%E8%B4%A8%E9%87%8F"><span class="nav-number">3.</span> <span class="nav-text">三、代码质量</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-MVC"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 MVC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 命名规范</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-%E5%B8%B8%E9%87%8F%E4%B8%8E%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 常量与配置管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-%E6%97%A5%E5%BF%97%E8%AE%B0%E5%BD%95"><span class="nav-number">3.4.</span> <span class="nav-text">3.4 日志记录</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1"><span class="nav-number">4.</span> <span class="nav-text">四、项目设计</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 数据库设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-1-%E6%95%B0%E6%8D%AE%E5%BA%93ER%E5%9B%BE"><span class="nav-number">4.1.1.</span> <span class="nav-text">4.1.1 数据库ER图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-2-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8"><span class="nav-number">4.1.2.</span> <span class="nav-text">4.1.2 数据库表</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 项目结构设计</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E9%A1%B9%E7%9B%AE%E4%BA%AE%E7%82%B9"><span class="nav-number">5.</span> <span class="nav-text">五、项目亮点</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-%E4%BB%A3%E7%A0%81%E7%AE%A1%E7%90%86"><span class="nav-number">5.1.</span> <span class="nav-text">5.1 代码管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2%E9%AB%98%E6%80%A7%E8%83%BD"><span class="nav-number">5.2.</span> <span class="nav-text">5.2高性能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-1-OSS%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8"><span class="nav-number">5.2.1.</span> <span class="nav-text">5.2.1 OSS对象存储</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-2-%E9%9B%AA%E8%8A%B1%E7%AE%97%E6%B3%95"><span class="nav-number">5.2.2.</span> <span class="nav-text">5.2.2 雪花算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-3-GEN%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A8%A1%E5%9E%8B"><span class="nav-number">5.2.3.</span> <span class="nav-text">5.2.3 GEN自定义模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-4-MySQL%E7%B4%A2%E5%BC%95"><span class="nav-number">5.2.4.</span> <span class="nav-text">5.2.4 MySQL索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-5-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F"><span class="nav-number">5.2.5.</span> <span class="nav-text">5.2.5 单例模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-6-%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B"><span class="nav-number">5.2.6.</span> <span class="nav-text">5.2.6 并发编程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-3-%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98"><span class="nav-number">5.3.</span> <span class="nav-text">5.3 安全问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-1-Token%E9%AA%8C%E8%AF%81"><span class="nav-number">5.3.1.</span> <span class="nav-text">5.3.1 Token验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-2-%E9%98%B2%E6%AD%A2SQL%E6%B3%A8%E5%85%A5"><span class="nav-number">5.3.2.</span> <span class="nav-text">5.3.2 防止SQL注入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-3-%E5%8F%82%E6%95%B0%E6%A0%A1%E9%AA%8C"><span class="nav-number">5.3.3.</span> <span class="nav-text">5.3.3 参数校验</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-4-%E5%AF%86%E7%A0%81%E5%AE%89%E5%85%A8"><span class="nav-number">5.3.4.</span> <span class="nav-text">5.3.4 密码安全</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-5-%E6%95%8F%E6%84%9F%E8%AF%8D%E6%A3%80%E6%B5%8B"><span class="nav-number">5.3.5.</span> <span class="nav-text">5.3.5 敏感词检测</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-4-%E9%AB%98%E5%8F%AF%E7%94%A8"><span class="nav-number">5.4.</span> <span class="nav-text">5.4 高可用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-4-1-%E6%81%B6%E6%84%8F%E8%AF%B7%E6%B1%82%E9%99%90%E6%B5%81"><span class="nav-number">5.4.1.</span> <span class="nav-text">5.4.1 恶意请求限流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-4-2-%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95"><span class="nav-number">5.4.2.</span> <span class="nav-text">5.4.2 性能测试</span></a></li></ol></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+
+
+<!-- common js -->
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/js/toggle-theme.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/js/code-block.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/js/libs/anime.min.js"></script>
+
+<!-- local search -->
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/js/local-search.js"></script>
+
+
+<!-- lazyload -->
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/js/lazyload.js"></script>
+
+
+<div class="pjax">
+    <!-- home page -->
+    
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/js/post/post-helper.js"></script>
+
+        <!-- toc -->
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/js/post/toc.js"></script>
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.3/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart()
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd()
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'))
+            KEEP.initExecute()
+        });
+    });
+</script>
+
+
+
+
+</body>
+</html>
