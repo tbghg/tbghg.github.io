@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="tbghg">
+    <meta name="description" content="这里是TBH的博客，用于技术分享，记录日常。">
+    <meta name="author" content="tbghg">
+    
+    <title>
+        
+            与外界沟通 |
+        
+        TBH个人博客
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="https://s1.ax1x.com/2023/01/12/pSurRG8.png">
+    
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/font/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/font/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/font/css/brands.min.css">
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"tbghg.top","root":"/","language":"zh-CN","path":"search.json"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"TBH个人博客","author":"tbghg","avatar":"/images/avatar.jpg","logo":"https://s1.ax1x.com/2023/01/12/pSurRG8.png","favicon":"https://s1.ax1x.com/2023/01/12/pSurRG8.png"},"menu":{"home":"/                        || fa-solid fa-home","archives":"/archives            || fa-solid fa-box-archive","about":"/about                || fa-solid fa-user-graduate","categories":"/categories      || fa-solid fa-layer-group","tools":"/tools                || fa-solid fa-tools","开往":"https://www.travellings.cn/go.html || fa-solid fa-train-subway"},"first_screen":{"enable":true,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"丰富多彩的生活需要强大的执行力||描绘属于自己的故事","hitokoto":false},"social_contact":{"enable":true,"links":{"github":"https://github.com/tbghg","weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":"1312186639@qq.com"}},"scroll":{"progress_bar":false,"percent":false,"hide_header":true},"home":{"announcement":null,"category":true,"tag":true,"post_datetime":"updated"},"post":{"author_badge":{"enable":false,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":true,"min2read":true},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":false,"reward":{"enable":false,"img_link":null,"text":null}},"code_block":{"tools":{"enable":true,"style":"mac"},"highlight_theme":"default"},"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true,"layout":"right"},"website_count":{"busuanzi_count":{"enable":false,"site_uv":false,"site_pv":false,"page_pv":false}},"local_search":{"enable":true,"preload":true},"comment":{"enable":true,"use":"valine","valine":{"appid":"0HepQGr76M5xNgWk2Ecac7CC-gzGzoHsz","appkey":"9bWzVBcRI0aSocVHtX3OBSYo","server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.36"},"waline":{"server_url":null,"reaction":false,"version":"3.2.1"},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":true},"lazyload":{"enable":true},"cdn":{"enable":true,"provider":"jsdelivr"},"pjax":{"enable":true},"footer":{"since":2021,"word_count":false,"site_deploy":{"enable":false,"provider":"github","url":null},"record":{"enable":true,"list":[{"code":"辽ICP备2021007417号","link":"https://beian.miit.gov.cn"}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"","source_data":{"links":[{"title":"朋友们 1"},{"name":"XPoet","link":"https://xpoet.cn/","description":"懒惰是程序员第一生产力","avatar":"https://cdn.statically.io/gh/XPoet/image-hosting@master/common-use/avatar.jpg"},{"name":"不知名艺术家","link":"https://jinzhanqi.com/","description":"love artist, love code.","avatar":"https://s3.ax1x.com/2020/11/17/DVvkB4.jpg"}],"photos":[{"url":"https://xpoet.cn/images/logo.png","name":"XPoet"},{"url":"/images/photos/img-1.png","name":"img1"},{"url":"/images/photos/img-2.png","name":"img2"}],"tools":[{"category":"聊天 AI"},{"name":"ChatGPT","link":"https://chat.openai.com/","description":"OpenAI 旗下 AI 聊天对话工具","image":"/images/tools/chatgpt.svg"},{"name":"Gemini","link":"https://gemini.google.com/app","description":"Google 旗下 AI 聊天对话工具","image":"/images/tools/gemini.svg"},{"category":"技术文档"},{"name":"字节跳动技术团队","link":"https://juejin.cn/user/1838039172387262/posts"},{"name":"腾讯技术工程官方号","link":"https://cloud.tencent.com/developer/user/170434/activities"},{"name":"淘宝技术","link":"https://tech.taobao.org/news"},{"name":"哔哩哔哩技术","link":"https://space.bilibili.com/393183630"},{"name":"美团技术团队","link":"https://tech.meituan.com/"},{"name":"技术文章摘抄","link":"http://learn.lianglianglee.com/","description":"内容较为丰富，收录了较多技术文章"},{"name":"硬核课堂","link":"https://space.bilibili.com/1324259795"},{"name":"戌米的论文笔记","link":"https://space.bilibili.com/61981458","description":"raft算法"}]},"version":"4.2.5"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"复制代码","copied":"已复制","fold":"折叠代码块","folded":"已折叠"}
+    KEEP.language_copy_copyright = {"copy":"复制版权信息","copied":"已复制","title":"原文标题","author":"原文作者","link":"原文链接"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="TBH个人博客" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+
+<main class="page-container border-box">
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="https://s1.ax1x.com/2023/01/12/pSurRG8.png">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               TBH个人博客
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-home"></i>
+                                
+                                首页
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-box-archive"></i>
+                                
+                                归档
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/about">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-user-graduate"></i>
+                                
+                                关于
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/categories">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-layer-group"></i>
+                                
+                                分类
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tools">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-tools"></i>
+                                
+                                工具
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" target="_blank" rel="noopener" href="https://www.travellings.cn/go.html">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-train-subway"></i>
+                                
+                                开往
+                                
+                            </a>
+                            
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="menu-text-color fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile border-box flex-start">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list border-box">
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-home"></i>
+                                </span>
+                            
+                            首页
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-box-archive"></i>
+                                </span>
+                            
+                            归档
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/about">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-user-graduate"></i>
+                                </span>
+                            
+                            关于
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/categories">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-layer-group"></i>
+                                </span>
+                            
+                            分类
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tools">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-tools"></i>
+                                </span>
+                            
+                            工具
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" target="_blank" rel="noopener" href="https://www.travellings.cn/go.html">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-train-subway"></i>
+                                </span>
+                            
+                            开往
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box encrypt">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        与外界沟通
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/avatar.jpg">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">tbghg</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2024-06-25 01:08:53</span>
+            </span>
+
+            
+                <span class="meta-info-item post-update-date">
+                    <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                    <span class="datetime" data-updated="Mon Jun 24 2024 17:08:53 GMT+0000">2024-06-25 01:08:53</span>
+                </span>
+            
+        
+
+        
+            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="post-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/%E7%94%9F%E6%B4%BB/">生活</a></li>
+                        
+                    
+                            <li class="category-item">&nbsp;<i class="icon fas fa-angle-right"></i>&nbsp;<a href="/categories/%E7%94%9F%E6%B4%BB/%E9%9A%8F%E7%AC%94/">随笔</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+
+        
+        
+            <span class="meta-info-item post-wordcount">
+                <i class="icon fas fa-file-word"></i>&nbsp;<span>881 字</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-min2read">
+                <i class="icon fas fa-clock"></i>&nbsp;<span>2 分钟</span>
+            </span>
+        
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body code-block-unshrink">
+                    
+
+                    
+                        <div class="post-encrypt-box border-box"
+                             data-secret="39ac1c75b6529b5741d4e9fa1a0b7a439f5df61ce6f2f60468ea1513ddbe1c6e"
+                             data-iv="0cafaccab4df6e295b5c5e8e67400e74"
+                             data-ep="86ff8609f50924f3d0fdf304feb22beb"
+                             data-content="bd23c2500e2c2dcc151860d0fd8efbd7b91c76d4371a3f1b5a645c9b98e132f304cfae655fdad3238d9be2d413e82f798c73d226be08d85f24da56436902a24879fa6894213cc9f1ca06f2710b97734de8ed6d940e6ea7e340d7ba6e774e1a44664d84e6d4e121b4bc4a36081f33037e4343184c69a1f6cfd2d89353d447030060e5b0f516530e65797ddf38936ac4b1d6e598af4b4181077ccf56a1d6b79395a31e5af471ecaee2030c6f57aabc969fa967bb2e5a25c5a71c4b0551e9e804dca37f8f52b5d2366cf748d8e255e3474d858549532a8e85ccedfa26a2fc9c060073bd4d33688e175faf6530c8f818f7b76ef90b12055797ae6239464cc4302673ddda8d6359a853d3fd405ccfb843b985d647f4f367d7ecb8e197b8a4aba72523e5e855e7a04c0160fc8858d1c775b11d41047d80c5993a718a4c8fb0a7d449ab9634215babe15889deb63de6ffe0b93964e6886dd993b455cc2accdcb181786882bc7766c3cb789ad0cb2bc662cc1e05f2fa24541b7b9c37173dc71e8d3e34f5c268586f7e3f65c3e4e3d4461c1f5945d4ed1d9547ea7ba0273d02f5fabdbc105c6c969024a9bba373b90b46d71d9433a0364b4e92c89f8a3ef8120570349b6e6345a2fd74309b1b131dc4dcfc5d573aadc958d06ff144de8c50bf9b6b96011795660b921d9e1a4731eba36b0ce043422e1916627414bf63b7e61f6b7a2d24e69f5bb07fc3285f4c67eb81b309d3cffd5a1bfc731e204dfc04568a467dd63313913addadd37f0e75dda410de8f98fb88db3aef622edcb373bf82976adccf21adf55bc8b3c09880c2a4687e5eea62197e3b1c32452275deb272714409837d25b87335933f750bae45a9d3f4db2b7e39cd5690ec77d732eee92f3a5e66da6f6c50afc76dc430562d8a593f9265f93b75fb792bd09b007bc0a57dcd1eecac1c3485455b41a13b1b57fee353325b3efd41e20eab828f87e8beb450c553ae9b252cd1beee7a84cb03295973dd62f3e827b06fc73bc1804a0b2b676b8295ed1c8391e2e083cdda494614410257e5bf51e7c6efc15a19d97b174c84bb88f490bdbd04c0bb5e7a85f73065f8d366986164cd1fc95e1d2b75552a017850c41a216301f570a5886dc839713fcbb1a44feb158ea0dc8d506bad9903bfd437f0cb30b7f20c0c4d676c5439348984f61ad906a027978ddbcd3488c2b4edd9df4fd2306a2f476e23b0f90ac3f834541ca33c998c22b2ed6b64ce760627200b52be3028f952c65a9c7cf1a1038dacfe717c89ad24ee4e088d77ce3f26eb0b6fcf48a09db681513972f211d17be7c79e785dd161ddd77f1655065323df47b2fddd37c7dd16ba7cf37bcc3ae1c43c3697eaf1988660037649fa8865148d597057015c5ee7f6ae41e4e72ff19b149d27cadbb15c0da2b10bc1ec86b5823160e01ab1e214e0dede6950b0333dc8dfbcd0bf6f7de8d5665eec572aa78aabc355d41dfd6b05791bb4264ff5c051b8302cfc5cc3eed56e58556aaf0fcbb9f41c72a56e2743ae5e1e801f2d45e1b0b668e0fa3b21d72d91d204696f2e12afdac7bbad55f7be7b67108c72595acfc7732a95c545272b2e42ecfa9b8268dd9a01caf18e24d6e405d65de53ad887776f2d9e733cac1fb8e4b8bf283c489584d9dee496d249424b8b439c73a2b8d92c1386e0f42d677b5fc3df4da53be7ccc80c7e2b8b7c0add84f5cb8c294c9bdfcf55b66ed32b062d833d12f5010aa9bc4bb0498dadca807e6652c12f1038603f611debadddb647e0e1a8a7870d928b21ac56f3d96a882aaf60a7fd64f68a67f6d856cc13cffa561b4e65b6be5c9f0b627fa23b443a50e06dec2c509747172efa4a089b8e692ecdb3ec0672d60b17e9c91749445d75e9d7f6d36d6e0145015abda26d1b46e073661a31c8c39d8bb13cd952c75eb7c405899e86dc44bc33b92229dfc9d900d2527db92e3e7d1ac49a166d4cdb5b400e0d6f1df1968b947427d86b4209066a26b0ec179bf15a4e0e34f21f4c934c1b6d7836911cb24ac1b94a91a18f67fca12a44f09b17b205e94a7fad1edf6260a500ff670289bc2e1f24a248b8d9bdcd9003a458865c3673b8a7c03858affa9754ab56c9c5d7d5c9d08b32ff3333d7608b42ca9784f62e3b34721cdbb34513c155f70c45a9329abbd9a1f4c99b8afc9a188b57452d56d96ab1fbc7512d82c07d9a6c6ff486e805a9a56dc05117f241e224c0b8d773917618d10006cc9399907b72e4d6e168f4d53eba79bdc7089bc79d8c78350620385e9c61eb46cacb1aa4da0f78166a92a8bf8aaaeb512bd457e1d5c6142f7b58b973760ac6386b74865d30eda3270a3c25297a5cc196cd9a4c244dba34ec77e9f7fde74620991fd676cfc3ab1e7ef1cf704422e7850346952ea998b6adc332975edb1e69907f58323e023e06aa470678c985389e781a4743c4e7a90e84a4038aaa934dea09bd78eef72a996208510c832b38888460c81255db019af7d6f10014c82bd62b87181a1ff0c1403f3e88d8bac0172aba446fafd4285ea99cbd1ee6ee60ec7bfc3e8f0aef61b6846397c41eff17175c7909f9a1570c4182c27a91891ffbda0515081478d8b419450798c34858208a8438111690e379229b9a878ca4840c3f2f64fb1e795bbb13432eed4bc97fa529510f92cc635200a3efbe95f445b6bda23149baf5a67485782936ac96fcb398943447c35b2032e0a1f79c5613ec1c2f627f7f1204abb3706c7c332d4bc6e46325e2e11b386d3eb074ef6ceaa1fb46e6aef93195090ca7f38106558964a1fef1432d6125ce589c248de34020d7533b9a836c0676983e4aa8248698723beaf89ae5628a561012c904955882e2eac61502259922e4e45499fe4490db311bedce5171e1c4109430e7460315c1e0c58929531f0bd7bb6b86f1a06def6e96e12c3c4e83a8b2a722619bfe11113df78fb2306a0243994bfe70141b6e319050147182ce64ec81846adf091df3616cae922e35ba385f2bc4638be33c89d5dcc5bfb2e2263d5aafb5472a785ddf9b05722bc5e2bff41788e912e5bea2c140fbb879b94a0089b506ed9976084eb880e0349fed3b2a87e3b5c2eab90bb452bad13f3e3a82d2ce97b823763c082c5fbd3d77e18b5a8ba96da3fe4d6a09d139c8af1828ed0b4106cc5850a8f133f5ab5e74c0931de51e78f2661414c197c46a5dd18e7911e0a27cb59e02550da073aefbf0bd7fa3ff09c9dfc38abeef550717c1589dfa55559817cb76ed873587d4661ce83f671e044cf8dc179ffeaa23b87344c8c3dd02e28ab35e7c68140a9155e9b3a963bdd172ceab4441303abe636b13953932ade97a9cda5b8c5f1a108ab45335f9e4987d6767709c3230ba3c43efb0642b0779c8cff8370e55d33a556c3fdce07cadf944a707c558e1e91fe33963e89b41ddf5340795cb11d614e55b87805b88fc8032d8656dd46911bdc46ccb8259a58cd3ba2cce64660abd02938f1705c20c35278b7eb00e8a0eb0c6bbb26b264b00747090a6eca8b817be4d44fbabf1254706024332f2339f724f464192f6af1cacddd9b5b23c5cbada10096353a9e050576010e8da9bca19d4b2ab1daaa3f38e9b9babfb3b2634ceb6dbe50c4f623d4e6f87d405a4439664ad5cf5987af6b9972ecda12b6fd2f4b8d4cd07115fa2e4d90aa0284d5407d36804d643d529f9055c78e184bd3587afded4ba35b6e8f2a9c06edefe7deaf7e15ffe2000e1eec76467cde7225348d457c24062df574aa1186ec5cba9039bc30b3e013337d748b6c7c3233061f1b6a05eb5aa5bf96b97f265904af8527fef61b80b3d84a1fd5d7ace614888e6f77ca3245c28048bf5ad5231fcd8e177a3a7ac2462636f1030ae561ddb930a7ffdb25c8cbdb7881938d625b0c059f09af6750fc7fb651a38c409137f57e02a2e1e57fee0e45b1e4584404b1db8401837ec3f70b5c5c747e4539dedf292785cc0c57cc0ac4d27302fdebf03073674d5f9128cb8a70108a7a360794eadd39ea79140701dea056c7afa60d92cc1ffa21713476e9dcfd814a9edf7a25a11ae0219ec983d815c57fdcd5d260d310586c89cebd374c8e7fe6548f2aecf459e545bc790e542bff74ac839d69eb53b2ba3c1fa7be4974ea6a5171e87475478d64f4b055b7ebb5fc5fa3927777e1911be438e87110360341aa9853679366a1e8234c0bce3014a5f5b6e2577aa00710e2bc7b78d8574c33eceeaad6951bc5565ddb49c997582c9d25469b7b9b36460c86ddabac1deda2c5936335938c8e369211cc3285734784f49d5d953955c344d1d9e08eae7bf1ebf186fd4ad6143fb278c5a4c8b9e9203a8e9b532c4d97e934f3e8b6130a3f4371e89875aa502d2dd00"
+                        >
+                            <input type="password" class="password-input border-box" placeholder="请输入密码...">
+                        </div>
+                        <div class="post"></div>
+                    
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/2024-06-24/d32a6df577a8/"
+                                   title="做菜笔记"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">做菜笔记</span>
+                                        <span class="post-nav-item">上一篇</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/2023-11-27/bd32b3914914/"
+                                   title="java学习笔记"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">java学习笔记</span>
+                                        <span class="post-nav-item">下一篇</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+    <div class="comments-container border-box">
+        <div id="comments-anchor" class="comment-area-title border-box">
+            <i class="fas fa-comments"></i>&nbsp;评论
+        </div>
+        <div class="comment-plugin-fail border-box">
+    <span class="fail-tip">评论插件加载失败</span>
+    <button class="reload keep-button">点击重新加载</button>
+</div>
+<div class="comment-plugin-loading flex-center border-box">
+    <i class="loading-icon fa-solid fa-spinner fa-spin"></i>
+    <span class="load-tip">正在加载评论插件</span>
+</div>
+<script data-pjax>
+  window.KeepCommentPlugin = {}
+  window.KeepCommentPlugin.hideLoading = () => {
+    const cplDom = document.querySelector('.comments-container .comment-plugin-loading')
+    cplDom.style.display = 'none'
+  }
+  window.KeepCommentPlugin.loadFailHandle = () => {
+    window.KeepCommentPlugin.hideLoading()
+    const cpfDom = document.querySelector('.comments-container .comment-plugin-fail')
+    cpfDom.style.display = 'flex'
+    cpfDom.querySelector('.reload').addEventListener('click', () => {
+      window.location.reload()
+    })
+  }
+</script>
+
+        
+            
+
+    <div class="valine-container">
+        <div id="vcomments"></div>
+        <script data-pjax
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"
+                async
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        ></script>
+        <script data-pjax
+                async
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        >
+          window.KeepCommentPlugin.initValine = () => {
+            const config = {
+              el: '#vcomments',
+              appId: '0HepQGr76M5xNgWk2Ecac7CC-gzGzoHsz',
+              appKey: '9bWzVBcRI0aSocVHtX3OBSYo',
+              meta: ['nick', 'mail', 'link'],
+              avatar: 'wavatar',
+              enableQQ: true,
+              placeholder: '',
+              lang: 'zh-CN'.toLowerCase()
+            }
+
+            if ('') {
+              config.serverURLs = ''
+            }
+
+            if (window?.Valine) {
+              new Valine(config)
+              window.KeepCommentPlugin.hideLoading()
+            } else {
+              setTimeout(() => {
+                window.KeepCommentPlugin.initValine()
+              }, 1000)
+            }
+          }
+
+          if ('true' === 'true') {
+            setTimeout(() => {
+              window.KeepCommentPlugin.initValine()
+            }, 1200)
+          } else {
+            window.addEventListener('DOMContentLoaded', window.KeepCommentPlugin.initValine)
+          }
+        </script>
+    </div>
+
+
+        
+    </div>
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc right-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+    &copy;&nbsp;<span>2021</span>&nbsp;-&nbsp;2025
+    
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">tbghg</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        由&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;驱动&nbsp;&&nbsp;主题&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
+    
+
+    
+
+    
+        <div class="record-info info-item">
+            
+                
+                    <div class="record-item border-box">
+                        <a class=""
+                           target="_blank"
+                           href="https://beian.miit.gov.cn"
+                        >
+                            辽ICP备2021007417号
+                        </a>
+                    </div>
+                
+            
+        </div>
+    
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools right-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
+        
+            <li class="status-item flex-center post-lock border-box"
+                data-tooltip-content="重新加密"
+            >
+                <i class="fa-solid fa-lock"></i>
+                <i class="fa-solid fa-lock-open"></i>
+            </li>
+        
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        <!-- to bottom -->
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+            <li class="tools-item go-to-comments-tablet flex-center">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+
+
+<!-- common js -->
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/toggle-theme.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/code-block.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/libs/anime.min.js"></script>
+
+<!-- local search -->
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/local-search.js"></script>
+
+
+<!-- lazyload -->
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/lazyload.js"></script>
+
+
+<div class="pjax">
+    <!-- home page -->
+    
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/post/post-helper.js"></script>
+
+        <!-- toc -->
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/post/toc.js"></script>
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart()
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd()
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'))
+            KEEP.initExecute()
+        });
+    });
+</script>
+
+
+
+
+</body>
+</html>

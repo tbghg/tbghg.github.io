@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="tbghg">
+    <meta name="description" content="这里是TBH的博客，用于技术分享，记录日常。">
+    <meta name="author" content="tbghg">
+    
+    <title>
+        
+            LSM树 |
+        
+        TBH个人博客
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="https://s1.ax1x.com/2023/01/12/pSurRG8.png">
+    
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/font/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/font/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/font/css/brands.min.css">
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"tbghg.top","root":"/","language":"zh-CN","path":"search.json"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"TBH个人博客","author":"tbghg","avatar":"/images/avatar.jpg","logo":"https://s1.ax1x.com/2023/01/12/pSurRG8.png","favicon":"https://s1.ax1x.com/2023/01/12/pSurRG8.png"},"menu":{"home":"/                        || fa-solid fa-home","archives":"/archives            || fa-solid fa-box-archive","about":"/about                || fa-solid fa-user-graduate","categories":"/categories      || fa-solid fa-layer-group","tools":"/tools                || fa-solid fa-tools","开往":"https://www.travellings.cn/go.html || fa-solid fa-train-subway"},"first_screen":{"enable":true,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"丰富多彩的生活需要强大的执行力||描绘属于自己的故事","hitokoto":false},"social_contact":{"enable":true,"links":{"github":"https://github.com/tbghg","weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":"1312186639@qq.com"}},"scroll":{"progress_bar":false,"percent":false,"hide_header":true},"home":{"announcement":null,"category":true,"tag":true,"post_datetime":"updated"},"post":{"author_badge":{"enable":false,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":true,"min2read":true},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":false,"reward":{"enable":false,"img_link":null,"text":null}},"code_block":{"tools":{"enable":true,"style":"mac"},"highlight_theme":"default"},"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true,"layout":"right"},"website_count":{"busuanzi_count":{"enable":false,"site_uv":false,"site_pv":false,"page_pv":false}},"local_search":{"enable":true,"preload":true},"comment":{"enable":true,"use":"valine","valine":{"appid":"0HepQGr76M5xNgWk2Ecac7CC-gzGzoHsz","appkey":"9bWzVBcRI0aSocVHtX3OBSYo","server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.36"},"waline":{"server_url":null,"reaction":false,"version":"3.2.1"},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":true},"lazyload":{"enable":true},"cdn":{"enable":true,"provider":"jsdelivr"},"pjax":{"enable":true},"footer":{"since":2021,"word_count":false,"site_deploy":{"enable":false,"provider":"github","url":null},"record":{"enable":true,"list":[{"code":"辽ICP备2021007417号","link":"https://beian.miit.gov.cn"}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"","source_data":{"links":[{"title":"朋友们 1"},{"name":"XPoet","link":"https://xpoet.cn/","description":"懒惰是程序员第一生产力","avatar":"https://cdn.statically.io/gh/XPoet/image-hosting@master/common-use/avatar.jpg"},{"name":"不知名艺术家","link":"https://jinzhanqi.com/","description":"love artist, love code.","avatar":"https://s3.ax1x.com/2020/11/17/DVvkB4.jpg"}],"photos":[{"url":"https://xpoet.cn/images/logo.png","name":"XPoet"},{"url":"/images/photos/img-1.png","name":"img1"},{"url":"/images/photos/img-2.png","name":"img2"}],"tools":[{"category":"聊天 AI"},{"name":"ChatGPT","link":"https://chat.openai.com/","description":"OpenAI 旗下 AI 聊天对话工具","image":"/images/tools/chatgpt.svg"},{"name":"Gemini","link":"https://gemini.google.com/app","description":"Google 旗下 AI 聊天对话工具","image":"/images/tools/gemini.svg"},{"category":"技术文档"},{"name":"字节跳动技术团队","link":"https://juejin.cn/user/1838039172387262/posts"},{"name":"腾讯技术工程官方号","link":"https://cloud.tencent.com/developer/user/170434/activities"},{"name":"淘宝技术","link":"https://tech.taobao.org/news"},{"name":"哔哩哔哩技术","link":"https://space.bilibili.com/393183630"},{"name":"美团技术团队","link":"https://tech.meituan.com/"},{"name":"技术文章摘抄","link":"http://learn.lianglianglee.com/","description":"内容较为丰富，收录了较多技术文章"},{"name":"硬核课堂","link":"https://space.bilibili.com/1324259795"},{"name":"戌米的论文笔记","link":"https://space.bilibili.com/61981458","description":"raft算法"}]},"version":"4.2.5"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"复制代码","copied":"已复制","fold":"折叠代码块","folded":"已折叠"}
+    KEEP.language_copy_copyright = {"copy":"复制版权信息","copied":"已复制","title":"原文标题","author":"原文作者","link":"原文链接"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="TBH个人博客" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+
+<main class="page-container border-box">
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="https://s1.ax1x.com/2023/01/12/pSurRG8.png">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               TBH个人博客
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-home"></i>
+                                
+                                首页
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-box-archive"></i>
+                                
+                                归档
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/about">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-user-graduate"></i>
+                                
+                                关于
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/categories">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-layer-group"></i>
+                                
+                                分类
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tools">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-tools"></i>
+                                
+                                工具
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" target="_blank" rel="noopener" href="https://www.travellings.cn/go.html">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-train-subway"></i>
+                                
+                                开往
+                                
+                            </a>
+                            
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="menu-text-color fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile border-box flex-start">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list border-box">
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-home"></i>
+                                </span>
+                            
+                            首页
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-box-archive"></i>
+                                </span>
+                            
+                            归档
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/about">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-user-graduate"></i>
+                                </span>
+                            
+                            关于
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/categories">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-layer-group"></i>
+                                </span>
+                            
+                            分类
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tools">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-tools"></i>
+                                </span>
+                            
+                            工具
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" target="_blank" rel="noopener" href="https://www.travellings.cn/go.html">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-train-subway"></i>
+                                </span>
+                            
+                            开往
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        LSM树
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/avatar.jpg">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">tbghg</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2024-12-16 16:54:36</span>
+            </span>
+
+            
+                <span class="meta-info-item post-update-date">
+                    <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                    <span class="datetime" data-updated="Mon Dec 16 2024 08:54:36 GMT+0000">2024-12-16 16:54:36</span>
+                </span>
+            
+        
+
+        
+            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="post-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></li>
+                        
+                    
+                            <li class="category-item">&nbsp;<i class="icon fas fa-angle-right"></i>&nbsp;<a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/">底层原理</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+
+        
+        
+            <span class="meta-info-item post-wordcount">
+                <i class="icon fas fa-file-word"></i>&nbsp;<span>4.1k 字</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-min2read">
+                <i class="icon fas fa-clock"></i>&nbsp;<span>14 分钟</span>
+            </span>
+        
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body code-block-unshrink">
+                    
+
+                    
+                         <h1 id="LSM树"><a href="#LSM树" class="headerlink" title="LSM树"></a>LSM树</h1><p><a class="link"   target="_blank" rel="noopener" href="https://www.zhihu.com/question/19887265/answer/1714901833" >LSM 算法的原理是什么？<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1441835" >深入理解什么是LSM-Tree<i class="fas fa-external-link-alt"></i></a></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Google的三篇论文：GFS(2003年)、MapReduce(2004年)、BigTable(2006年)，为开源界在大数据领域带来了无数的灵感</p>
+<p>其中在 “BigTable” 的论文中很多很酷的方面之一就是它所使用的文件组织方式，这个方法更一般的名字叫 Log Structured-Merge Tree</p>
+<p>在面对亿级别之上的海量数据的存储和检索的场景下，我们选择的数据库通常都是各种强力的NoSQL，比如Hbase、Cassandra、Leveldb、RocksDB等等，这其中前两者是Apache下面的顶级开源项目数据库，后两者分别是Google和Facebook开源的数据库存储引擎。而这些强大的NoSQL数据库都有一个共性，就是其底层使用的数据结构，都是仿照“BigTable”中的文件组织方式来实现的，也就是LSM-Tree</p>
+<p>LSM-Tree全称是Log Structured Merge Tree，是一种 分层、有序、面向磁盘 的数据结构，其核心思想是充分了利用了，磁盘批量的顺序写要远比随机写性能高出很多</p>
+<p>围绕这一原理进行设计和优化，以此让写性能达到最优，正如我们普通的Log的写入方式，这种结构的写入，全部都是以Append的模式追加，不存在删除和修改。当然有得就有舍，这种结构虽然大大提升了数据的写入能力，却是以牺牲部分读取性能为代价，故此这种结构通常适合于写多读少的场景。</p>
+<p>故LSM被设计来提供比传统的B+树或者ISAM更好的写操作吞吐量，通过消去随机的本地更新操作来达到这个目标。这里面最典型的例子就属于Kakfa了，把磁盘顺序写发挥到了极致，故而在大数据领域成为了互联网公司标配的分布式消息中间件组件。</p>
+<p>虽然这种结构的写非常简单高效，但其缺点是对读取特别是随机读很不友好，这也是为什么日志通常用在下面的两种简单的场景：</p>
+<ol>
+<li>数据是被整体访问的，大多数数据库的WAL（write ahead log）也称预写log，包括mysql的Binlog等</li>
+<li>数据是通过文件的偏移量offset访问的，比如Kafka</li>
+</ol>
+<p>想要支持更复杂和高效的读取，比如按key查询和按range查询，就得需要做一步的设计，这也是LSM-Tree结构，除了利用磁盘顺序写之外，还划分了内存+磁盘多层的合并结构的原因，正是基于这种结构再加上不同的优化实现，才造就了在这之上的各种独具特点的NoSQL数据库，如Hbase，Cassandra，Leveldb，RocksDB，MongoDB，TiDB等。</p>
+<h2 id="LSM介绍"><a href="#LSM介绍" class="headerlink" title="LSM介绍"></a>LSM介绍</h2><p><a class="link"   target="_blank" rel="noopener" href="https://www.zhihu.com/question/19887265/answer/1714901833" >LSM 算法的原理是什么？<i class="fas fa-external-link-alt"></i></a></p>
+<p>LSM tree (log-structured merge-tree) 是一种对频繁写操作非常友好的数据结构，同时兼顾了查询效率。LSM tree 是许多 key-value 型或日志型数据库所依赖的核心数据结构，例如 BigTable、HBase、Cassandra、LevelDB、SQLite、Scylla、RocksDB 等。</p>
+<p>LSM tree 之所以有效是基于以下事实：磁盘或内存的连续读写性能远高于随机读写性能，有时候这种差距可以达到三个数量级之高。这种现象不仅对传统的机械硬盘成立，对 SSD 硬盘也同样成立。</p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://oss.tbghg.top/resource/202412161655537.png"
+                        alt="alt text"
+                 ></p>
+<p>LSM tree 在工作过程中尽可能避免随机读写，充分发挥了磁盘连续读写的性能优势。</p>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><h3 id="SSTable"><a href="#SSTable" class="headerlink" title="SSTable"></a>SSTable</h3><p>LSM tree 持久化到硬盘上之后的结构称为 Sorted Strings Table (SSTable)。顾名思义，SSTable 保存了排序后的数据（实际上是按照 key 排序的 key-value 对）。</p>
+<p>每个 SSTable 可以包含多个存储数据的文件，称为 segment，每个 segment 内部都是有序的，但不同 segment 之间没有顺序关系。一个 segment 一旦生成便不再修改（immutable）。一个 SSTable 的示例如下：</p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://oss.tbghg.top/resource/202412161656312.png"
+                        alt="alt text"
+                 ></p>
+<p>可以看到，每个 segment 内部的数据都是按照 key 排序的。下面我们来介绍每个 segment 是如何生成的。</p>
+<h3 id="写入LSM"><a href="#写入LSM" class="headerlink" title="写入LSM"></a>写入LSM</h3><p>LSM tree 的所有写操作均为连续写，因此效率非常高。但由于外部数据是无序到来的，如果无脑连续写入到 segment，显然是不能保证顺序的。</p>
+<p><strong>对此，LSM tree 会在内存中构造一个有序数据结构（称为 memtable），例如红黑树、跳表等（实践中总是采用跳表）。每条新到达的数据插入后，可以始终保持数据有序。</strong></p>
+<p><strong>当写入的数据量达到一定阈值时，将触发有序结构的 flush 操作，把所有排好序的数据一次性写入到硬盘中（该过程为连续写），生成一个新的 segment。而之后有序结构便重新开始下一轮积攒数据的过程。</strong></p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://oss.tbghg.top/resource/202412161656346.webp"
+                        alt="img"
+                 ></p>
+<h3 id="读取-查询数据"><a href="#读取-查询数据" class="headerlink" title="读取&#x2F;查询数据"></a>读取&#x2F;查询数据</h3><p>如何从 SSTable 中查询一条特定的数据呢？一个最简单直接的办法是扫描所有的 segment，直到找到所查询的 key 为止。通常应该从最新的 segment 扫描，依次到最老的 segment，这是因为<strong>越是最近的数据越可能被用户查询</strong>，把最近的数据优先扫描能够提高平均查询速度。</p>
+<p>当扫描某个特定的 segment 时，由于该 segment 内部的数据是有序的，因此可以使用 二分查找 的方式，在 O(log⁡n) 的时间内得到查询结果。</p>
+<p><strong>但对于二分查找来说，要么一次性把数据全部读入内存，要么在每次二分时都消耗一次磁盘 IO，当 segment 非常大时（这种情况在大数据场景下司空见惯），这两种情况的代价都非常高。</strong></p>
+<p>一个简单的优化策略是，在内存中维护一个<strong>稀疏索引（sparse index）</strong>，其结构如下图：</p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://oss.tbghg.top/resource/202412161656266.webp"
+                        alt="img"
+                 ></p>
+<blockquote>
+<p>稀疏索引是指将有序数据切分成（固定大小的）块，仅对各个块开头的一条数据做索引。与之相对的是全量索引（dense index），即对全部数据编制索引，其中的任意一条数据发生增删均需要更新索引。</p>
+<p>两者相比，全量索引的查询效率更高，达到了理论极限值 O(log⁡n) ，但写入和删除效率更低，因为每次数据增删时均需要因为更新索引而消耗一次 IO 操作。通常的关系型数据库，例如 MySQL 等，其内部采用 B tree 作为索引结构，这便是一种全量索引。</p>
+</blockquote>
+<p>有了稀疏索引之后，可以先在索引表中使用二分查找快速定位某个 key 位于哪一小块数据中，然后仅从磁盘中读取这一块数据即可获得最终查询结果，此时加载的数据量仅仅是整个 segment 的一小部分，因此 IO 代价较小。</p>
+<p>稀疏索引极大地提高了查询性能，然而有一种极端情况却会造成查询性能骤降：当要查询的结果在 SSTable 中不存在时，我们将不得不依次扫描完所有的 segment，这是最差的一种情况。</p>
+<p>解决方案：布隆过滤器（bloom filter），布隆过滤器是一种空间效率极高的算法，能够快速地检测一条数据是否在数据集中存在。我们只需要在写入每条数据之前先在布隆过滤器中登记一下，在查询时即可断定某条数据是否缺失。</p>
+<blockquote>
+<p>布隆过滤器的内部依赖于哈希算法，当<strong>布隆过滤器认为一条数据出现过，那么该条数据很可能出现过；但如果布隆过滤器认为一条数据没出现过，那么该条数据一定没出现过</strong>。</p>
+</blockquote>
+<h3 id="文件合并（Compaction）"><a href="#文件合并（Compaction）" class="headerlink" title="文件合并（Compaction）"></a>文件合并（Compaction）</h3><p>随着数据的不断积累，SSTable 将会产生越来越多的 segment，导致查询时扫描文件的 IO 次数增多，效率降低，因此需要有一种机制来控制 segment 的数量。</p>
+<p>对此，LSM tree 会定期执行文件合并（compaction）操作，将多个 segment 合并成一个较大的 segment，随后将旧的 segment 清理掉。由于每个 segment 内部的数据都是有序的，合并过程类似于<strong>归并排序</strong>，效率很高，只需要 O(n) 的时间复杂度。</p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://oss.tbghg.top/resource/202412161657671.webp"
+                        alt="img"
+                 ></p>
+<p>在上图的示例中，segment 1 和 2 中都存在 key 为 <code>dog</code> 的数据，这时应该以最新的 segment 为准，因此合并后的值取 84 而不是 52，这实现了类似于字典&#x2F;HashMap 中“覆盖写”的语义。</p>
+<h3 id="删除数据"><a href="#删除数据" class="headerlink" title="删除数据"></a>删除数据</h3><blockquote>
+<p>总结：删除&#x2F;更新数据 实际为 写入新的数据</p>
+<ol>
+<li>读取时 会按照从新到旧的顺序扫描 segment</li>
+<li>合并时 相同的Key会以最新的 segment 为准</li>
+</ol>
+<p>所以写入相同Key的新数据，即可覆盖旧数据（删除数据写入为墓碑）</p>
+</blockquote>
+<p>要从一个 segment 文件中间抹除一段数据必须要覆写其之后的所有内容，这个成本非常高。</p>
+<p>LSM tree 所采用的做法是设计一个特殊的标志位，称为 <em>tombstone（墓碑）</em>，删除一条数据就是把它的 value 置为墓碑，如下图所示：</p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://oss.tbghg.top/resource/202412161658433.webp"
+                        alt="img"
+                 ></p>
+<p>这个例子展示了删除 segment 2 中的 <code>dog</code> 之后的效果。注意，此时 segment 1 中仍然保留着 <code>dog</code> 的旧数据，如果我们查询 <code>dog</code>，那么应该返回空，而不是 52。因此，<strong>删除操作的本质是覆盖写，而不是清除一条数据</strong>，这一点初看起来不太符合常识。墓碑会在 compact 操作中被清理掉，于是置为墓碑的数据在新的 segment 中将不复存在。</p>
+<h2 id="LSM-tree-与-B-tree-的对比"><a href="#LSM-tree-与-B-tree-的对比" class="headerlink" title="LSM tree 与 B tree 的对比"></a>LSM tree 与 B tree 的对比</h2><p>主流的关系型数据库均以 B&#x2F;B+ tree 作为其构建索引的数据结构，这是因为 B tree 提供了理论上最高的查询效率 O(log⁡n) 。</p>
+<p>但对查询性能的追求也造成了 B tree 的相应缺点，即每次插入或删除一条数据时，均需要更新索引，从而造成一次磁盘 IO。这种特性决定了 B tree 只适用于频繁读、较少写的场景。如果在频繁写的场景下，将造成大量的磁盘 IO，从而导致性能骤降。这种应用场景在传统的关系型数据库中比较常见。</p>
+<p>而 LSM tree 则避免了频繁写场景下的磁盘 IO 开销，尽管其查询效率无法达到理想的 O(log⁡n) ，但依然非常快，可以接受。</p>
+<p>所以从本质上来说，LSM tree 相当于牺牲了一部分查询性能，换取了可观的写入性能。这对于 key-value 型或日志型数据库是非常重要的。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>LSM tree 存储引擎的工作原理包含以下几个要点：</p>
+<ol>
+<li>写数据时，首先将数据缓存到内存中的一个有序树结构中（称为 memtable）。同时触发相关结构的更新，例如布隆过滤器、稀疏索引。</li>
+<li>当 memtable 积累到足够大时，会一次性写入磁盘中，生成一个内部有序的 segment 文件。该过程为连续写，因此效率极高。</li>
+<li>进行查询时，首先检查布隆过滤器。如果布隆过滤器报告数据不存在，则直接返回不存在。否则，按照从新到老的顺序依次查询每个 segment。</li>
+<li>在查询每个 segment 时，首先使用二分搜索检索对应的稀疏索引，找到数据所在的 offset 范围。然后读取磁盘上该范围内的数据，再次进行二分查找并获得结果。</li>
+<li>对于大量的 segment 文件，定期在后台执行 compaction 操作，将多个文件合并为更大的文件，以保证查询效率不衰减。</li>
+</ol>
+<h2 id="深入总结"><a href="#深入总结" class="headerlink" title="深入总结"></a>深入总结</h2><p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://oss.tbghg.top/resource/202412161658502.jpeg"
+                        alt="img"
+                 ></p>
+<h3 id="如何写数据"><a href="#如何写数据" class="headerlink" title="如何写数据"></a>如何写数据</h3><ol>
+<li>当收到一个写请求时，会先把该条数据记录在 WAL Log 里面，用作故障恢复。</li>
+<li>当写完 WAL Log 后，会把该条数据写入内存的 SSTable 里面（删除是墓碑标记，更新是新记录一条的数据），也称 Memtable。注意为了维持有序性在内存里面可以采用红黑树或者跳跃表相关的数据结构。</li>
+<li>当 Memtable 超过一定的大小后，会在内存里面冻结，变成不可变的 Memtable，同时为了不阻塞写操作需要新生成一个 Memtable 继续提供服务。</li>
+<li>把内存里面不可变的 Memtable 给 dump 到到硬盘上的 SSTable 层中，此步骤也称为 Minor Compaction，这里需要注意在 L0 层的 SSTable 是没有进行合并的，所以这里的key range在多个SSTable中可能会出现重叠，在层数大于0层之后的 SSTable，不存在重叠key。</li>
+<li>当每层的磁盘上的 SSTable 的体积超过一定的大小或者个数，也会周期的进行合并。此步骤也称为 Major Compaction，这个阶段会真正 的清除掉被标记删除掉的数据以及多版本数据的合并，避免浪费空间，注意由于 SSTable 都是有序的，我们可以直接采用 merge sort 进行高效合并。</li>
+</ol>
+<h3 id="如何读数据"><a href="#如何读数据" class="headerlink" title="如何读数据"></a>如何读数据</h3><ol>
+<li>当收到一个读请求的时候，会直接先在内存里面查询，如果查询到就返回。</li>
+<li>如果没有查询到就会依次下沉，知道把所有的 Level 层查询一遍得到最终结果。</li>
+</ol>
+<h3 id="做的改进"><a href="#做的改进" class="headerlink" title="做的改进"></a>做的改进</h3><p>思考查询步骤，我们会发现如果 SSTable 的分层越多，那么最坏的情况下要把所有的分层扫描一遍，对于这种情况肯定是需要优化的，如何优化？在 Bigtable 论文中提出了几种方式：</p>
+<ol>
+<li>压缩</li>
+</ol>
+<p>SSTable 是可以启用压缩功能的，并且这种压缩不是将整个 SSTable 一起压缩，而是根据 locality 将数据分组，每个组分别压缩，这样的好处当读取数据的时候，我们不需要解压缩整个文件而是解压缩部分 Group 就可以读取。</p>
+<ol start="2">
+<li>缓存</li>
+</ol>
+<p>因为SSTable在写入磁盘后，除了Compaction之外，是不会变化的，所以我可以将Scan的Block进行缓存，从而提高检索的效率</p>
+<ol start="3">
+<li>索引，Bloom filters - 布隆过滤器</li>
+</ol>
+<p>正常情况下，一个读操作是需要读取所有的 SSTable 将结果合并后返回的，但是对于某些 key 而言，有些 SSTable 是根本不包含对应数据的，因此，我们可以对每一个 SSTable 添加 Bloom Filter，因为布隆过滤器在判断一个SSTable不存在某个key的时候，那么就一定不会存在，利用这个特性可以减少不必要的磁盘扫描。</p>
+<ol start="4">
+<li>合并</li>
+</ol>
+<p>这个在前面的写入流程中已经介绍过，通过定期合并瘦身， 可以有效的清除无效数据，缩短读取路径，提高磁盘利用空间。但Compaction操作是非常消耗CPU和磁盘IO的，尤其是在业务高峰期，如果发生了Major Compaction，则会降低整个系统的吞吐量，这也是一些NoSQL数据库，比如Hbase里面常常会禁用Major Compaction，并在凌晨业务低峰期进行合并的原因。</p>
+<p>为什么LSM不直接顺序写入磁盘，而是需要在内存中缓冲一下？</p>
+<p>单条写的性能肯定没有批量写来的块，这个原理其实在Kafka里面也是一样的，虽然kafka给我们的感觉是写入后就落地，但其实并不是，本身是 可以根据条数或者时间比如200ms刷入磁盘一次，这样能大大提升写入效率。此外在LSM中，在磁盘缓冲的另一个好处是，针对新增的数据，可以直接查询返回，能够避免一定的IO操作。</p>
+
+                    
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/2025-04-23/c61f47e7f007/"
+                                   title="2025-H1"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">2025-H1</span>
+                                        <span class="post-nav-item">上一篇</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/2024-10-20/22a0b6fbf912/"
+                                   title="国庆日本独行旅游小记"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">国庆日本独行旅游小记</span>
+                                        <span class="post-nav-item">下一篇</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+    <div class="comments-container border-box">
+        <div id="comments-anchor" class="comment-area-title border-box">
+            <i class="fas fa-comments"></i>&nbsp;评论
+        </div>
+        <div class="comment-plugin-fail border-box">
+    <span class="fail-tip">评论插件加载失败</span>
+    <button class="reload keep-button">点击重新加载</button>
+</div>
+<div class="comment-plugin-loading flex-center border-box">
+    <i class="loading-icon fa-solid fa-spinner fa-spin"></i>
+    <span class="load-tip">正在加载评论插件</span>
+</div>
+<script data-pjax>
+  window.KeepCommentPlugin = {}
+  window.KeepCommentPlugin.hideLoading = () => {
+    const cplDom = document.querySelector('.comments-container .comment-plugin-loading')
+    cplDom.style.display = 'none'
+  }
+  window.KeepCommentPlugin.loadFailHandle = () => {
+    window.KeepCommentPlugin.hideLoading()
+    const cpfDom = document.querySelector('.comments-container .comment-plugin-fail')
+    cpfDom.style.display = 'flex'
+    cpfDom.querySelector('.reload').addEventListener('click', () => {
+      window.location.reload()
+    })
+  }
+</script>
+
+        
+            
+
+    <div class="valine-container">
+        <div id="vcomments"></div>
+        <script data-pjax
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"
+                async
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        ></script>
+        <script data-pjax
+                async
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        >
+          window.KeepCommentPlugin.initValine = () => {
+            const config = {
+              el: '#vcomments',
+              appId: '0HepQGr76M5xNgWk2Ecac7CC-gzGzoHsz',
+              appKey: '9bWzVBcRI0aSocVHtX3OBSYo',
+              meta: ['nick', 'mail', 'link'],
+              avatar: 'wavatar',
+              enableQQ: true,
+              placeholder: '',
+              lang: 'zh-CN'.toLowerCase()
+            }
+
+            if ('') {
+              config.serverURLs = ''
+            }
+
+            if (window?.Valine) {
+              new Valine(config)
+              window.KeepCommentPlugin.hideLoading()
+            } else {
+              setTimeout(() => {
+                window.KeepCommentPlugin.initValine()
+              }, 1000)
+            }
+          }
+
+          if ('true' === 'true') {
+            setTimeout(() => {
+              window.KeepCommentPlugin.initValine()
+            }, 1200)
+          } else {
+            window.addEventListener('DOMContentLoaded', window.KeepCommentPlugin.initValine)
+          }
+        </script>
+    </div>
+
+
+        
+    </div>
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc right-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#LSM%E6%A0%91"><span class="nav-number">1.</span> <span class="nav-text">LSM树</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LSM%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.2.</span> <span class="nav-text">LSM介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E7%90%86"><span class="nav-number">1.3.</span> <span class="nav-text">原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SSTable"><span class="nav-number">1.3.1.</span> <span class="nav-text">SSTable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%99%E5%85%A5LSM"><span class="nav-number">1.3.2.</span> <span class="nav-text">写入LSM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%BB%E5%8F%96-%E6%9F%A5%E8%AF%A2%E6%95%B0%E6%8D%AE"><span class="nav-number">1.3.3.</span> <span class="nav-text">读取&#x2F;查询数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E5%90%88%E5%B9%B6%EF%BC%88Compaction%EF%BC%89"><span class="nav-number">1.3.4.</span> <span class="nav-text">文件合并（Compaction）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE"><span class="nav-number">1.3.5.</span> <span class="nav-text">删除数据</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LSM-tree-%E4%B8%8E-B-tree-%E7%9A%84%E5%AF%B9%E6%AF%94"><span class="nav-number">1.4.</span> <span class="nav-text">LSM tree 与 B tree 的对比</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.5.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%B1%E5%85%A5%E6%80%BB%E7%BB%93"><span class="nav-number">1.6.</span> <span class="nav-text">深入总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%86%99%E6%95%B0%E6%8D%AE"><span class="nav-number">1.6.1.</span> <span class="nav-text">如何写数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E8%AF%BB%E6%95%B0%E6%8D%AE"><span class="nav-number">1.6.2.</span> <span class="nav-text">如何读数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%81%9A%E7%9A%84%E6%94%B9%E8%BF%9B"><span class="nav-number">1.6.3.</span> <span class="nav-text">做的改进</span></a></li></ol></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+    &copy;&nbsp;<span>2021</span>&nbsp;-&nbsp;2025
+    
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">tbghg</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        由&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;驱动&nbsp;&&nbsp;主题&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
+    
+
+    
+
+    
+        <div class="record-info info-item">
+            
+                
+                    <div class="record-item border-box">
+                        <a class=""
+                           target="_blank"
+                           href="https://beian.miit.gov.cn"
+                        >
+                            辽ICP备2021007417号
+                        </a>
+                    </div>
+                
+            
+        </div>
+    
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools right-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
+        
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        <!-- to bottom -->
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+            <li class="tools-item go-to-comments-tablet flex-center">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#LSM%E6%A0%91"><span class="nav-number">1.</span> <span class="nav-text">LSM树</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LSM%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.2.</span> <span class="nav-text">LSM介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E7%90%86"><span class="nav-number">1.3.</span> <span class="nav-text">原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SSTable"><span class="nav-number">1.3.1.</span> <span class="nav-text">SSTable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%99%E5%85%A5LSM"><span class="nav-number">1.3.2.</span> <span class="nav-text">写入LSM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%BB%E5%8F%96-%E6%9F%A5%E8%AF%A2%E6%95%B0%E6%8D%AE"><span class="nav-number">1.3.3.</span> <span class="nav-text">读取&#x2F;查询数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E5%90%88%E5%B9%B6%EF%BC%88Compaction%EF%BC%89"><span class="nav-number">1.3.4.</span> <span class="nav-text">文件合并（Compaction）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE"><span class="nav-number">1.3.5.</span> <span class="nav-text">删除数据</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LSM-tree-%E4%B8%8E-B-tree-%E7%9A%84%E5%AF%B9%E6%AF%94"><span class="nav-number">1.4.</span> <span class="nav-text">LSM tree 与 B tree 的对比</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.5.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%B1%E5%85%A5%E6%80%BB%E7%BB%93"><span class="nav-number">1.6.</span> <span class="nav-text">深入总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%86%99%E6%95%B0%E6%8D%AE"><span class="nav-number">1.6.1.</span> <span class="nav-text">如何写数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E8%AF%BB%E6%95%B0%E6%8D%AE"><span class="nav-number">1.6.2.</span> <span class="nav-text">如何读数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%81%9A%E7%9A%84%E6%94%B9%E8%BF%9B"><span class="nav-number">1.6.3.</span> <span class="nav-text">做的改进</span></a></li></ol></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+
+
+<!-- common js -->
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/toggle-theme.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/code-block.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/libs/anime.min.js"></script>
+
+<!-- local search -->
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/local-search.js"></script>
+
+
+<!-- lazyload -->
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/lazyload.js"></script>
+
+
+<div class="pjax">
+    <!-- home page -->
+    
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/post/post-helper.js"></script>
+
+        <!-- toc -->
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/post/toc.js"></script>
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.2.5/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart()
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd()
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'))
+            KEEP.initExecute()
+        });
+    });
+</script>
+
+
+
+
+</body>
+</html>
